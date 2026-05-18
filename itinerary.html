@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🇰🇷 ソウル旅行 2026 — 3泊4日 完全版スケジュール</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Hiragino Sans", "Yu Gothic", "Hiragino Kaku Gothic Pro", sans-serif;
+    font-size: 14px;
+    color: #1A1A1A;
+    background: #FAFAFA;
+    line-height: 1.7;
+    padding: 24px 12px;
+  }
+  .container { max-width: 1080px; margin: 0 auto; background: #FFF; padding: 32px 36px; border-radius: 4px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+
+  /* Header */
+  .header { border-bottom: 3px solid #1B3F7A; padding-bottom: 20px; margin-bottom: 28px; }
+  .header h1 { font-size: 26px; font-weight: 700; color: #1B3F7A; margin-bottom: 8px; }
+  .header .subtitle { font-size: 14px; color: #666; }
+  .header .meta { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 12px; font-size: 13px; color: #1A1A1A; }
+  .header .meta span { background: #E8EFF8; padding: 4px 10px; border-radius: 12px; }
+
+  /* Tab Nav */
+  .tab-nav {
+    display: flex;
+    gap: 4px;
+    border-bottom: 2px solid #1B3F7A;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .tab {
+    padding: 10px 20px;
+    background: #E8EFF8;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 13px;
+    color: #1B3F7A;
+    font-weight: 700;
+    border-radius: 4px 4px 0 0;
+  }
+  .tab.active {
+    background: #1B3F7A;
+    color: #FFFFFF;
+  }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* Section Banner */
+  .section-banner {
+    background: #1B3F7A;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 8px 16px;
+    margin: 28px 0 14px;
+    border-radius: 2px;
+  }
+
+  /* Yellow Callout */
+  .callout {
+    background: #FFF8E7;
+    border-left: 4px solid #C47D0A;
+    padding: 14px 18px;
+    margin: 16px 0;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .callout strong { color: #1B3F7A; }
+
+  /* Map */
+  .map {
+    height: 420px;
+    width: 100%;
+    border: 1px solid #CCC;
+    border-radius: 4px;
+    margin: 16px 0 20px;
+  }
+  .map-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 16px;
+  }
+  .map-legend .dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 4px;
+    vertical-align: middle;
+  }
+
+  /* Table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin: 16px 0;
+  }
+  th {
+    background: #1F3864;
+    color: #FFFFFF;
+    font-weight: 700;
+    padding: 8px 12px;
+    text-align: left;
+    border: 1px solid #CCC;
+    font-size: 13px;
+  }
+  td {
+    padding: 8px 12px;
+    border: 1px solid #CCC;
+    color: #1A1A1A;
+    vertical-align: top;
+  }
+  tr:nth-child(even) td { background: #F7F7F7; }
+  td.time { font-weight: 700; color: #1B3F7A; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  td .pin { display: inline-block; background: #E8EFF8; color: #1B3F7A; padding: 1px 8px; border-radius: 10px; font-size: 11px; font-weight: 700; margin-right: 6px; }
+
+  /* KPI Cards */
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin: 16px 0; }
+  .kpi-card { background: #F2F2F2; padding: 14px; border-radius: 4px; }
+  .kpi-label { font-size: 12px; color: #666; }
+  .kpi-value { font-size: 20px; font-weight: 700; color: #1B3F7A; margin: 4px 0 0; }
+
+  /* Footnote */
+  .footnote {
+    font-size: 12px;
+    color: #666;
+    border-left: 3px solid #AAA;
+    padding-left: 10px;
+    margin: 12px 0;
+  }
+  .warning {
+    font-size: 12px;
+    color: #C00000;
+    border-left: 3px solid #C00000;
+    padding-left: 10px;
+    margin: 12px 0;
+    background: #FFF6F6;
+    padding: 8px 12px;
+  }
+
+  /* Pin labels on map */
+  .pin-label {
+    background: #1B3F7A;
+    color: #FFF;
+    font-weight: 700;
+    font-size: 12px;
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    line-height: 26px;
+    text-align: center;
+    border: 2px solid #FFF;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  }
+  .pin-label.hotel { background: #C47D0A; }
+  .pin-label.food { background: #C00000; }
+  .pin-label.poke { background: #375623; }
+  .pin-label.airport { background: #1A1A1A; }
+
+  h2 { font-size: 17px; font-weight: 700; color: #1A1A1A; margin: 20px 0 10px; }
+  h3 { font-size: 15px; font-weight: 700; color: #1B3F7A; margin: 16px 0 8px; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 16px 0; }
+  @media (max-width: 720px) { .two-col { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <h1>🇰🇷 ソウル旅行 2026 — ファミリー旅行</h1>
+    <div class="subtitle">2026年6月5日（金）〜 6月8日（月）・3泊4日</div>
+    <div class="meta">
+      <span>👪 大人4名 + 子供2名（6歳・5歳）</span>
+      <span>✈️ Air Seoul 直行便</span>
+      <span>🎮 Pokémon Mega Festa 2026 期間中</span>
+    </div>
+  </div>
+
+  <!-- Tab Nav -->
+  <nav class="tab-nav">
+    <button class="tab active" data-target="overview">概要</button>
+    <button class="tab" data-target="day1">Day1 · 6/5(金)</button>
+    <button class="tab" data-target="day2">Day2 · 6/6(土)</button>
+    <button class="tab" data-target="day3">Day3 · 6/7(日)</button>
+    <button class="tab" data-target="day4">Day4 · 6/8(月)</button>
+  </nav>
+
+  <!-- ============ OVERVIEW ============ -->
+  <div id="overview" class="tab-content active">
+    <div class="callout">
+      <strong>旅のテーマ：</strong>子供2人（6歳・5歳）が楽しめる聖水ポケモン＆ティニピン体験を最大化。期間中ちょうど <strong>Pokémon Mega Festa 2026（30周年）</strong> が開催中で、聖水エリアに無料スポットが集中。Day3を「ポケモンづくし＋ティニピン」の主役日に設計。
+    </div>
+
+    <div class="section-banner">  01  全行程マップ</div>
+    <div class="map-legend">
+      <span><i class="dot" style="background:#1A1A1A;"></i>空港</span>
+      <span><i class="dot" style="background:#C47D0A;"></i>ホテル</span>
+      <span><i class="dot" style="background:#1B3F7A;"></i>観光・体験</span>
+      <span><i class="dot" style="background:#C00000;"></i>食事</span>
+      <span><i class="dot" style="background:#375623;"></i>ポケモン関連</span>
+    </div>
+    <div id="map-overview" class="map"></div>
+
+    <div class="section-banner">  02  日程サマリー</div>
+    <table>
+      <tr><th style="width:90px;">日付</th><th>エリア</th><th>テーマ</th><th>ハイライト</th></tr>
+      <tr><td><strong>Day1</strong><br>6/5(金)</td><td>成田→仁川</td><td>移動・深夜チェックイン</td><td>20:10 NRT発 → 22:50 ICN着、空港鉄道で雲西へ</td></tr>
+      <tr><td><strong>Day2</strong><br>6/6(土)</td><td>明洞（ソウル）</td><td>名前デコ＋韓国美容＋サムギョプサル</td><td>Wappen House、Olive Young明洞、フェイシャル、王道サムギョプサル</td></tr>
+      <tr><td><strong>Day3</strong><br>6/7(日)</td><td>安国→聖水→仁川</td><td>🎮 ポケモン＋🎀 ティニピン主役デイ</td><td>ロンドンベーグル、Secret Forest、Metamon Playground、ティニピン公式ストア</td></tr>
+      <tr><td><strong>Day4</strong><br>6/8(月)</td><td>仁川→成田</td><td>早朝チェックアウト・帰国</td><td>08:10 ICN発 → 10:40 NRT着</td></tr>
+    </table>
+
+    <div class="section-banner">  03  予約状況サマリー</div>
+    <table>
+      <tr><th>項目</th><th>内容</th><th>状態</th></tr>
+      <tr><td>✈️ 往復航空券</td><td>Air Seoul RS704/RS705、6名分・座席指定済み</td><td>✅ 確定</td></tr>
+      <tr><td>🏨 6/5仁川</td><td>HOUND HOTEL Incheon Airport ¥12,963</td><td>✅ 確定</td></tr>
+      <tr><td>🏨 6/6明洞</td><td>LOTTE CITY HOTEL Myeongdong ¥35,911</td><td>✅ 確定</td></tr>
+      <tr><td>🏨 6/7仁川</td><td>Incheon Airport Global Hotel &amp; Suites ¥15,451</td><td>✅ 確定</td></tr>
+      <tr><td>🥩 サムギョプサル</td><td>明洞（黄金牧場 or HONG BAR、6/6 17:30〜、個室）</td><td>🔥 要予約</td></tr>
+      <tr><td>🧖 フェイシャル</td><td>明洞、6/6 13:30〜、女性2名</td><td>🔥 要予約</td></tr>
+      <tr><td>🥯 ロンドンベーグル</td><td>安国店、6/7 朝（CATCH TABLEで当日対応）</td><td>📲 当日</td></tr>
+    </table>
+
+    <div class="section-banner">  04  費用サマリー（確定分）</div>
+    <div class="kpi-grid">
+      <div class="kpi-card"><div class="kpi-label">航空券（6名）</div><div class="kpi-value">¥107,339</div></div>
+      <div class="kpi-card"><div class="kpi-label">ホテル3泊</div><div class="kpi-value">¥64,325</div></div>
+      <div class="kpi-card"><div class="kpi-label">成田往復交通</div><div class="kpi-value">約¥15,600</div></div>
+      <div class="kpi-card"><div class="kpi-label">フェイシャル(2名)</div><div class="kpi-value">¥10-20k</div></div>
+      <div class="kpi-card"><div class="kpi-label">確定費用合計</div><div class="kpi-value">¥197k〜</div></div>
+    </div>
+    <div class="footnote">食費・現地交通費・ショッピング・お土産（ポケモン/ティニピン枠含む）・LCC手荷物預け料金は別途。</div>
+  </div>
+
+  <!-- ============ DAY 1 ============ -->
+  <div id="day1" class="tab-content">
+    <div class="callout">
+      <strong>🛫 Day1のミッション：</strong>「とにかく無事に深夜のHOUND HOTELまでたどり着く」。深夜0時前後着なので、空港鉄道一般列車（雲西駅まで約8分）で移動。子供2人をどう寝かせるかが勝負。
+    </div>
+
+    <div class="section-banner">  動線マップ</div>
+    <div class="map-legend">
+      <span><i class="dot" style="background:#1A1A1A;"></i>空港</span>
+      <span><i class="dot" style="background:#C47D0A;"></i>ホテル</span>
+    </div>
+    <div id="map-day1" class="map"></div>
+
+    <div class="section-banner">  タイムテーブル</div>
+    <table>
+      <tr><th style="width:120px;">時刻</th><th>内容</th><th style="width:200px;">場所</th></tr>
+      <tr><td class="time">16:30-17:00</td><td><span class="pin">🏠</span>自宅出発（成田着 18:25目安・出発1h45m前）</td><td>自宅→成田</td></tr>
+      <tr><td class="time">18:30-20:00</td><td><span class="pin">✈️</span>成田T1チェックイン・手荷物預け・子供夕食</td><td>NRT 第1ターミナル</td></tr>
+      <tr><td class="time">20:10</td><td><span class="pin">🛫</span>NRT発（Air Seoul RS704・エコノミー・直行）</td><td>機内</td></tr>
+      <tr><td class="time">22:50</td><td><span class="pin">🛬</span>ICN着・入国審査・荷物受取</td><td>ICN 第1ターミナル</td></tr>
+      <tr><td class="time">23:30頃</td><td><span class="pin">🚇</span>空港鉄道一般列車でICN→雲西（約8分・終電24時前後注意）<br><small>※ 終電後の場合はタクシー2台でホテル直行</small></td><td>ICN→雲西</td></tr>
+      <tr><td class="time">24:00頃</td><td><span class="pin">🏨</span>HOUND HOTEL Incheon Airport チェックイン・就寝</td><td>HOUND HOTEL</td></tr>
+    </table>
+
+    <div class="warning">⚠️ 空港鉄道の終電は深夜0時前後。22:50着＋入国審査30-45分で実質23:30以降の移動になる。最終列車の運行時刻を出発前にコネスト等で再確認すること。</div>
+
+    <h3>持ち物・準備メモ</h3>
+    <ul style="padding-left: 20px;">
+      <li>子供用の機内おやつ、タブレット（DLしたアニメ動画）、薄手ブランケット</li>
+      <li>T-money（交通カード）— 仁川空港コンビニ・自販機で全員分購入</li>
+      <li>HOUND HOTEL深夜チェックイン連絡：予約時に「深夜23:00〜0:00着」リクエスト済み</li>
+    </ul>
+  </div>
+
+  <!-- ============ DAY 2 ============ -->
+  <div id="day2" class="tab-content">
+    <div class="callout">
+      <strong>🏙 Day2のミッション：</strong>朝8時に仁川を出発、午前中に明洞集結。<strong>名前デコ → ランチ → フェイシャル（女性のみ別行動）→ サムギョプサル</strong> の流れ。別行動は午後の90分のみで、それ以外は全員行動。
+    </div>
+
+    <div class="section-banner">  動線マップ（仁川→明洞）</div>
+    <div class="map-legend">
+      <span><i class="dot" style="background:#C47D0A;"></i>ホテル</span>
+      <span><i class="dot" style="background:#1B3F7A;"></i>体験スポット</span>
+      <span><i class="dot" style="background:#C00000;"></i>食事</span>
+    </div>
+    <div id="map-day2" class="map"></div>
+
+    <div class="section-banner">  タイムテーブル</div>
+    <table>
+      <tr><th style="width:120px;">時刻</th><th>内容</th><th style="width:200px;">場所</th></tr>
+      <tr><td class="time">8:00</td><td><span class="pin">🚇</span>HOUND HOTELチェックアウト、空港鉄道で明洞へ</td><td>雲西→明洞</td></tr>
+      <tr><td class="time">9:00-9:30</td><td><span class="pin">🏨</span>明洞着、LOTTE CITYに荷物預け（チェックインは15:00〜）</td><td>LOTTE CITY HOTEL</td></tr>
+      <tr><td class="time">9:30-10:30</td><td><span class="pin">💄</span>Olive Young 明洞タウン店（ポケモン×Kビューティー商品・ティニピン菓子の初当たり、朝イチで空いてる）</td><td>Olive Young 明洞</td></tr>
+      <tr><td class="time">10:30-12:00</td><td><span class="pin">✏️</span><strong>Wappen House 明洞</strong>でキーホルダー名前デコ（約1,100円/個、10分/人）</td><td>Wappen House</td></tr>
+      <tr><td class="time">12:00-13:30</td><td><span class="pin">🍜</span>ランチ：明洞餃子（カルグクスの名店）or 王道韓食</td><td>明洞餃子</td></tr>
+      <tr><td class="time">13:30-15:30</td><td><span class="pin">🌟</span><strong>別行動タイム</strong><br>女性2名 → 🧖 フェイシャル90分（要予約）<br>男性2名＋子供2名 → 明洞散策 / LINE FRIENDS / Alive Museum</td><td>明洞エリア</td></tr>
+      <tr><td class="time">15:30-16:30</td><td><span class="pin">🏨</span>LOTTE CITY チェックイン・子供休憩</td><td>LOTTE CITY HOTEL</td></tr>
+      <tr><td class="time">17:30-19:30</td><td><span class="pin">🥩</span><strong>サムギョプサル夕食</strong>（黄金牧場 or HONG BAR、個室・要予約）</td><td>明洞</td></tr>
+      <tr><td class="time">19:30以降</td><td><span class="pin">🌃</span>明洞屋台＋夜散策（任意・子供のテンション次第）</td><td>明洞</td></tr>
+    </table>
+
+    <div class="two-col">
+      <div>
+        <h3>🥩 サムギョプサル候補</h3>
+        <table>
+          <tr><th>店</th><th>推し</th></tr>
+          <tr><td><strong>黄金牧場 明洞本店</strong></td><td>個室完備・王道厚切り</td></tr>
+          <tr><td><strong>HONG BAR 明豚家</strong></td><td>ビュッフェ形式・子供にも安心</td></tr>
+        </table>
+      </div>
+      <div>
+        <h3>🧖 フェイシャル候補</h3>
+        <table>
+          <tr><th>店</th><th>推し</th></tr>
+          <tr><td><strong>Shangpree 明洞</strong></td><td>高級・施術品質◎</td></tr>
+          <tr><td><strong>LK SPA 明洞</strong></td><td>日本語OK・気軽</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="warning">⚠️ サムギョプサル・フェイシャル両方とも5月末までに予約必須。土曜夕方は明洞のサムギョプサル店が満席になる。</div>
+  </div>
+
+  <!-- ============ DAY 3 ============ -->
+  <div id="day3" class="tab-content">
+    <div class="callout">
+      <strong>🎮 Day3のミッション：</strong>旅のクライマックス。朝イチでロンドンベーグル→北村ぶらぶら→<strong>聖水でポケモン3スポット＋ティニピン公式ストア</strong>を一気に回収。徒歩圏に4スポット集中しているので回遊効率は最大級。
+    </div>
+
+    <div class="section-banner">  動線マップ（明洞→安国→聖水→仁川）</div>
+    <div class="map-legend">
+      <span><i class="dot" style="background:#C47D0A;"></i>ホテル</span>
+      <span><i class="dot" style="background:#C00000;"></i>食事</span>
+      <span><i class="dot" style="background:#375623;"></i>ポケモン関連</span>
+      <span><i class="dot" style="background:#1B3F7A;"></i>その他スポット</span>
+    </div>
+    <div id="map-day3" class="map"></div>
+
+    <div class="section-banner">  タイムテーブル</div>
+    <table>
+      <tr><th style="width:120px;">時刻</th><th>内容</th><th style="width:200px;">場所</th></tr>
+      <tr><td class="time">7:00-7:30</td><td><span class="pin">🚪</span>LOTTE CITY出発（荷物はベルボーイに預け）、地下鉄で安国へ</td><td>明洞→安国</td></tr>
+      <tr><td class="time">7:30-8:00</td><td><span class="pin">📲</span>ロンドンベーグル安国店 開店待ち列（CATCH TABLEで番号取得）</td><td>安国</td></tr>
+      <tr><td class="time">8:00-9:00</td><td><span class="pin">🥯</span><strong>ロンドンベーグルミュージアム 安国店</strong>で朝食</td><td>London Bagel Museum</td></tr>
+      <tr><td class="time">9:00-10:30</td><td><span class="pin">🏘</span>北村韓屋村 散策・写真</td><td>北村</td></tr>
+      <tr><td class="time">10:30-11:30</td><td><span class="pin">🚇</span>安国→忠武路乗換→ソウルの森駅（約30分）</td><td>移動</td></tr>
+      <tr><td class="time">11:30-12:00</td><td><span class="pin">🌳</span>ソウルの森でピクニック休憩（12:00開場待ち）</td><td>ソウルの森</td></tr>
+      <tr><td class="time">12:00-13:30</td><td><span class="pin">🎮</span><strong>Pokémon Secret Forest @ ソウルの森</strong>（無料・限定グッズあり）</td><td>ソウルの森</td></tr>
+      <tr><td class="time">13:30-14:30</td><td><span class="pin">🍽</span>聖水カフェ街でランチ</td><td>聖水</td></tr>
+      <tr><td class="time">14:30-15:30</td><td><span class="pin">🟪</span><strong>Metamon Playground</strong>（聖水駅3番出口徒歩4分、巨大メタモン彫像）</td><td>聖水</td></tr>
+      <tr><td class="time">15:30-16:30</td><td><span class="pin">🎀</span><strong>The Teenieping Seongsu</strong>（My Pingカスタムぬいぐるみ体験）</td><td>聖水</td></tr>
+      <tr><td class="time">16:30-17:00</td><td><span class="pin">🛍</span>Olive Young N 聖水（ポケモン商品最終買い物）</td><td>聖水</td></tr>
+      <tr><td class="time">17:00-18:30</td><td><span class="pin">🚇</span>明洞経由で荷物ピックアップ → 仁川空港駅へ</td><td>明洞→仁川</td></tr>
+      <tr><td class="time">18:30</td><td><span class="pin">🏨</span>Incheon Airport Global Hotel &amp; Suites チェックイン</td><td>仁川空港</td></tr>
+      <tr><td class="time">19:00</td><td><span class="pin">🍙</span>ホテル近辺 or 空港内で軽め夕食、早め就寝</td><td>仁川空港</td></tr>
+    </table>
+
+    <div class="two-col">
+      <div>
+        <h3>🎮 聖水ポケモン3スポット</h3>
+        <table>
+          <tr><th>#</th><th>スポット</th><th>料金</th></tr>
+          <tr><td>1</td><td>Pokémon Secret Forest（ソウルの森）</td><td>無料</td></tr>
+          <tr><td>2</td><td>Metamon Playground（聖水駅徒歩4分）</td><td>無料</td></tr>
+          <tr><td>3</td><td>Olive Young N 聖水（ポケモン商品）</td><td>物販</td></tr>
+        </table>
+      </div>
+      <div>
+        <h3>🎀 ティニピン買い物優先順</h3>
+        <table>
+          <tr><th>#</th><th>商品</th><th>価格</th></tr>
+          <tr><td>1</td><td>My Pingカスタムぬいぐるみ</td><td>5,500-7,000円</td></tr>
+          <tr><td>2</td><td>キャラぬいぐるみ</td><td>2,000-5,000円</td></tr>
+          <tr><td>3</td><td>キーホルダー</td><td>1,000-2,000円</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="footnote">出典：Pokémon Secret Forest は5/1〜6/21、12:00-19:00、無料・予約不要。Metamon Playgroundは6/21まで、10:00-21:00。Teenieping Seongsuは11 Yeonmujang 15-gil、4ゾーン構成・1日約700人来店。</div>
+  </div>
+
+  <!-- ============ DAY 4 ============ -->
+  <div id="day4" class="tab-content">
+    <div class="callout">
+      <strong>🛬 Day4のミッション：</strong>RS705（ICN 08:10発）に乗るには <strong>5:30〜6:00ホテル出発</strong> が必要。前夜に荷物まとめ＆フロントにアーリーチェックアウト依頼を済ませる。
+    </div>
+
+    <div class="section-banner">  動線マップ</div>
+    <div id="map-day4" class="map"></div>
+
+    <div class="section-banner">  タイムテーブル</div>
+    <table>
+      <tr><th style="width:120px;">時刻</th><th>内容</th><th style="width:200px;">場所</th></tr>
+      <tr><td class="time">5:30-6:00</td><td><span class="pin">⏰</span>早朝ホテル出発（無料シャトル運行・空港まで数分）</td><td>仁川空港ホテル</td></tr>
+      <tr><td class="time">6:00-6:30</td><td><span class="pin">🛂</span>ICN空港着・チェックイン・荷物預け</td><td>ICN T1</td></tr>
+      <tr><td class="time">6:30-7:30</td><td><span class="pin">🍞</span>朝食（空港内）、保安検査</td><td>ICN</td></tr>
+      <tr><td class="time">7:30-8:00</td><td><span class="pin">🛍</span>免税店＋GS25でティニピンお菓子最終チェック</td><td>ICN</td></tr>
+      <tr><td class="time">8:10</td><td><span class="pin">🛫</span>ICN発（Air Seoul RS705・直行）</td><td>機内</td></tr>
+      <tr><td class="time">10:40</td><td><span class="pin">🛬</span>NRT着・入国・荷物受取</td><td>NRT</td></tr>
+      <tr><td class="time">12-13時台</td><td><span class="pin">🏠</span>帰宅</td><td>自宅</td></tr>
+    </table>
+
+    <div class="warning">⚠️ チェックイン締切はLCC基準で出発60分前。6:30までに空港着・チェックインカウンター到着が安全圏。</div>
+  </div>
+
+  <!-- ============ TODO ============ -->
+  <div class="section-banner">  🔥 直近TODO（全Day共通）</div>
+  <table>
+    <tr><th style="width:40px;">#</th><th>TODO</th><th style="width:120px;">期限</th><th style="width:100px;">優先度</th></tr>
+    <tr><td>1</td><td>CATCH TABLEアプリDL、ロンドンベーグル安国店の予約方法確認</td><td>即時</td><td>🔥 高</td></tr>
+    <tr><td>2</td><td>サムギョプサル予約（黄金牧場 or HONG BAR、6/6 17:30〜、6名・個室）</td><td>〜5月末</td><td>🔥 高</td></tr>
+    <tr><td>3</td><td>フェイシャル予約（明洞、6/6 13:30〜、女性2名・90分）</td><td>〜5月末</td><td>🔥 高</td></tr>
+    <tr><td>4</td><td>HOUND HOTEL深夜チェックイン再確認</td><td>6月初旬</td><td>中</td></tr>
+    <tr><td>5</td><td>Pokémon Secret Forest 公式サイトで6/7運営状況再チェック</td><td>6月初旬</td><td>中</td></tr>
+    <tr><td>6</td><td>ティニピン「My Pingカスタム」予約要否確認</td><td>6月初旬</td><td>中</td></tr>
+    <tr><td>7</td><td>子供のお土産予算枠決定（ポケモン＋ティニピン）</td><td>出発前</td><td>中</td></tr>
+    <tr><td>8</td><td>T-moneyカード手配計画（仁川空港で全員分）</td><td>出発前</td><td>低</td></tr>
+  </table>
+
+  <div class="footnote" style="margin-top: 24px;">
+    出典：Pokémon Mega Festa 2026 公式情報（Inside Seoul / NOL World）、The Teenieping Seongsu（Penny in Korea / SAMG Entertainment）、明洞サムギョプサル各種口コミ（minfor / KONEST / tabelog）、CATCH TABLE / London Bagel Museum 各種レビュー。地図 © OpenStreetMap contributors。
+  </div>
+
+</div>
+
+<script>
+// ===== Tab Switching =====
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    tab.classList.add('active');
+    const target = document.getElementById(tab.dataset.target);
+    target.classList.add('active');
+    // Leafletマップは表示後にinvalidateSizeが必要
+    setTimeout(() => {
+      target.querySelectorAll('.map').forEach(m => {
+        if (m._leaflet_map) m._leaflet_map.invalidateSize();
+      });
+    }, 50);
+  });
+});
+
+// ===== Helper: Numbered Icon =====
+function numIcon(num, cls) {
+  return L.divIcon({
+    className: '',
+    html: `<div class="pin-label ${cls||''}">${num}</div>`,
+    iconSize: [26, 26],
+    iconAnchor: [13, 13]
+  });
+}
+
+// ===== Locations =====
+const LOC = {
+  NRT:       { ll: [35.7720, 140.3929], name: '成田空港 (NRT)' },
+  ICN:       { ll: [37.4602, 126.4407], name: '仁川国際空港 (ICN)' },
+  HOUND:     { ll: [37.4880, 126.4815], name: 'HOUND HOTEL Incheon Airport' },
+  UNSEO:     { ll: [37.4900, 126.4870], name: '雲西駅 (Unseo Station)' },
+  LOTTE:     { ll: [37.5635, 126.9817], name: 'LOTTE CITY HOTEL Myeongdong' },
+  MYEONG:    { ll: [37.5604, 126.9852], name: '明洞駅' },
+  OLIVE_M:   { ll: [37.5634, 126.9846], name: 'Olive Young 明洞タウン店' },
+  WAPPEN:    { ll: [37.5635, 126.9844], name: 'Wappen House 明洞' },
+  MDDUMPLING:{ ll: [37.5630, 126.9837], name: '明洞餃子（カルグクス）' },
+  HWANGGEUM: { ll: [37.5631, 126.9858], name: '黄金牧場 明洞本店（サムギョプサル候補）' },
+  ANGUK:     { ll: [37.5762, 126.9854], name: '安国駅' },
+  LONDON_BG: { ll: [37.5773, 126.9839], name: 'London Bagel Museum 安国店' },
+  BUKCHON:   { ll: [37.5826, 126.9836], name: '北村韓屋村' },
+  SEOULFRST: { ll: [37.5444, 127.0376], name: 'ソウルの森 / Pokémon Secret Forest' },
+  TTUKSEOM:  { ll: [37.5471, 127.0473], name: '뚝섬駅 (Ttukseom)' },
+  SEONGSU:   { ll: [37.5446, 127.0557], name: '聖水駅' },
+  METAMON:   { ll: [37.5453, 127.0533], name: 'Metamon Playground' },
+  TEENIE:    { ll: [37.5418, 127.0570], name: 'The Teenieping Seongsu' },
+  OLIVE_N:   { ll: [37.5447, 127.0552], name: 'Olive Young N 聖水' },
+  GLOBAL_HT: { ll: [37.4475, 126.4520], name: 'Incheon Airport Global Hotel & Suites' }
+};
+
+// ===== Map Builder =====
+function buildMap(divId, steps, opts) {
+  const div = document.getElementById(divId);
+  if (!div) return;
+  const map = L.map(divId, { scrollWheelZoom: false });
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: '© OpenStreetMap contributors'
+  }).addTo(map);
+
+  const bounds = [];
+  const latlngs = [];
+  steps.forEach((step, i) => {
+    const loc = LOC[step.key];
+    if (!loc) return;
+    const marker = L.marker(loc.ll, { icon: numIcon(step.num || (i+1), step.cls) }).addTo(map);
+    marker.bindPopup(`<strong>${step.num || (i+1)}. ${loc.name}</strong><br><span style="font-size:12px;color:#666;">${step.label||''}</span>`);
+    bounds.push(loc.ll);
+    latlngs.push(loc.ll);
+  });
+
+  if (latlngs.length > 1) {
+    L.polyline(latlngs, { color: '#1B3F7A', weight: 3, opacity: 0.6, dashArray: '6,6' }).addTo(map);
+  }
+
+  if (bounds.length > 0) {
+    map.fitBounds(bounds, { padding: [40, 40] });
+  }
+
+  div._leaflet_map = map;
+  return map;
+}
+
+// ===== Overview Map =====
+buildMap('map-overview', [
+  { key: 'NRT', num: '✈', cls: 'airport', label: 'Day1 出発' },
+  { key: 'ICN', num: '✈', cls: 'airport', label: 'Day1/4 仁川空港' },
+  { key: 'HOUND', num: '🏨', cls: 'hotel', label: 'Day1 宿泊' },
+  { key: 'LOTTE', num: '🏨', cls: 'hotel', label: 'Day2 宿泊' },
+  { key: 'WAPPEN', num: '✏', label: 'Day2 名前デコ' },
+  { key: 'HWANGGEUM', num: '🥩', cls: 'food', label: 'Day2 夕食' },
+  { key: 'LONDON_BG', num: '🥯', cls: 'food', label: 'Day3 朝食' },
+  { key: 'SEOULFRST', num: '🎮', cls: 'poke', label: 'Day3 Secret Forest' },
+  { key: 'METAMON', num: '🟪', cls: 'poke', label: 'Day3 Metamon' },
+  { key: 'TEENIE', num: '🎀', label: 'Day3 ティニピン' },
+  { key: 'GLOBAL_HT', num: '🏨', cls: 'hotel', label: 'Day3 宿泊' }
+]);
+
+// ===== Day1 Map =====
+buildMap('map-day1', [
+  { key: 'NRT', num: 1, cls: 'airport', label: '20:10 出発' },
+  { key: 'ICN', num: 2, cls: 'airport', label: '22:50 到着' },
+  { key: 'UNSEO', num: 3, label: '23:30 雲西駅' },
+  { key: 'HOUND', num: 4, cls: 'hotel', label: '24:00 チェックイン' }
+]);
+
+// ===== Day2 Map =====
+buildMap('map-day2', [
+  { key: 'HOUND', num: 1, cls: 'hotel', label: '8:00 出発' },
+  { key: 'LOTTE', num: 2, cls: 'hotel', label: '9:00 荷物預け' },
+  { key: 'OLIVE_M', num: 3, label: '9:30 Olive Young' },
+  { key: 'WAPPEN', num: 4, label: '10:30 名前デコ' },
+  { key: 'MDDUMPLING', num: 5, cls: 'food', label: '12:00 ランチ' },
+  { key: 'HWANGGEUM', num: 6, cls: 'food', label: '17:30 サムギョプサル' }
+]);
+
+// ===== Day3 Map =====
+buildMap('map-day3', [
+  { key: 'LOTTE', num: 1, cls: 'hotel', label: '7:00 出発' },
+  { key: 'LONDON_BG', num: 2, cls: 'food', label: '8:00 朝食' },
+  { key: 'BUKCHON', num: 3, label: '9:00 散策' },
+  { key: 'SEOULFRST', num: 4, cls: 'poke', label: '12:00 Secret Forest' },
+  { key: 'METAMON', num: 5, cls: 'poke', label: '14:30 Metamon' },
+  { key: 'TEENIE', num: 6, label: '15:30 ティニピン' },
+  { key: 'OLIVE_N', num: 7, cls: 'poke', label: '16:30 Olive Young N' },
+  { key: 'GLOBAL_HT', num: 8, cls: 'hotel', label: '18:30 チェックイン' }
+]);
+
+// ===== Day4 Map =====
+buildMap('map-day4', [
+  { key: 'GLOBAL_HT', num: 1, cls: 'hotel', label: '5:30 出発' },
+  { key: 'ICN', num: 2, cls: 'airport', label: '6:00 ICN' },
+  { key: 'NRT', num: 3, cls: 'airport', label: '10:40 NRT' }
+]);
+</script>
+</body>
+</html>
