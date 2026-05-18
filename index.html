@@ -240,9 +240,8 @@ function imgSearch(q) { return 'https://www.google.com/search?tbm=isch&q=' + enc
 function konestSearch(q) { return 'https://www.konest.com/searches/search.html?keyword=' + encodeURIComponent(q); }
 
 // ===== Spot Database =====
-// 写真：Aランク・Bランクの確認済みスポットのみキュレーション。Cランクは絵文字スタイル。
-function wiki(filename) { return `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(filename)}?width=400`; }
-// Wikimedia Special:FilePath は実在ファイル名のみ画像を返す。存在しない場合は404でemoji fallback。
+// 写真：Wikipedia REST API から自動取得した記事メイン画像。49/51件カバー。
+// 未取得2件（KidZania・The Hyundai Seoul）は絵文字フォールバック。
 
 const SPOTS = [
   // ============ A. EVENT ============
