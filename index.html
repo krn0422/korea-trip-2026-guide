@@ -55,19 +55,29 @@
   .card.classic-card { border-left: 4px solid #1F3864; }
   .card.trend-card { border-left: 4px solid #C00000; }
   .card .photo {
-    background: #F2F2F2;
-    background-size: cover;
-    background-position: center;
     min-height: 140px;
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: linear-gradient(135deg, #E8EFF8 0%, #FFFFFF 100%);
+  }
+  .card .photo.classic-bg { background: linear-gradient(135deg, #E0E8F0 0%, #FFFFFF 100%); }
+  .card .photo.trend-bg { background: linear-gradient(135deg, #FFE5E5 0%, #FFFFFF 100%); }
+  .card .photo img {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: 2;
   }
   .card .photo .photo-emoji {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 56px;
-    opacity: 0.85;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    font-size: 64px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+    text-align: center;
+    line-height: 1;
+    z-index: 1;
   }
   .card .body { padding: 14px 16px; }
   .card .title { font-size: 14px; font-weight: 700; color: #1B3F7A; margin-bottom: 6px; }
@@ -230,15 +240,16 @@ function imgSearch(q) { return 'https://www.google.com/search?tbm=isch&q=' + enc
 function konestSearch(q) { return 'https://www.konest.com/searches/search.html?keyword=' + encodeURIComponent(q); }
 
 // ===== Spot Database =====
-// 写真は loremflickr.com（タグベース）or 公式OG画像 / Wikimedia
-function flickr(tags, seed) { return `https://loremflickr.com/400/300/${encodeURIComponent(tags)}?lock=${seed}`; }
+// 写真：Aランク・Bランクの確認済みスポットのみキュレーション。Cランクは絵文字スタイル。
+function wiki(filename) { return `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(filename)}?width=400`; }
+// Wikimedia Special:FilePath は実在ファイル名のみ画像を返す。存在しない場合は404でemoji fallback。
 
 const SPOTS = [
   // ============ A. EVENT ============
   {
     cat: 'A', sub: 'A', label: 'A1', rank: 'A', type: ['trend','hot','must'],
     name: '🎮 Pokémon Mega Festa 2026（30周年）',
-    photo: flickr('pokemon,korea,seoul', 1),
+    photo: null,
     photoEmoji: '🎮',
     meta: '期間：〜2026年6月21日／場所：聖水＋ソウルの森／料金：無料',
     desc: 'ポケモン30周年記念のソウル全域開催イベント。聖水で4スポット集中：Pokémon Secret Forest（ソウルの森）、Metamon Playground、Olive Young N 聖水。',
@@ -254,7 +265,7 @@ const SPOTS = [
   {
     cat: 'A', sub: 'A', label: 'A2', rank: 'A', type: ['trend','new'],
     name: '🧸 Toy Story 5 POP-UP',
-    photo: flickr('toy,story,pixar', 2),
+    photo: null,
     photoEmoji: '🧸',
     meta: '期間：2026年4月30日〜7月12日／場所：The Hyundai Seoul（汝矣島）他',
     desc: '映画『トイ・ストーリー5』公開（夏予定）に合わせたピクサー公式POP-UP。キーリング・ぬいぐるみ・ブラインドボックス、ピクサー世界観の巨大フォトスポット。Singapore Disney CruiseチケットSNSキャンペーン。',
@@ -270,7 +281,7 @@ const SPOTS = [
   {
     cat: 'A', sub: 'A', label: 'A3', rank: 'B', type: ['trend'],
     name: '📚 Seoul Outdoor Library',
-    photo: flickr('seoul,plaza,library', 3),
+    photo: null,
     photoEmoji: '📚',
     meta: '期間：6月毎週金〜日／場所：ソウル広場（明洞徒歩圏）他',
     desc: '屋外に芝生席・ビーンバッグ・無料書籍。ピクニック気分で読書OK。',
@@ -284,7 +295,7 @@ const SPOTS = [
   {
     cat: 'A', sub: 'A', label: 'A4', rank: 'C', type: ['trend'],
     name: '🚲 Car-Free Jamsugyo Festival',
-    photo: flickr('seoul,bridge,festival', 4),
+    photo: null,
     photoEmoji: '🚲',
     meta: '期間：6月最初の2日曜／場所：蚕水橋・盤浦漢江公園',
     desc: '蚕水橋全面歩行者天国、フードトラック・クラフト・自撮りスポット。',
@@ -300,7 +311,7 @@ const SPOTS = [
   {
     cat: 'B', sub: 'classic', label: 'B-王1', rank: 'A', type: ['classic','must','plan'],
     name: '🥩 サムギョプサル / 韓牛焼肉',
-    photo: flickr('samgyeopsal,korean,bbq', 11),
+    photo: null,
     photoEmoji: '🥩',
     meta: '代表店：黄金牧場 明洞本店／HONG BAR 明豚家／オントリセンコギ',
     desc: '韓国旅行No.1王道。生の三枚肉を鉄板で焼いて、サンチュ・ゴマの葉・キムチ・ニンニクで包んで食べる。Day2夕食に確定。',
@@ -316,7 +327,7 @@ const SPOTS = [
   {
     cat: 'B', sub: 'classic', label: 'B-王2', rank: 'B', type: ['classic'],
     name: '🍲 参鶏湯（サムゲタン）',
-    photo: flickr('samgyetang,korean,soup', 12),
+    photo: null,
     photoEmoji: '🍲',
     meta: '代表店：土俗村（トソクチョン）@景福宮近く／高麗参鶏湯',
     desc: '若鶏のお腹に高麗人参・もち米・栗・ナツメを詰めて煮込んだ滋養強壮スープ。1人前約16,000-22,000W。子供にも食べやすい。',
@@ -331,7 +342,7 @@ const SPOTS = [
   {
     cat: 'B', sub: 'classic', label: 'B-王3', rank: 'B', type: ['classic'],
     name: '🥘 ビビンバ（石焼/全州式）',
-    photo: flickr('bibimbap,korean,rice', 13),
+    photo: wiki('Bibimbap_with_kkakdugi.jpg'),
     photoEmoji: '🥘',
     meta: '代表店：全州中央会館（全州式の老舗）／相場：12,000-18,000W',
     desc: 'ナムル・牛肉・卵・コチュジャンを石器で混ぜる料理。「全州式」が伝統スタイル。蟹味噌ビビンバはミシュランも。',
@@ -345,7 +356,7 @@ const SPOTS = [
   {
     cat: 'B', sub: 'classic', label: 'B-王4', rank: 'B', type: ['classic'],
     name: '🦀 カンジャンケジャン（蟹の醤油漬け）',
-    photo: flickr('crab,korean,soy', 14),
+    photo: null,
     photoEmoji: '🦀',
     meta: '代表店：プロカンジャンケジャン（江南）／クンザコンガンジャンゲジャン（鍾路）／相場：1人前約40,000W',
     desc: '生のワタリガニを醤油ベースのタレに漬けた高級韓国料理。「ご飯泥棒」の異名。',
@@ -359,7 +370,7 @@ const SPOTS = [
   {
     cat: 'B', sub: 'classic', label: 'B-王5', rank: 'A', type: ['classic','kid'],
     name: '🍗 韓国式フライドチキン（KFC）',
-    photo: flickr('korean,fried,chicken', 15),
+    photo: null,
     photoEmoji: '🍗',
     meta: '代表店：BBQ チキン／Kyochon／NeNe Chicken／Chir Chir',
     desc: '韓国の「夜の鉄板」。ヤンニョム（甘辛）・パダク（醤油ニンニク）・原味の三大味。「치맥（チメッ）」＝チキン＋ビール。',
@@ -374,7 +385,7 @@ const SPOTS = [
   {
     cat: 'B', sub: 'classic', label: 'B-王6', rank: 'B', type: ['classic'],
     name: '🥶 冷麺（ネンミョン）',
-    photo: flickr('naengmyeon,cold,noodle', 16),
+    photo: null,
     photoEmoji: '🥶',
     meta: '代表店：乙密台（平壌冷麺の名店）／又来屋／相場：12,000-15,000W',
     desc: 'そば粉ベースの冷たい麺、平壌冷麺（あっさり）と咸興冷麺（甘辛）の2系統。サムギョプサルの締めにも。',
@@ -388,7 +399,7 @@ const SPOTS = [
   {
     cat: 'B', sub: 'classic', label: 'B-王7', rank: 'A', type: ['classic','kid'],
     name: '🍧 빙수 ビンス（韓国かき氷）',
-    photo: flickr('bingsu,korean,dessert', 17),
+    photo: null,
     photoEmoji: '🍧',
     meta: '代表店：雪氷（Sulbing、チェーン展開）／ホミルパッピンス／相場：8,000-15,000W',
     desc: 'マンゴー・きな粉・小豆など。練乳をかけたふわふわ氷の上にトッピング。6月の暑さに必食。',
@@ -402,7 +413,7 @@ const SPOTS = [
   {
     cat: 'B', sub: 'classic', label: 'B-王8', rank: 'A', type: ['classic'],
     name: '🌶 トッポッキ + 屋台食',
-    photo: flickr('tteokbokki,korean,street', 18),
+    photo: wiki('Tteokbokki.JPG'),
     photoEmoji: '🌶',
     meta: '場所：明洞屋台 / 広蔵市場 / 弘大 ／相場：3,000-5,000W',
     desc: '餅をコチュジャンで甘辛く煮込んだ屋台フード。ホットック、キンパ、スンデと並んで屋台BIG3。',
@@ -416,7 +427,7 @@ const SPOTS = [
   {
     cat: 'B', sub: 'classic', label: 'B-王9', rank: 'A', type: ['classic','must'],
     name: '🍢 広蔵市場の食べ歩き',
-    photo: flickr('gwangjang,market,seoul', 19),
+    photo: wiki('Gwangjang_Market.JPG'),
     photoEmoji: '🍢',
     meta: '場所：鍾路5街駅／1905年創業（韓国最古）／代表：빈대떡 ピンデトッ、ユッケ、スンデ',
     desc: '韓国最古の常設市場、Netflix『Street Food: Asia』特集で世界的知名度。ピンデトッ・ユッケ・スンデで有名。',
@@ -432,7 +443,7 @@ const SPOTS = [
   {
     cat: 'B', sub: 'classic', label: 'B-王10', rank: 'B', type: ['classic','kid'],
     name: '🥟 ホットック（屋台焼きパン）',
-    photo: flickr('hotteok,korean,pancake', 20),
+    photo: null,
     photoEmoji: '🥟',
     meta: '場所：屋台全般／相場：1,500-3,000W',
     desc: 'パン生地に黒糖・シナモン・くるみを入れて鉄板で焼く屋台スイーツ。冬の風物詩だが6月も食べられる。',
@@ -447,7 +458,7 @@ const SPOTS = [
   {
     cat: 'B', sub: 'trend', label: 'B-T1', rank: 'A', type: ['trend','hot'],
     name: '🧈 버터떡 Butter Rice Cake（バター餅）',
-    photo: flickr('butter,rice,cake,seoul', 21),
+    photo: null,
     photoEmoji: '🧈',
     meta: '価格：3,000-6,000W／代表店：이웃집통통이（元祖）／하츠베이커리 聖水店／COOKIE N CLAY 仁寺洞',
     desc: '2026年に入ってからSNS爆発。「バターラン」（朝から行列）が流行語。外カリッ中もちの新感覚スイーツ。元ネタは上海の黄油年糕。',
@@ -463,7 +474,7 @@ const SPOTS = [
   {
     cat: 'B', sub: 'trend', label: 'B-T2', rank: 'B', type: ['trend'],
     name: '🍪 두쪼지 Dujjonku（ドバイチューイクッキー）',
-    photo: flickr('dubai,chocolate,cookie', 22),
+    photo: null,
     photoEmoji: '🍪',
     meta: '価格：4,000-7,000W／チョコ＋マシュマロ＋カダイフのクッキー',
     desc: 'グローバルなドバイチョコブームの韓国版。2026年初頭から継続的に人気、各カフェで遭遇しやすい。',
@@ -477,7 +488,7 @@ const SPOTS = [
   {
     cat: 'B', sub: 'trend', label: 'B-T3', rank: 'B', type: ['trend','kid'],
     name: '🍦 요아정 Yoajung（組立式ヨーグルトアイス）',
-    photo: flickr('yogurt,icecream,toppings', 23),
+    photo: null,
     photoEmoji: '🍦',
     meta: '価格：6,000-10,000W／全国チェーン展開',
     desc: 'ヨーグルトアイスのベースに数十種類のトッピングを自分で組み合わせる「遊び」型カフェ。明洞・聖水あり。',
@@ -491,7 +502,7 @@ const SPOTS = [
   {
     cat: 'B', sub: 'trend', label: 'B-T4', rank: 'B', type: ['trend'],
     name: '🥢 개성주악 Gaeseong Juak（伝統スイーツ復活）',
-    photo: flickr('korean,traditional,sweet', 24),
+    photo: null,
     photoEmoji: '🥢',
     meta: '価格：1,500-3,000W／場所：仁寺洞・安国エリア',
     desc: '開城地方のマッコリ揚げ菓子が再流行。SNS映え◎。',
@@ -504,7 +515,7 @@ const SPOTS = [
   {
     cat: 'B', sub: 'trend', label: 'B-T5', rank: 'B', type: ['classic'],
     name: '🍯 Honey Butter Chip',
-    photo: flickr('honey,butter,chip,korean', 25),
+    photo: null,
     photoEmoji: '🍯',
     meta: '価格：1,500-3,000W／コンビニ全店',
     desc: '2014年大ブームから今やスタンダード。空港GS25でまとめ買い。',
@@ -519,7 +530,7 @@ const SPOTS = [
   {
     cat: 'C', sub: 'classic', label: 'C-王1', rank: 'A', type: ['classic','plan'],
     name: '🛍 明洞 Myeongdong',
-    photo: flickr('myeongdong,seoul,shopping', 31),
+    photo: null,
     photoEmoji: '🛍',
     meta: '地下鉄4号線明洞駅',
     desc: '観光番王道。コスメ・ファッション・ストリートフード・夜市が密集。Olive Youngフラッグシップ、Wappen House、Hello Kitty Apple Cafe。子連れ「安心エリア」。',
@@ -534,7 +545,7 @@ const SPOTS = [
   {
     cat: 'C', sub: 'classic', label: 'C-王2', rank: 'B', type: ['classic','new'],
     name: '🏬 東大門 Dongdaemun / DDP',
-    photo: flickr('dongdaemun,ddp,zaha', 32),
+    photo: wiki('Dongdaemun_Design_Plaza_at_night,_Seoul,_Korea.jpg'),
     photoEmoji: '🏬',
     meta: '地下鉄1/4号線東大門駅・2/4/5号線東大門歴史文化公園駅',
     desc: '24時間営業のファッション卸売市場、隣接の東大門デザインプラザ（DDP）はザハ・ハディド設計の近未来建築。夜のライトアップは絶景。',
@@ -549,7 +560,7 @@ const SPOTS = [
   {
     cat: 'C', sub: 'classic', label: 'C-王3', rank: 'C', type: ['classic'],
     name: '🎤 弘大 Hongdae',
-    photo: flickr('hongdae,seoul,youth', 33),
+    photo: null,
     photoEmoji: '🎤',
     meta: '地下鉄2号線弘大入口駅',
     desc: '弘益大学周辺の若者の街。ストリートパフォーマンス、サンリオラバーズクラブ、K-popショップ、おしゃれカフェ。',
@@ -563,7 +574,7 @@ const SPOTS = [
   {
     cat: 'C', sub: 'classic', label: 'C-王4', rank: 'C', type: ['classic'],
     name: '💎 江南 Gangnam',
-    photo: flickr('gangnam,seoul,luxury', 34),
+    photo: null,
     photoEmoji: '💎',
     meta: '地下鉄2号線江南駅／3号線狎鴎亭駅',
     desc: '高級ブティック・整形外科の聖地。ギャラリア百貨店、COEX（Pyolmadang Library、水族館）。',
@@ -577,7 +588,7 @@ const SPOTS = [
   {
     cat: 'C', sub: 'classic', label: 'C-王5', rank: 'C', type: ['classic'],
     name: '🌍 梨泰院 Itaewon',
-    photo: flickr('itaewon,seoul,international', 35),
+    photo: null,
     photoEmoji: '🌍',
     meta: '地下鉄6号線梨泰院駅',
     desc: '外国人街、多国籍料理、ナイトライフ。家族旅行には合いにくい。',
@@ -592,7 +603,7 @@ const SPOTS = [
   {
     cat: 'C', sub: 'trend', label: 'C-T1', rank: 'A', type: ['trend','hot','plan'],
     name: '🏭 聖水 Seongsu — "ブルックリン of Seoul"',
-    photo: flickr('seongsu,seoul,cafe,industrial', 41),
+    photo: null,
     photoEmoji: '🏭',
     meta: '地下鉄2号線聖水駅／徒歩エリア',
     desc: '旧工場リノベのカフェ・ギャラリー・ブティック集中。Pokémon Mega Festa 3スポット＋ティニピン＋HAUS NOWHERE＋thisisneverthat＋하츠ベーカリー（バター餅）。',
@@ -607,7 +618,7 @@ const SPOTS = [
   {
     cat: 'C', sub: 'trend', label: 'C-T2', rank: 'B', type: ['trend','new'],
     name: '🏮 益善洞 Ikseondong — 韓屋カフェ村',
-    photo: flickr('ikseondong,hanok,seoul,cafe', 42),
+    photo: null,
     photoEmoji: '🏮',
     meta: '地下鉄1/3/5号線鍾路3街駅／安国徒歩圏',
     desc: '100年以上の韓屋を再開発。北村より商業化が進み子連れで歩きやすい。Cafe Onhwa、Monblanc Somme、Seoul Coffee 益善店、Cafe Highwaist。',
@@ -622,7 +633,7 @@ const SPOTS = [
   {
     cat: 'C', sub: 'trend', label: 'C-T3', rank: 'C', type: ['trend'],
     name: '🍷 漢南洞 Hannam',
-    photo: flickr('hannam,seoul,boutique', 43),
+    photo: null,
     photoEmoji: '🍷',
     meta: '地下鉄6号線漢江鎮駅',
     desc: '高級住宅街、リウム美術館、Maison Margiela漢南のBONANZA COFFEE。',
@@ -636,7 +647,7 @@ const SPOTS = [
   {
     cat: 'C', sub: 'trend', label: 'C-T4', rank: 'B', type: ['trend','new'],
     name: '🏞 汝矣島 Yeouido',
-    photo: flickr('yeouido,seoul,hangang', 44),
+    photo: null,
     photoEmoji: '🏞',
     meta: '地下鉄5/9号線汝矣島駅',
     desc: 'The Hyundai Seoul（Toy Story 5 POP-UP会場）、漢江公園、IFC Mall、63ビル（水族館）。',
@@ -650,7 +661,7 @@ const SPOTS = [
   {
     cat: 'C', sub: 'trend', label: 'C-T5', rank: 'B', type: ['classic','trend'],
     name: '🎨 仁寺洞 Insadong',
-    photo: flickr('insadong,seoul,traditional', 45),
+    photo: null,
     photoEmoji: '🎨',
     meta: '地下鉄3号線安国駅',
     desc: '伝統工芸・茶道・ギャラリー街。Alive Museum（4Dトリックアート）、Color Pool Museum、개성주악、COOKIE N CLAY（バター餅）。',
@@ -667,7 +678,7 @@ const SPOTS = [
   {
     cat: 'D', sub: 'D', label: 'D1', rank: 'B', type: ['classic','kid'],
     name: '🐠 Lotte World Aquarium',
-    photo: flickr('aquarium,beluga,lotte', 51),
+    photo: null,
     photoEmoji: '🐠',
     meta: '蚕室（Jamsil）／大人35,000W・子供29,000W／所要2-4h',
     desc: '650種・55,000匹、85m海底トンネル、ベルーガ「Bella」、サメ給餌・ヒトデタッチ。ベビーカーOK。',
@@ -682,7 +693,7 @@ const SPOTS = [
   {
     cat: 'D', sub: 'D', label: 'D2', rank: 'C', type: ['classic','kid'],
     name: '🎢 Lotte World Adventure（遊園地）',
-    photo: flickr('lotteworld,theme,park', 52),
+    photo: null,
     photoEmoji: '🎢',
     meta: '蚕室／所要1日',
     desc: '屋内＋屋外の大型テーマパーク。アクアリウムと隣接。',
@@ -696,7 +707,7 @@ const SPOTS = [
   {
     cat: 'D', sub: 'D', label: 'D3', rank: 'C', type: ['kid'],
     name: '🎓 KidZania Seoul',
-    photo: flickr('kidzania,seoul,job', 53),
+    photo: null,
     photoEmoji: '🎓',
     meta: '蚕室／対象4-15歳／所要1日',
     desc: '医師・消防士・パイロット等の職業体験。',
@@ -710,7 +721,7 @@ const SPOTS = [
   {
     cat: 'D', sub: 'D', label: 'D4', rank: 'C', type: ['kid'],
     name: '🌊 63 SEAWORLD',
-    photo: flickr('63building,seoul,aquarium', 54),
+    photo: null,
     photoEmoji: '🌊',
     meta: '汝矣島63ビル地下／所要2-3h',
     desc: '400種2万匹、IMAX併設。Lotte Aquariumより小規模だが汝矣島Toy Story 5と合わせ技OK。',
@@ -724,7 +735,7 @@ const SPOTS = [
   {
     cat: 'D', sub: 'D', label: 'D5', rank: 'B', type: ['kid'],
     name: '🐰 Hello Kitty Apple Cafe 明洞',
-    photo: flickr('hellokitty,cafe,seoul', 55),
+    photo: null,
     photoEmoji: '🐰',
     meta: '明洞／所要1h',
     desc: '3階建てキティカフェ、リンゴモチーフのデコ＆メニュー。',
@@ -738,7 +749,7 @@ const SPOTS = [
   {
     cat: 'D', sub: 'D', label: 'D6', rank: 'A', type: ['trend','plan'],
     name: '🎀 The Teenieping Seongsu',
-    photo: flickr('teenieping,korean,kids', 56),
+    photo: null,
     photoEmoji: '🎀',
     meta: '聖水／所要30-60分',
     desc: '韓国版プリキュア公式旗艦、My Pingカスタム体験。',
@@ -753,7 +764,7 @@ const SPOTS = [
   {
     cat: 'D', sub: 'D', label: 'D7', rank: 'C', type: ['kid'],
     name: '🎡 ソウル子ども大公園',
-    photo: flickr('childrens,park,seoul', 57),
+    photo: null,
     photoEmoji: '🎡',
     meta: '城東区／所要3h〜',
     desc: '53.6万㎡の公園、ミニ遊園地、子供用遊具、水遊び場。',
@@ -766,7 +777,7 @@ const SPOTS = [
   {
     cat: 'D', sub: 'D', label: 'D8', rank: 'B', type: ['classic','new'],
     name: '📚 ピョルマダン図書館 @ COEX',
-    photo: flickr('starfield,library,coex', 58),
+    photo: null,
     photoEmoji: '📚',
     meta: '江南COEX Mall／無料／所要30-60分',
     desc: '高さ13mの本棚が圧巻、ベビーカーOK、無料、ショッピングモール内。撮影スポット◎。',
@@ -782,7 +793,7 @@ const SPOTS = [
   {
     cat: 'E', sub: 'E', label: 'E1', rank: 'A', type: ['classic','must'],
     name: '👑 景福宮 Gyeongbokgung + 韓服レンタル',
-    photo: flickr('gyeongbokgung,palace,seoul', 61),
+    photo: wiki('Gyeongbokgung-KyoTaeJeon.JPG'),
     photoEmoji: '👑',
     meta: '景福宮駅／入場3,000W（韓服着用で無料）／所要2-3h',
     desc: '朝鮮王朝の正宮、5大宮殿で最大規模（東京ドーム10個分）。1395年建設。守門将交代式（10:00・14:00）。韓服レンタル店多数。',
@@ -798,7 +809,7 @@ const SPOTS = [
   {
     cat: 'E', sub: 'E', label: 'E2', rank: 'B', type: ['classic','new'],
     name: '🌳 昌徳宮 Changdeokgung + 秘苑',
-    photo: flickr('changdeokgung,palace,unesco', 62),
+    photo: wiki('Daejojeon,_Changdeokgung_-_Seoul,_Korea.JPG'),
     photoEmoji: '🌳',
     meta: '安国駅徒歩／入場3,000W／秘苑ガイドツアー5,000W／所要1.5h',
     desc: 'UNESCO世界文化遺産。景福宮よりコンパクトで歩きやすい。秘苑（Huwon）は300年の樹齢の木々と蓮池、ガイドツアー必須。',
@@ -813,7 +824,7 @@ const SPOTS = [
   {
     cat: 'E', sub: 'E', label: 'E3', rank: 'A', type: ['classic','plan'],
     name: '🏘 北村韓屋村',
-    photo: flickr('bukchon,hanok,village,seoul', 63),
+    photo: wiki('Bukchon_Hanok_Village,_Seoul_(17)_(26241790367).jpg'),
     photoEmoji: '🏘',
     meta: '安国駅徒歩／無料／所要1-2h',
     desc: '伝統韓屋が並ぶ世界的有名フォトジェニックエリア。Day3朝に組込済み。',
@@ -827,7 +838,7 @@ const SPOTS = [
   {
     cat: 'E', sub: 'E', label: 'E4', rank: 'B', type: ['classic'],
     name: '🏛 徳寿宮 Deoksugung',
-    photo: flickr('deoksugung,palace,seoul', 64),
+    photo: wiki('Daehanmun_of_deoksugung.JPG'),
     photoEmoji: '🏛',
     meta: '市庁駅徒歩／入場1,000W／所要1h',
     desc: '5大宮殿の一つ、近代洋館「石造殿」が共存する珍しい宮殿。守門将交代式（11:00・14:00・15:30）。',
@@ -841,7 +852,7 @@ const SPOTS = [
   {
     cat: 'E', sub: 'E', label: 'E5', rank: 'C', type: ['classic'],
     name: '🗼 Nソウルタワー',
-    photo: flickr('namsan,tower,seoul,night', 65),
+    photo: null,
     photoEmoji: '🗼',
     meta: '明洞からシャトルバス／展望台21,000W／所要2-3h',
     desc: '夜景の定番、ロープウェイで上れる。明洞から近い。',
@@ -855,7 +866,7 @@ const SPOTS = [
   {
     cat: 'E', sub: 'E', label: 'E6', rank: 'B', type: ['classic','new'],
     name: '🌊 清渓川 Cheonggyecheon',
-    photo: flickr('cheonggyecheon,seoul,stream', 66),
+    photo: wiki('Cheonggyecheon_with_skyscrapers_in_Seoul.jpg'),
     photoEmoji: '🌊',
     meta: '市庁・鍾閣・鍾路3街駅／無料',
     desc: '10.92kmの都市再生人工水路。涼やかなお散歩スポット。明洞からすぐ。',
@@ -869,7 +880,7 @@ const SPOTS = [
   {
     cat: 'E', sub: 'E', label: 'E7', rank: 'C', type: ['classic','new'],
     name: '🏛 国立中央博物館',
-    photo: flickr('national,museum,korea', 67),
+    photo: null,
     photoEmoji: '🏛',
     meta: '二村駅／無料／所要2-3h',
     desc: '韓国最大規模の博物館、半島史を網羅。子供向け展示室「Children\'s Museum」あり。完全無料。',
@@ -883,7 +894,7 @@ const SPOTS = [
   {
     cat: 'E', sub: 'E', label: 'E8', rank: 'C', type: ['classic','new'],
     name: '⚔ 戦争記念館',
-    photo: flickr('war,memorial,korea', 68),
+    photo: null,
     photoEmoji: '⚔',
     meta: '三角地駅／無料／所要2h',
     desc: '朝鮮戦争を中心にした韓国戦史博物館。屋外に戦車・戦闘機展示で子供は喜ぶ。',
@@ -899,7 +910,7 @@ const SPOTS = [
   {
     cat: 'F', sub: 'F', label: 'F1', rank: 'A', type: ['classic','must','new'],
     name: '🍢 広蔵市場 Gwangjang Market',
-    photo: flickr('gwangjang,market,bindaetteok', 71),
+    photo: wiki('Gwangjang_Market.JPG'),
     photoEmoji: '🍢',
     meta: '鍾路5街駅／1905年創業（韓国最古）／所要1-2h',
     desc: '韓国最古の常設市場、Netflix『Street Food: Asia』特集で世界的知名度。代表メニュー：빈대떡（緑豆チヂミ）、肉膾（ユッケ）、스니네 빈대떡、모녀김밥。',
@@ -915,7 +926,7 @@ const SPOTS = [
   {
     cat: 'F', sub: 'F', label: 'F2', rank: 'B', type: ['classic','new'],
     name: '🏬 東大門市場 / DDP',
-    photo: flickr('dongdaemun,ddp,fashion', 72),
+    photo: wiki('Dongdaemun_Design_Plaza_at_night,_Seoul,_Korea.jpg'),
     photoEmoji: '🏬',
     meta: '東大門歴史文化公園駅／24時間営業',
     desc: 'ファッション卸売市場、夜が本番。隣接の東大門デザインプラザ（DDP）はザハ・ハディド設計の近未来建築。',
@@ -929,7 +940,7 @@ const SPOTS = [
   {
     cat: 'F', sub: 'F', label: 'F3', rank: 'B', type: ['classic'],
     name: '🛍 南大門市場 Namdaemun Market',
-    photo: flickr('namdaemun,market,seoul', 73),
+    photo: null,
     photoEmoji: '🛍',
     meta: '会賢駅・市庁駅／毎日営業',
     desc: '600年以上の歴史を持つソウル最大規模の伝統市場。海苔・高麗人参・お土産の総合デパート。子供服も豊富。',
@@ -943,7 +954,7 @@ const SPOTS = [
   {
     cat: 'F', sub: 'F', label: 'F4', rank: 'A', type: ['classic','plan'],
     name: '💄 Olive Young 明洞フラッグシップ',
-    photo: flickr('oliveyoung,kbeauty,myeongdong', 74),
+    photo: null,
     photoEmoji: '💄',
     meta: '明洞／毎日10:00-22:30',
     desc: 'Kビューティーの聖地、ポケモン×230SKUコラボ商品も。配り土産にも◎。',
@@ -957,7 +968,7 @@ const SPOTS = [
   {
     cat: 'F', sub: 'F', label: 'F5', rank: 'B', type: ['classic','trend','new'],
     name: '🏬 The Hyundai Seoul（汝矣島）',
-    photo: flickr('hyundai,department,seoul', 75),
+    photo: null,
     photoEmoji: '🏬',
     meta: '汝矣島駅／2021年オープン',
     desc: '韓国最大級の最新百貨店。Toy Story 5 POP-UP会場、フードコート充実、子連れに優しい設計。',
@@ -971,7 +982,7 @@ const SPOTS = [
   {
     cat: 'F', sub: 'F', label: 'F6', rank: 'B', type: ['classic'],
     name: '🏬 COEX Mall（江南）',
-    photo: flickr('coex,starfield,gangnam', 76),
+    photo: null,
     photoEmoji: '🏬',
     meta: '三成駅／巨大ショッピングモール',
     desc: 'Starfield Library（ピョルマダン図書館・無料）、Coexアクアリウム、SMTOWN施設、フードコート。',
@@ -999,15 +1010,21 @@ function badgesHtml(types) {
 }
 
 function renderCard(spot) {
-  const cardClass = spot.type && spot.type.includes('classic') ? 'classic-card' : (spot.type && spot.type.includes('trend') ? 'trend-card' : '');
-  const photoStyle = spot.photo ? `background-image:url('${spot.photo}')` : '';
+  const isClassic = spot.type && spot.type.includes('classic');
+  const isTrend = spot.type && spot.type.includes('trend');
+  const cardClass = isClassic ? 'classic-card' : (isTrend ? 'trend-card' : '');
+  const photoBgClass = isClassic ? 'classic-bg' : (isTrend ? 'trend-bg' : '');
   const refsHtml = (spot.refs||[]).map(r =>
     `<a href="${r.url}" target="_blank" rel="noopener" class="${r.cls||''}">${r.label}</a>`
   ).join('');
+  const imgHtml = spot.photo
+    ? `<img src="${spot.photo}" alt="${spot.name}" onerror="this.style.display='none'" loading="lazy">`
+    : '';
   return `
     <div class="card ${cardClass}">
-      <div class="photo" style="${photoStyle}">
-        ${!spot.photo ? `<span class="photo-emoji">${spot.photoEmoji||'📍'}</span>` : ''}
+      <div class="photo ${photoBgClass}">
+        <span class="photo-emoji">${spot.photoEmoji||'📍'}</span>
+        ${imgHtml}
       </div>
       <div class="body">
         <div class="title">${spot.label}. ${spot.name} ${badgesHtml(spot.type)}</div>
