@@ -165,6 +165,8 @@
   }
   thead { display: none; }
   tbody { display: block; }
+  /* スマホでは<th>を含む行（ヘッダー行）も非表示 */
+  tr:has(> th) { display: none; }
   tr {
     display: block;
     margin-bottom: 12px;
