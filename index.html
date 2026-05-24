@@ -395,6 +395,50 @@
   strong { font-weight: 700; }
   small { font-size: 12px; color: var(--text-light); }
 
+  /* ===== Korean Phrase Table ===== */
+  .phrase-table td.ko {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--primary-deep);
+    letter-spacing: 0.3px;
+    padding-bottom: 4px;
+  }
+  .phrase-table td.yomi {
+    font-size: 13px;
+    color: var(--lavender);
+    font-weight: 600;
+  }
+  .phrase-table td.imi {
+    font-size: 13px;
+    color: var(--text);
+  }
+  /* Mobile: ko → big, yomi → small purple, imi → body text, all in one card */
+  .phrase-table tr {
+    padding: 12px 16px;
+  }
+  .phrase-table td.ko { border-bottom: none; margin-bottom: 0; padding-bottom: 2px; }
+  .phrase-table td.yomi { margin-top: 1px !important; }
+  .phrase-table td.imi { margin-top: 3px !important; padding-top: 4px; border-top: 1px dashed var(--border); }
+
+  /* Desktop override: show as proper table columns */
+  @media (min-width: 721px) {
+    .phrase-table td.ko { font-size: 16px; border-bottom: 1px solid var(--border); margin-bottom: 0; padding-bottom: 12px; }
+    .phrase-table td.yomi { color: var(--lavender); border-top: none; margin-top: 0 !important; }
+    .phrase-table td.imi { border-top: none; padding-top: 0; margin-top: 0 !important; }
+  }
+
+  .phrase-tip {
+    background: linear-gradient(135deg, #EEF6FF 0%, #F0EEFF 100%);
+    border: 1.5px dashed var(--secondary);
+    padding: 12px 16px;
+    border-radius: 14px;
+    font-size: 13px;
+    color: var(--text);
+    margin: 10px 0 18px;
+    line-height: 1.75;
+  }
+  .phrase-tip strong { color: var(--primary-deep); }
+
   /* Responsive small tweaks */
   @media (max-width: 480px) {
     body { padding: 12px 8px 60px; }
@@ -429,6 +473,7 @@
     <button class="tab" data-target="day2">Day2 · 6/6(土)</button>
     <button class="tab" data-target="day3">Day3 · 6/7(日)</button>
     <button class="tab" data-target="day4">Day4 · 6/8(月)</button>
+    <button class="tab" data-target="korean">🇰🇷 韓国語</button>
   </nav>
 
   <!-- ============ OVERVIEW ============ -->
@@ -639,6 +684,546 @@
     </table>
 
     <div class="warning">⚠️ チェックイン締切はLCC基準で出発60分前。6:30までに空港着・チェックインカウンター到着が安全圏。</div>
+  </div>
+
+  <!-- ============ KOREAN PHRASES ============ -->
+  <div id="korean" class="tab-content">
+    <div class="callout">
+      <strong>🇰🇷 旅で使える韓国語フレーズ集</strong>。読み方はカタカナで表記。<br>
+      発音のコツ：<strong>ッ（濃音）</strong>は息を止めて弾く・<strong>オ（어）</strong>は口を横に広げて「オ」・<strong>ウ（으）</strong>は唇を丸めず「ウ」
+    </div>
+
+    <!-- ① 基本挨拶 -->
+    <div class="section-banner">  👋 基本挨拶・返事</div>
+    <table class="phrase-table">
+      <thead><tr><th style="width:44%">韓国語</th><th style="width:30%">読み方</th><th>意味</th></tr></thead>
+      <tr>
+        <td class="ko">안녕하세요</td>
+        <td class="yomi">アンニョンハセヨ</td>
+        <td class="imi">こんにちは／おはよう／こんばんは（万能）</td>
+      </tr>
+      <tr>
+        <td class="ko">안녕히 가세요</td>
+        <td class="yomi">アンニョンヒ カセヨ</td>
+        <td class="imi">さようなら（去る人に対して）</td>
+      </tr>
+      <tr>
+        <td class="ko">안녕히 계세요</td>
+        <td class="yomi">アンニョンヒ ケセヨ</td>
+        <td class="imi">さようなら（残る人に対して）</td>
+      </tr>
+      <tr>
+        <td class="ko">네</td>
+        <td class="yomi">ネ</td>
+        <td class="imi">はい</td>
+      </tr>
+      <tr>
+        <td class="ko">아니요</td>
+        <td class="yomi">アニヨ</td>
+        <td class="imi">いいえ</td>
+      </tr>
+      <tr>
+        <td class="ko">잠깐만요</td>
+        <td class="yomi">チャムッカンマンニョ</td>
+        <td class="imi">少々お待ちください</td>
+      </tr>
+      <tr>
+        <td class="ko">괜찮아요</td>
+        <td class="yomi">クェンチャナヨ</td>
+        <td class="imi">大丈夫です／どういたしまして</td>
+      </tr>
+      <tr>
+        <td class="ko">처음 뵙겠습니다</td>
+        <td class="yomi">チョウム ベッケッスムニダ</td>
+        <td class="imi">はじめまして</td>
+      </tr>
+      <tr>
+        <td class="ko">잘 부탁드립니다</td>
+        <td class="yomi">チャル プタクトゥリムニダ</td>
+        <td class="imi">よろしくお願いします</td>
+      </tr>
+    </table>
+
+    <!-- ② 感謝・謝罪 -->
+    <div class="section-banner">  🙏 感謝・謝罪・お詫び</div>
+    <table class="phrase-table">
+      <thead><tr><th style="width:44%">韓国語</th><th style="width:30%">読み方</th><th>意味</th></tr></thead>
+      <tr>
+        <td class="ko">감사합니다</td>
+        <td class="yomi">カムサハムニダ</td>
+        <td class="imi">ありがとうございます（丁寧）</td>
+      </tr>
+      <tr>
+        <td class="ko">고마워요</td>
+        <td class="yomi">コマウォヨ</td>
+        <td class="imi">ありがとう（やや くだけた）</td>
+      </tr>
+      <tr>
+        <td class="ko">죄송합니다</td>
+        <td class="yomi">チェソンハムニダ</td>
+        <td class="imi">申し訳ありません（謝罪・丁寧）</td>
+      </tr>
+      <tr>
+        <td class="ko">미안해요</td>
+        <td class="yomi">ミアネヨ</td>
+        <td class="imi">ごめんなさい（日常的な謝り）</td>
+      </tr>
+      <tr>
+        <td class="ko">실례합니다</td>
+        <td class="yomi">シルレハムニダ</td>
+        <td class="imi">失礼します／すみません（呼びかけ）</td>
+      </tr>
+      <tr>
+        <td class="ko">저기요</td>
+        <td class="yomi">チョギヨ</td>
+        <td class="imi">すみません（お店・通行人への呼びかけ）</td>
+      </tr>
+    </table>
+
+    <!-- ③ 飲食店 -->
+    <div class="section-banner">  🍽️ 飲食店で</div>
+    <div class="phrase-tip">💡 <strong>주세요（チュセヨ）</strong>は「ください」の万能フレーズ。名詞の後ろにつけるだけでOK！</div>
+    <table class="phrase-table">
+      <thead><tr><th style="width:44%">韓国語</th><th style="width:30%">読み方</th><th>意味</th></tr></thead>
+      <tr>
+        <td class="ko">메뉴판 주세요</td>
+        <td class="yomi">メニュパン チュセヨ</td>
+        <td class="imi">メニューをください</td>
+      </tr>
+      <tr>
+        <td class="ko">추천해 주세요</td>
+        <td class="yomi">チュチョネ ジュセヨ</td>
+        <td class="imi">おすすめを教えてください</td>
+      </tr>
+      <tr>
+        <td class="ko">이거 주세요</td>
+        <td class="yomi">イゴ チュセヨ</td>
+        <td class="imi">これをください（指差しで使える）</td>
+      </tr>
+      <tr>
+        <td class="ko">물 주세요</td>
+        <td class="yomi">ムル チュセヨ</td>
+        <td class="imi">お水をください</td>
+      </tr>
+      <tr>
+        <td class="ko">앞접시 주세요</td>
+        <td class="yomi">アップチョプシ チュセヨ</td>
+        <td class="imi">取り皿をください</td>
+      </tr>
+      <tr>
+        <td class="ko">맵지 않게 해 주세요</td>
+        <td class="yomi">メプジ アンケ ヘ ジュセヨ</td>
+        <td class="imi">辛くしないでください</td>
+      </tr>
+      <tr>
+        <td class="ko">아이 의자 있어요?</td>
+        <td class="yomi">アイ ウィジャ イッソヨ?</td>
+        <td class="imi">子供用椅子はありますか？</td>
+      </tr>
+      <tr>
+        <td class="ko">포장이요</td>
+        <td class="yomi">ポジャンイヨ</td>
+        <td class="imi">テイクアウトです</td>
+      </tr>
+      <tr>
+        <td class="ko">여기서 먹을게요</td>
+        <td class="yomi">ヨギソ モグルッケヨ</td>
+        <td class="imi">ここで食べます（イートイン）</td>
+      </tr>
+      <tr>
+        <td class="ko">1인분 더 주세요</td>
+        <td class="yomi">イルインブン ドゥ チュセヨ</td>
+        <td class="imi">1人前追加してください</td>
+      </tr>
+      <tr>
+        <td class="ko">계산해 주세요</td>
+        <td class="yomi">ケサネ ジュセヨ</td>
+        <td class="imi">お会計をお願いします</td>
+      </tr>
+      <tr>
+        <td class="ko">영수증 주세요</td>
+        <td class="yomi">ヨンスジュン チュセヨ</td>
+        <td class="imi">レシートをください</td>
+      </tr>
+      <tr>
+        <td class="ko">맛있어요!</td>
+        <td class="yomi">マシッソヨ!</td>
+        <td class="imi">おいしい！（お店の人に言うと喜ばれる）</td>
+      </tr>
+    </table>
+
+    <!-- ④ 買い物 -->
+    <div class="section-banner">  🛍️ 買い物・ショッピングで</div>
+    <table class="phrase-table">
+      <thead><tr><th style="width:44%">韓国語</th><th style="width:30%">読み方</th><th>意味</th></tr></thead>
+      <tr>
+        <td class="ko">얼마예요?</td>
+        <td class="yomi">オルマエヨ?</td>
+        <td class="imi">いくらですか？</td>
+      </tr>
+      <tr>
+        <td class="ko">이게 뭐예요?</td>
+        <td class="yomi">イゲ モエヨ?</td>
+        <td class="imi">これは何ですか？</td>
+      </tr>
+      <tr>
+        <td class="ko">입어봐도 돼요?</td>
+        <td class="yomi">イボバド ドゥェヨ?</td>
+        <td class="imi">試着してもいいですか？</td>
+      </tr>
+      <tr>
+        <td class="ko">다른 색 있어요?</td>
+        <td class="yomi">タルン セッ イッソヨ?</td>
+        <td class="imi">別の色はありますか？</td>
+      </tr>
+      <tr>
+        <td class="ko">더 작은 거 있어요?</td>
+        <td class="yomi">ドゥ チャグン ゴ イッソヨ?</td>
+        <td class="imi">もっと小さいサイズはありますか？</td>
+      </tr>
+      <tr>
+        <td class="ko">너무 비싸요</td>
+        <td class="yomi">ノム ビッサヨ</td>
+        <td class="imi">高すぎます</td>
+      </tr>
+      <tr>
+        <td class="ko">깎아주세요</td>
+        <td class="yomi">ッカッカジュセヨ</td>
+        <td class="imi">値引きしてください</td>
+      </tr>
+      <tr>
+        <td class="ko">카드로 계산해도 돼요?</td>
+        <td class="yomi">カドゥロ ケサネド ドゥェヨ?</td>
+        <td class="imi">カードで払えますか？</td>
+      </tr>
+      <tr>
+        <td class="ko">봉투 주세요</td>
+        <td class="yomi">ポントゥ チュセヨ</td>
+        <td class="imi">袋をください</td>
+      </tr>
+      <tr>
+        <td class="ko">포장해 주세요</td>
+        <td class="yomi">ポジャンヘ ジュセヨ</td>
+        <td class="imi">ギフト包装してください</td>
+      </tr>
+    </table>
+
+    <!-- ⑤ 交通・移動 -->
+    <div class="section-banner">  🚕 交通・移動で</div>
+    <div class="phrase-tip">💡 行き先を画面に表示して「<strong>여기로 가 주세요（ヨギロ カ ジュセヨ）</strong>＝ここに行ってください」が最強！</div>
+    <table class="phrase-table">
+      <thead><tr><th style="width:44%">韓国語</th><th style="width:30%">読み方</th><th>意味</th></tr></thead>
+      <tr>
+        <td class="ko">어디예요?</td>
+        <td class="yomi">オディエヨ?</td>
+        <td class="imi">どこですか？</td>
+      </tr>
+      <tr>
+        <td class="ko">여기로 가 주세요</td>
+        <td class="yomi">ヨギロ カ ジュセヨ</td>
+        <td class="imi">ここに行ってください（地図を見せながら）</td>
+      </tr>
+      <tr>
+        <td class="ko">～에 가고 싶어요</td>
+        <td class="yomi">～エ カゴ シポヨ</td>
+        <td class="imi">～に行きたいです</td>
+      </tr>
+      <tr>
+        <td class="ko">얼마나 걸려요?</td>
+        <td class="yomi">オルマナ ゴルリョヨ?</td>
+        <td class="imi">どのくらいかかりますか？</td>
+      </tr>
+      <tr>
+        <td class="ko">지하철역이 어디예요?</td>
+        <td class="yomi">チハチョルリョギ オディエヨ?</td>
+        <td class="imi">地下鉄駅はどこですか？</td>
+      </tr>
+      <tr>
+        <td class="ko">택시 불러 주세요</td>
+        <td class="yomi">テッシ ブルロ ジュセヨ</td>
+        <td class="imi">タクシーを呼んでください</td>
+      </tr>
+      <tr>
+        <td class="ko">여기서 세워 주세요</td>
+        <td class="yomi">ヨギソ セウォ ジュセヨ</td>
+        <td class="imi">ここで降ろしてください</td>
+      </tr>
+      <tr>
+        <td class="ko">직진해 주세요</td>
+        <td class="yomi">チクチネ ジュセヨ</td>
+        <td class="imi">まっすぐ行ってください</td>
+      </tr>
+      <tr>
+        <td class="ko">왼쪽으로 가세요</td>
+        <td class="yomi">ウェンッチョグロ カセヨ</td>
+        <td class="imi">左に行ってください</td>
+      </tr>
+      <tr>
+        <td class="ko">오른쪽으로 가세요</td>
+        <td class="yomi">オルンッチョグロ カセヨ</td>
+        <td class="imi">右に行ってください</td>
+      </tr>
+    </table>
+
+    <!-- ⑥ ホテル -->
+    <div class="section-banner">  🏨 ホテルで</div>
+    <table class="phrase-table">
+      <thead><tr><th style="width:44%">韓国語</th><th style="width:30%">読み方</th><th>意味</th></tr></thead>
+      <tr>
+        <td class="ko">체크인하고 싶어요</td>
+        <td class="yomi">チェクイナゴ シポヨ</td>
+        <td class="imi">チェックインしたいです</td>
+      </tr>
+      <tr>
+        <td class="ko">짐 맡아주세요</td>
+        <td class="yomi">チム マジャジュセヨ</td>
+        <td class="imi">荷物を預かってください</td>
+      </tr>
+      <tr>
+        <td class="ko">방 키가 안 돼요</td>
+        <td class="yomi">パン キガ アン ドゥェヨ</td>
+        <td class="imi">ルームキーが使えません</td>
+      </tr>
+      <tr>
+        <td class="ko">수건 더 주세요</td>
+        <td class="yomi">スゴン ドゥ チュセヨ</td>
+        <td class="imi">タオルをもっとください</td>
+      </tr>
+      <tr>
+        <td class="ko">와이파이 비밀번호가 뭐예요?</td>
+        <td class="yomi">ワイパイ ビミルボノガ モエヨ?</td>
+        <td class="imi">Wi-Fiのパスワードは何ですか？</td>
+      </tr>
+      <tr>
+        <td class="ko">조식은 몇 시부터예요?</td>
+        <td class="yomi">チョシグン ミョッ シブトエヨ?</td>
+        <td class="imi">朝食は何時からですか？</td>
+      </tr>
+      <tr>
+        <td class="ko">아침 일찍 체크아웃해도 돼요?</td>
+        <td class="yomi">アチム イルッチク チェクアウテド ドゥェヨ?</td>
+        <td class="imi">早朝チェックアウトできますか？</td>
+      </tr>
+    </table>
+
+    <!-- ⑦ 子連れ・観光 -->
+    <div class="section-banner">  👶 子連れ観光・スポットで</div>
+    <table class="phrase-table">
+      <thead><tr><th style="width:44%">韓国語</th><th style="width:30%">読み方</th><th>意味</th></tr></thead>
+      <tr>
+        <td class="ko">어린이 입장료 있어요?</td>
+        <td class="yomi">オリニ イプチャンニョ イッソヨ?</td>
+        <td class="imi">子供の入場料はありますか？</td>
+      </tr>
+      <tr>
+        <td class="ko">화장실이 어디예요?</td>
+        <td class="yomi">ファジャンシリ オディエヨ?</td>
+        <td class="imi">トイレはどこですか？</td>
+      </tr>
+      <tr>
+        <td class="ko">사진 찍어도 돼요?</td>
+        <td class="yomi">サジン ッチゴド ドゥェヨ?</td>
+        <td class="imi">写真を撮ってもいいですか？</td>
+      </tr>
+      <tr>
+        <td class="ko">같이 사진 찍어도 돼요?</td>
+        <td class="yomi">カッチ サジン ッチゴド ドゥェヨ?</td>
+        <td class="imi">一緒に写真を撮ってもいいですか？</td>
+      </tr>
+      <tr>
+        <td class="ko">외국인이에요</td>
+        <td class="yomi">ウェグギニエヨ</td>
+        <td class="imi">外国人です（困ったときに）</td>
+      </tr>
+      <tr>
+        <td class="ko">유모차 대여 있어요?</td>
+        <td class="yomi">ユモチャ テヨ イッソヨ?</td>
+        <td class="imi">ベビーカーの貸し出しはありますか？</td>
+      </tr>
+      <tr>
+        <td class="ko">기저귀 교환실 있어요?</td>
+        <td class="yomi">キジョギ キョファンシル イッソヨ?</td>
+        <td class="imi">おむつ交換台はありますか？</td>
+      </tr>
+      <tr>
+        <td class="ko">입장 몇 시까지예요?</td>
+        <td class="yomi">イプチャン ミョッ シッカジエヨ?</td>
+        <td class="imi">入場は何時までですか？</td>
+      </tr>
+    </table>
+
+    <!-- ⑧ 緊急・困った時 -->
+    <div class="section-banner">  🆘 困った・緊急時</div>
+    <table class="phrase-table">
+      <thead><tr><th style="width:44%">韓国語</th><th style="width:30%">読み方</th><th>意味</th></tr></thead>
+      <tr>
+        <td class="ko">도와주세요!</td>
+        <td class="yomi">トワジュセヨ!</td>
+        <td class="imi">助けてください！</td>
+      </tr>
+      <tr>
+        <td class="ko">경찰을 불러 주세요</td>
+        <td class="yomi">キョンチャルル ブルロ ジュセヨ</td>
+        <td class="imi">警察を呼んでください</td>
+      </tr>
+      <tr>
+        <td class="ko">병원에 가고 싶어요</td>
+        <td class="yomi">ピョンウォネ カゴ シポヨ</td>
+        <td class="imi">病院に行きたいです</td>
+      </tr>
+      <tr>
+        <td class="ko">배가 아파요</td>
+        <td class="yomi">ペガ アパヨ</td>
+        <td class="imi">お腹が痛いです</td>
+      </tr>
+      <tr>
+        <td class="ko">머리가 아파요</td>
+        <td class="yomi">モリガ アパヨ</td>
+        <td class="imi">頭が痛いです</td>
+      </tr>
+      <tr>
+        <td class="ko">아이가 없어졌어요!</td>
+        <td class="yomi">アイガ オプソジョッソヨ!</td>
+        <td class="imi">子供がいなくなりました！（迷子）</td>
+      </tr>
+      <tr>
+        <td class="ko">지갑을 잃어버렸어요</td>
+        <td class="yomi">チガブル イロボリョッソヨ</td>
+        <td class="imi">財布を失くしました</td>
+      </tr>
+      <tr>
+        <td class="ko">여권을 잃어버렸어요</td>
+        <td class="yomi">ヨックォヌル イロボリョッソヨ</td>
+        <td class="imi">パスポートを失くしました</td>
+      </tr>
+      <tr>
+        <td class="ko">일본어 할 수 있는 분 있어요?</td>
+        <td class="yomi">イルボノ ハル ス インヌン プン イッソヨ?</td>
+        <td class="imi">日本語が話せる方はいますか？</td>
+      </tr>
+      <tr>
+        <td class="ko">이 약 있어요?</td>
+        <td class="yomi">イ ヤク イッソヨ?</td>
+        <td class="imi">この薬はありますか？</td>
+      </tr>
+    </table>
+
+    <!-- ⑨ リアクション・感情表現 -->
+    <div class="section-banner">  💬 リアクション・気持ちを伝える</div>
+    <div class="phrase-tip">💡 <strong>대박（テバク）</strong>は「すごい！やばい！最高！」の万能感嘆詞。現地の人と一気に距離が縮まる🎉</div>
+    <table class="phrase-table">
+      <thead><tr><th style="width:44%">韓国語</th><th style="width:30%">読み方</th><th>意味</th></tr></thead>
+      <tr>
+        <td class="ko">대박!</td>
+        <td class="yomi">テバク!</td>
+        <td class="imi">すごい！やばい！最高！（万能感嘆詞）</td>
+      </tr>
+      <tr>
+        <td class="ko">예뻐요!</td>
+        <td class="yomi">イェッポヨ!</td>
+        <td class="imi">かわいい！きれい！（洋服・景色など）</td>
+      </tr>
+      <tr>
+        <td class="ko">귀여워요!</td>
+        <td class="yomi">クィヨウォヨ!</td>
+        <td class="imi">かわいい！（キャラ・動物・子供など）</td>
+      </tr>
+      <tr>
+        <td class="ko">멋있어요!</td>
+        <td class="yomi">モシッソヨ!</td>
+        <td class="imi">かっこいい！</td>
+      </tr>
+      <tr>
+        <td class="ko">진짜요?</td>
+        <td class="yomi">チンッチャヨ?</td>
+        <td class="imi">本当ですか？マジで？</td>
+      </tr>
+      <tr>
+        <td class="ko">너무 좋아요!</td>
+        <td class="yomi">ノム チョアヨ!</td>
+        <td class="imi">すごく好き！最高です！</td>
+      </tr>
+      <tr>
+        <td class="ko">재미있어요!</td>
+        <td class="yomi">チェミイッソヨ!</td>
+        <td class="imi">楽しい！おもしろい！</td>
+      </tr>
+      <tr>
+        <td class="ko">행복해요</td>
+        <td class="yomi">ヘンボケヨ</td>
+        <td class="imi">幸せです</td>
+      </tr>
+    </table>
+
+    <!-- ⑩ コミュニケーション -->
+    <div class="section-banner">  🗣️ 言葉が通じないときに</div>
+    <table class="phrase-table">
+      <thead><tr><th style="width:44%">韓国語</th><th style="width:30%">読み方</th><th>意味</th></tr></thead>
+      <tr>
+        <td class="ko">알겠어요</td>
+        <td class="yomi">アルゲッソヨ</td>
+        <td class="imi">わかりました</td>
+      </tr>
+      <tr>
+        <td class="ko">모르겠어요</td>
+        <td class="yomi">モルゲッソヨ</td>
+        <td class="imi">わかりません</td>
+      </tr>
+      <tr>
+        <td class="ko">한국어를 못해요</td>
+        <td class="yomi">ハングゴルル モテヨ</td>
+        <td class="imi">韓国語が話せません</td>
+      </tr>
+      <tr>
+        <td class="ko">일본에서 왔어요</td>
+        <td class="yomi">イルボネソ ワッソヨ</td>
+        <td class="imi">日本から来ました</td>
+      </tr>
+      <tr>
+        <td class="ko">한 번 더 말해 주세요</td>
+        <td class="yomi">ハン ボン ドゥ マレ ジュセヨ</td>
+        <td class="imi">もう一度言ってください</td>
+      </tr>
+      <tr>
+        <td class="ko">천천히 말해 주세요</td>
+        <td class="yomi">チョンチョニ マレ ジュセヨ</td>
+        <td class="imi">ゆっくり話してください</td>
+      </tr>
+      <tr>
+        <td class="ko">써 주세요</td>
+        <td class="yomi">ッソ ジュセヨ</td>
+        <td class="imi">書いてください（紙やメモに）</td>
+      </tr>
+      <tr>
+        <td class="ko">번역기 써도 돼요?</td>
+        <td class="yomi">ボニョッキ ッソド ドゥェヨ?</td>
+        <td class="imi">翻訳アプリ使ってもいいですか？</td>
+      </tr>
+    </table>
+
+    <!-- ⑪ 数字 -->
+    <div class="section-banner">  🔢 数字・数え方（お買い物に必須）</div>
+    <div class="phrase-tip">💡 韓国語の数字は「漢数詞（일이삼）」と「固有数詞（하나둘셋）」の2種類。<strong>値段・電話番号は漢数詞、個数・人数は固有数詞</strong>を使う。</div>
+    <table class="phrase-table">
+      <thead><tr><th style="width:44%">韓国語</th><th style="width:30%">読み方</th><th>意味</th></tr></thead>
+      <tr><td class="ko">일 / 하나</td><td class="yomi">イル / ハナ</td><td class="imi">1（漢数詞 / 固有数詞）</td></tr>
+      <tr><td class="ko">이 / 둘</td><td class="yomi">イ / トゥル</td><td class="imi">2</td></tr>
+      <tr><td class="ko">삼 / 셋</td><td class="yomi">サム / セッ</td><td class="imi">3</td></tr>
+      <tr><td class="ko">사 / 넷</td><td class="yomi">サ / ネッ</td><td class="imi">4</td></tr>
+      <tr><td class="ko">오 / 다섯</td><td class="yomi">オ / タソッ</td><td class="imi">5</td></tr>
+      <tr><td class="ko">육 / 여섯</td><td class="yomi">ユク / ヨソッ</td><td class="imi">6</td></tr>
+      <tr><td class="ko">천 원</td><td class="yomi">チョン ウォン</td><td class="imi">1,000ウォン</td></tr>
+      <tr><td class="ko">만 원</td><td class="yomi">マン ウォン</td><td class="imi">10,000ウォン</td></tr>
+      <tr><td class="ko">몇 개 드릴까요?</td><td class="yomi">ミョッ ゲ ドゥリルッカヨ?</td><td class="imi">いくつ差し上げましょうか？</td></tr>
+      <tr><td class="ko">하나 주세요</td><td class="yomi">ハナ チュセヨ</td><td class="imi">ひとつください</td></tr>
+      <tr><td class="ko">두 개 주세요</td><td class="yomi">トゥ ゲ チュセヨ</td><td class="imi">2つください</td></tr>
+      <tr><td class="ko">여섯 명이에요</td><td class="yomi">ヨソン ミョンイエヨ</td><td class="imi">6名です（今回の人数！）</td></tr>
+    </table>
+
+    <div class="footnote">
+      📖 参考：한국어（ハングゴ）= 韓国語。발음（パルム）= 発音。어린이（オリニ）= 子供。아이（アイ）= 子・赤ちゃん。<br>
+      翻訳アプリ：<strong>Papago</strong>（韓日精度No.1・NAVER製）、<strong>Google翻訳</strong>のカメラ翻訳でメニュー解読もOK。
+    </div>
   </div>
 
   <!-- ============ MUST TODO ============ -->
