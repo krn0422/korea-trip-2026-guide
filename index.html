@@ -3,1115 +3,699 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🇰🇷 ソウル2026年6月 王道×トレンド完全ガイド</title>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<title>🇰🇷 ソウル旅行 2026 — 3泊4日 完全版スケジュール</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: "Hiragino Sans", "Yu Gothic", "Hiragino Kaku Gothic Pro", sans-serif;
-    font-size: 14px;
-    color: #1A1A1A;
-    background: #FAFAFA;
-    line-height: 1.7;
-    padding: 24px 12px;
-  }
-  .container { max-width: 1100px; margin: 0 auto; background: #FFF; padding: 32px 36px; border-radius: 4px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
-  .header { border-bottom: 3px solid #1B3F7A; padding-bottom: 20px; margin-bottom: 28px; }
-  .header h1 { font-size: 26px; font-weight: 700; color: #1B3F7A; margin-bottom: 8px; }
-  .header .subtitle { font-size: 14px; color: #666; }
-  .header .meta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; font-size: 13px; color: #1A1A1A; }
-  .header .meta span { background: #E8EFF8; padding: 4px 10px; border-radius: 12px; }
-  .tab-nav { display: flex; gap: 4px; border-bottom: 2px solid #1B3F7A; margin-bottom: 24px; flex-wrap: wrap; }
-  .tab { padding: 10px 16px; background: #E8EFF8; border: none; cursor: pointer; font-family: inherit; font-size: 13px; color: #1B3F7A; font-weight: 700; border-radius: 4px 4px 0 0; }
-  .tab.active { background: #1B3F7A; color: #FFFFFF; }
-  .tab-content { display: none; }
-  .tab-content.active { display: block; }
-  .section-banner { background: #1B3F7A; color: #FFFFFF; font-size: 14px; font-weight: 700; padding: 8px 16px; margin: 24px 0 14px; border-radius: 2px; }
-  .section-banner.trend { background: #C00000; }
-  .section-banner.classic { background: #1F3864; }
-  .callout { background: #FFF8E7; border-left: 4px solid #C47D0A; padding: 14px 18px; margin: 16px 0; font-size: 14px; line-height: 1.7; }
-  .callout strong { color: #1B3F7A; }
-  .map { height: 500px; width: 100%; border: 1px solid #CCC; border-radius: 4px; margin: 16px 0 20px; }
-  .map-legend { display: flex; flex-wrap: wrap; gap: 12px; font-size: 12px; color: #666; margin-bottom: 12px; }
-  .map-legend .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 4px; vertical-align: middle; }
+  /* ===== 🌸 Soft Pop Design — Mobile First ===== */
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
-  /* Card with photo */
-  .card {
-    background: #FFF;
-    border: 1px solid #DDD;
-    border-radius: 6px;
-    padding: 0;
-    margin: 14px 0;
-    overflow: hidden;
-    display: grid;
-    grid-template-columns: 180px 1fr;
-    gap: 0;
+  :root {
+    --primary: #E89B9B;        /* くすみ ローズ */
+    --primary-deep: #C77272;
+    --secondary: #A6C8E0;      /* 優しいスカイ */
+    --accent: #E8C875;         /* くすみイエロー */
+    --mint: #A8D5BA;
+    --lavender: #BFA8DD;
+    --peach: #F0BFA0;
+
+    --text: #4A4258;
+    --text-light: #8B8395;
+    --border: #F0E5E1;
+    --bg: #FFF9F5;
+    --card-bg: #FFFFFF;
+    --soft-bg: #FAF3EF;
   }
-  @media (max-width: 720px) {
-    .card { grid-template-columns: 1fr; }
-    .card .photo { height: 160px; }
+
+  body {
+    font-family: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", "Hiragino Sans", system-ui, sans-serif;
+    font-size: 15px;
+    color: var(--text);
+    background:
+      radial-gradient(circle at 0% 0%, #FFE8E0 0%, transparent 40%),
+      radial-gradient(circle at 100% 100%, #E5EFFA 0%, transparent 40%),
+      var(--bg);
+    background-attachment: fixed;
+    line-height: 1.7;
+    padding: 16px 12px 80px;
+    min-height: 100vh;
   }
-  .card.classic-card { border-left: 4px solid #1F3864; }
-  .card.trend-card { border-left: 4px solid #C00000; }
-  .card .photo {
-    min-height: 140px;
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  /* ===== Header ===== */
+  .header {
+    background: linear-gradient(135deg, #F8C5C5 0%, #F5D5B5 50%, #F0DFB0 100%);
+    padding: 22px 22px 24px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+    color: #5D4A4A;
+    box-shadow: 0 6px 20px rgba(232, 155, 155, 0.25);
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     overflow: hidden;
-    background: linear-gradient(135deg, #E8EFF8 0%, #FFFFFF 100%);
   }
-  .card .photo.classic-bg { background: linear-gradient(135deg, #E0E8F0 0%, #FFFFFF 100%); }
-  .card .photo.trend-bg { background: linear-gradient(135deg, #FFE5E5 0%, #FFFFFF 100%); }
-  .card .photo img {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    object-fit: cover;
-    z-index: 2;
+  .header h1 {
+    font-family: "Fredoka", "Zen Maru Gothic", sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: #4A3838;
+    margin-bottom: 6px;
+    line-height: 1.35;
+    letter-spacing: -0.3px;
   }
-  .card .photo .photo-emoji {
-    font-size: 64px;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
-    text-align: center;
-    line-height: 1;
-    z-index: 1;
+  .header .subtitle {
+    font-size: 13px;
+    color: rgba(74, 56, 56, 0.78);
+    font-weight: 500;
   }
-  .card .body { padding: 14px 16px; }
-  .card .title { font-size: 14px; font-weight: 700; color: #1B3F7A; margin-bottom: 6px; }
-  .card .meta { font-size: 11px; color: #666; margin-bottom: 8px; }
-  .card .desc { font-size: 13px; margin-bottom: 8px; }
-  .card .why { background: #FFF8E7; padding: 6px 10px; font-size: 12px; border-radius: 2px; border-left: 3px solid #C47D0A; margin-bottom: 10px; }
-  .card .refs { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
-  .card .refs a {
-    display: inline-block;
-    background: #E8EFF8;
-    color: #1B3F7A;
-    padding: 3px 10px;
+  .header .meta {
+    display: flex; flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 12px;
+    font-size: 12px;
+  }
+  .header .meta span {
+    background: rgba(255,255,255,0.85);
+    color: #5D4A4A;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-weight: 600;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+
+  /* ===== Tab Nav ===== */
+  .tab-nav {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 20px;
+    padding: 6px;
+    background: var(--card-bg);
+    border-radius: 999px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .tab-nav::-webkit-scrollbar { display: none; }
+  .tab {
+    padding: 9px 18px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 13px;
+    color: var(--primary-deep);
+    font-weight: 700;
+    border-radius: 999px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+  }
+  .tab:active { transform: scale(0.96); }
+  .tab.active {
+    background: linear-gradient(135deg, var(--primary), var(--peach));
+    color: white;
+    box-shadow: 0 3px 10px rgba(232, 155, 155, 0.4);
+  }
+  .tab-content { display: none; animation: fadeIn 0.25s ease; }
+  .tab-content.active { display: block; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== Section Banner ===== */
+  .section-banner {
+    background: linear-gradient(90deg, var(--primary) 0%, var(--lavender) 100%);
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 10px 18px;
+    margin: 24px 0 12px;
     border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(191, 168, 221, 0.2);
+    letter-spacing: 0.2px;
+  }
+
+  /* ===== Callout ===== */
+  .callout {
+    background: linear-gradient(135deg, #FFF9E8 0%, #FFEDE0 100%);
+    border: 1.5px dashed var(--peach);
+    padding: 14px 16px;
+    margin: 14px 0;
+    font-size: 14px;
+    line-height: 1.75;
+    border-radius: 16px;
+    color: var(--text);
+  }
+  .callout strong { color: var(--primary-deep); font-weight: 700; }
+
+  /* ===== Schedule Tables — Mobile First (Card layout) ===== */
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 14px;
+    margin: 14px 0;
+    background: transparent;
+  }
+  thead { display: none; }
+  tbody { display: block; }
+  tr {
+    display: block;
+    margin-bottom: 12px;
+    background: var(--card-bg);
+    border-radius: 18px;
+    padding: 14px 16px;
+    box-shadow: 0 2px 10px rgba(74, 66, 88, 0.06);
+    border: 1px solid var(--border);
+  }
+  tr:nth-child(even) { background: var(--card-bg); }
+  td {
+    display: block;
+    border: none;
+    padding: 0;
+    color: var(--text);
+    line-height: 1.7;
+  }
+  td:not(:first-child):not(:empty) { margin-top: 6px; }
+  td.time {
+    font-family: "Fredoka", sans-serif;
+    font-weight: 600;
+    color: var(--primary-deep);
+    font-size: 17px;
+    font-variant-numeric: tabular-nums;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed var(--border);
+    margin-bottom: 8px;
+  }
+  td .pin {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--accent), var(--peach));
+    color: #6D3F00;
+    padding: 2px 9px;
+    border-radius: 999px;
     font-size: 11px;
     font-weight: 700;
-    text-decoration: none;
-    border: 1px solid transparent;
+    margin-right: 5px;
   }
-  .card .refs a:hover { background: #1B3F7A; color: #FFF; }
-  .card .refs a.gmap { background: #E8F4E8; color: #1B5E20; }
-  .card .refs a.gmap:hover { background: #1B5E20; color: #FFF; }
-  .card .refs a.official { background: #FFEDC0; color: #8D5500; }
-  .card .refs a.official:hover { background: #8D5500; color: #FFF; }
-  .card .refs a.konest { background: #FCE4EC; color: #AD1457; }
-  .card .refs a.konest:hover { background: #AD1457; color: #FFF; }
+  td small {
+    display: block;
+    margin-top: 6px;
+    color: var(--text-light);
+    font-size: 12px;
+    line-height: 1.65;
+  }
 
-  table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 14px 0; }
-  th { background: #1F3864; color: #FFFFFF; font-weight: 700; padding: 8px 12px; text-align: left; border: 1px solid #CCC; font-size: 12px; }
-  td { padding: 8px 12px; border: 1px solid #CCC; color: #1A1A1A; vertical-align: top; }
-  tr:nth-child(even) td { background: #F7F7F7; }
-  .rank-A { background: #FFE5E5 !important; font-weight: 700; }
-  .rank-B { background: #FFF8E7 !important; }
-  .rank-C { background: #F2F2F2 !important; color: #666; }
+  /* Desktop: switch back to table layout */
+  @media (min-width: 721px) {
+    thead { display: table-header-group; }
+    tbody { display: table-row-group; }
+    table {
+      background: var(--card-bg);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(74, 66, 88, 0.06);
+    }
+    th {
+      display: table-cell;
+      background: linear-gradient(90deg, var(--secondary) 0%, var(--lavender) 100%);
+      color: white;
+      font-weight: 700;
+      padding: 11px 14px;
+      text-align: left;
+      font-size: 13px;
+    }
+    tr {
+      display: table-row;
+      margin-bottom: 0;
+      background: transparent !important;
+      border-radius: 0;
+      padding: 0;
+      box-shadow: none;
+      border: none;
+    }
+    tr:nth-child(even) { background: var(--soft-bg) !important; }
+    td {
+      display: table-cell;
+      padding: 12px 14px;
+      vertical-align: top;
+      border-bottom: 1px solid var(--border);
+    }
+    td:not(:first-child):not(:empty) { margin-top: 0; }
+    td.time { border-bottom: 1px solid var(--border); margin-bottom: 0; padding-bottom: 12px; }
+  }
 
-  .badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 700; margin-right: 4px; white-space: nowrap; }
-  .badge.classic { background: #1F3864; color: #FFF; }
-  .badge.trend { background: #C00000; color: #FFF; }
-  .badge.hot { background: #FFE5E5; color: #C00000; }
-  .badge.new { background: #DFF0D8; color: #375623; }
-  .badge.must { background: #FFEDC0; color: #C47D0A; }
-  .badge.kid { background: #E8F4FD; color: #1E5BC6; }
-  .badge.plan { background: #E0E0E0; color: #444; }
-  .grade { display: inline-block; width: 24px; height: 24px; border-radius: 50%; color: #FFF; text-align: center; line-height: 24px; font-weight: 700; font-size: 13px; }
-  .grade.A { background: #C00000; }
-  .grade.B { background: #C47D0A; }
-  .grade.C { background: #999; }
+  /* ===== Ref Links (chips) ===== */
+  .ref-link {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-right: 6px;
+    margin-top: 6px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all 0.15s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  .ref-link:active { transform: scale(0.95); }
+  .ref-link.gmap { background: linear-gradient(135deg, var(--mint), #88C5A8); color: white; }
+  .ref-link.official { background: linear-gradient(135deg, var(--accent), var(--peach)); color: #5D3F00; }
+  .ref-link.konest { background: linear-gradient(135deg, var(--primary), #E0A8B5); color: white; }
+  .ref-link.booking { background: linear-gradient(135deg, var(--lavender), var(--secondary)); color: white; }
 
-  h2 { font-size: 17px; font-weight: 700; color: #1A1A1A; margin: 20px 0 10px; }
-  h3 { font-size: 15px; font-weight: 700; color: #1B3F7A; margin: 16px 0 8px; }
-  .footnote { font-size: 12px; color: #666; border-left: 3px solid #AAA; padding-left: 10px; margin: 12px 0; }
-  .pin-label { color: #FFF; font-weight: 700; font-size: 10px; border-radius: 50%; width: 22px; height: 22px; line-height: 22px; text-align: center; border: 2px solid #FFF; box-shadow: 0 1px 3px rgba(0,0,0,0.3); }
-  .pin-label.event { background: #C00000; }
-  .pin-label.food-trend { background: #E4002B; }
-  .pin-label.food-classic { background: #C47D0A; }
-  .pin-label.area-trend { background: #6B3FA0; }
-  .pin-label.area-classic { background: #1B3F7A; }
-  .pin-label.kid { background: #375623; }
-  .pin-label.culture { background: #1F3864; }
-  .pin-label.market { background: #B8860B; }
+  /* ===== Badges ===== */
+  .new-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--accent), var(--primary));
+    color: white;
+    padding: 2px 9px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 700;
+    margin-left: 5px;
+    vertical-align: middle;
+    box-shadow: 0 1px 3px rgba(232, 155, 155, 0.35);
+    letter-spacing: 0.2px;
+  }
 
-  .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
-  @media (max-width: 720px) { .summary-grid { grid-template-columns: 1fr; } }
-  .summary-box { border: 2px solid; border-radius: 6px; padding: 16px; }
-  .summary-box.classic { border-color: #1F3864; background: #F4F7FB; }
-  .summary-box.trend { border-color: #C00000; background: #FFF6F6; }
-  .summary-box h3 { margin-top: 0; }
-  .summary-box ul { padding-left: 20px; margin: 8px 0; }
-  .summary-box li { font-size: 13px; margin-bottom: 4px; }
+  /* ===== KPI Cards ===== */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin: 14px 0;
+  }
+  @media (min-width: 480px) {
+    .kpi-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
+  }
+  .kpi-card {
+    background: linear-gradient(135deg, #FFF6EE 0%, #FFEFE7 100%);
+    padding: 14px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+  }
+  .kpi-label { font-size: 11px; color: var(--text-light); font-weight: 600; }
+  .kpi-value {
+    font-family: "Fredoka", sans-serif;
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--primary-deep);
+    margin: 4px 0 0;
+  }
+
+  /* ===== Footnote / Warning ===== */
+  .footnote {
+    font-size: 12px;
+    color: var(--text-light);
+    background: var(--soft-bg);
+    padding: 9px 13px;
+    border-radius: 12px;
+    margin: 10px 0;
+    border-left: 3px solid var(--lavender);
+    line-height: 1.65;
+  }
+  .warning {
+    font-size: 13px;
+    color: #8C3D3D;
+    background: linear-gradient(135deg, #FFEAEA 0%, #FFF0E8 100%);
+    padding: 12px 16px;
+    border-radius: 14px;
+    border-left: 4px solid var(--primary);
+    margin: 14px 0;
+    line-height: 1.7;
+  }
+
+  /* ===== Headings ===== */
+  h2 {
+    font-family: "Fredoka", "Zen Maru Gothic", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--primary-deep);
+    margin: 20px 0 10px;
+  }
+  h3 {
+    font-family: "Fredoka", "Zen Maru Gothic", sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--lavender);
+    margin: 14px 0 8px;
+  }
+
+  /* ===== Lists ===== */
+  ul, ol { padding-left: 22px; }
+  ul li, ol li { margin: 5px 0; }
+
+  /* ===== Hide Maps (情報設計刷新で削除) ===== */
+  .map, .map-legend, #map-overview, #map-day1, #map-day2, #map-day3, #map-day4,
+  div[id^="map-"] {
+    display: none !important;
+  }
+
+  /* ===== Must TODO List (special priority cards) ===== */
+  .must-todo {
+    margin: 20px 0;
+    padding: 18px;
+    background: linear-gradient(135deg, #FFF0E5 0%, #FFE5E0 100%);
+    border-radius: 20px;
+    border: 2px solid var(--primary);
+  }
+  .must-todo h2 {
+    margin-top: 0;
+    color: var(--primary-deep);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .must-item {
+    background: white;
+    padding: 14px 16px;
+    border-radius: 14px;
+    margin: 10px 0;
+    border-left: 4px solid var(--primary);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .must-item.done { border-left-color: var(--mint); opacity: 0.75; }
+  .must-item.warn { border-left-color: var(--accent); }
+  .must-item .mt-title { font-weight: 700; color: var(--text); margin-bottom: 4px; font-size: 14px; }
+  .must-item .mt-desc { font-size: 12.5px; color: var(--text-light); line-height: 1.65; }
+
+  /* ===== Two col ===== */
+  .two-col { display: grid; grid-template-columns: 1fr; gap: 14px; margin: 14px 0; }
+  @media (min-width: 721px) {
+    .two-col { grid-template-columns: 1fr 1fr; gap: 20px; }
+  }
+
+  strong { font-weight: 700; }
+  small { font-size: 12px; color: var(--text-light); }
+
+  /* Responsive small tweaks */
+  @media (max-width: 480px) {
+    body { padding: 12px 8px 60px; }
+    .header { padding: 18px 18px 20px; border-radius: 18px; }
+    .header h1 { font-size: 19px; }
+    .header .subtitle { font-size: 12px; }
+    .section-banner { font-size: 13px; padding: 9px 14px; }
+    .tab { padding: 8px 14px; font-size: 12px; }
+    td.time { font-size: 16px; }
+  }
 </style>
 </head>
 <body>
 <div class="container">
 
+  <!-- Header -->
   <div class="header">
-    <h1>🇰🇷 ソウル2026年6月 王道×トレンド 完全ガイド</h1>
-    <div class="subtitle">2026年6月時点・最新リサーチ／ファミリー旅行視点（大人4＋子供2）／各項目に📷写真＋🔗参照URL付き</div>
+    <h1>🇰🇷 ソウル旅行 2026</h1>
+    <div class="subtitle">2026/6/5(金) 🛫 → 6/8(月) 🛬 ・ 3泊4日のキラキラ旅✨</div>
     <div class="meta">
-      <span>📅 2026年6月版</span>
-      <span>👪 子連れ視点</span>
-      <span><span class="badge classic">王道</span> + <span class="badge trend">トレンド</span> = 全48スポット</span>
+      <span>👨‍👩‍👧‍👦 大人4 + キッズ2（6y・5y）</span>
+      <span>✈️ Air Seoul 直行</span>
+      <span>🎮 Pokémon Mega Festa 2026 期間中</span>
+      <span>🎀 ティニピン・🎩 NEW ERA・👟 Nike カスタム</span>
     </div>
   </div>
 
-  <div class="callout">
-    <strong>各カードについて：</strong>📷 写真（クリックでGoogle画像検索）／🟢 Google Maps（場所・口コミ）／🟡 公式サイト or 主要メディア／🩷 KONESTやVisit Seoulなどガイドサイトへのリンクを付与。
-  </div>
-
-  <div class="summary-grid">
-    <div class="summary-box classic">
-      <h3>👑 王道（Classic）= 一生モノの定番</h3>
-      <ul>
-        <li>景福宮・昌徳宮など5大宮殿</li>
-        <li>北村・益善洞などの韓屋</li>
-        <li>明洞・東大門・南大門の三大商業地</li>
-        <li>広蔵市場（食べ歩き）</li>
-        <li>参鶏湯・ビビンバ・カンジャンケジャン・冷麺・チキン</li>
-        <li>Nソウルタワー・清渓川</li>
-      </ul>
-    </div>
-    <div class="summary-box trend">
-      <h3>🔥 トレンド（Trend）= 2026年だから体験できる</h3>
-      <ul>
-        <li>Pokémon Mega Festa 2026（〜6/21）</li>
-        <li>Toy Story 5 POP-UP（〜7/12）</li>
-        <li>버터떡 バター餅（上半期No.1食トレンド）</li>
-        <li>두쪼지 ドバイチューイクッキー</li>
-        <li>요아정 Yoajung（組立式ヨーグルトアイス）</li>
-        <li>聖水・益善洞・汝矣島の新スポット</li>
-      </ul>
-    </div>
-  </div>
-
+  <!-- Tab Nav -->
   <nav class="tab-nav">
-    <button class="tab active" data-target="overview">🗺 全体マップ</button>
-    <button class="tab" data-target="catA">A. 期間限定</button>
-    <button class="tab" data-target="catB">B. グルメ</button>
-    <button class="tab" data-target="catC">C. エリア</button>
-    <button class="tab" data-target="catD">D. 子供向け</button>
-    <button class="tab" data-target="catE">E. 観光文化</button>
-    <button class="tab" data-target="catF">F. 市場・買物</button>
-    <button class="tab" data-target="rank">📊 ランキング</button>
+    <button class="tab active" data-target="overview">概要</button>
+    <button class="tab" data-target="day1">Day1 · 6/5(金)</button>
+    <button class="tab" data-target="day2">Day2 · 6/6(土)</button>
+    <button class="tab" data-target="day3">Day3 · 6/7(日)</button>
+    <button class="tab" data-target="day4">Day4 · 6/8(月)</button>
   </nav>
 
+  <!-- ============ OVERVIEW ============ -->
   <div id="overview" class="tab-content active">
-    <div class="section-banner">  全スポット地理マップ（48件）</div>
-    <div class="map-legend">
-      <span><i class="dot" style="background:#C00000;"></i>期間限定</span>
-      <span><i class="dot" style="background:#E4002B;"></i>食トレンド</span>
-      <span><i class="dot" style="background:#C47D0A;"></i>食王道</span>
-      <span><i class="dot" style="background:#6B3FA0;"></i>エリアトレンド</span>
-      <span><i class="dot" style="background:#1B3F7A;"></i>エリア王道</span>
-      <span><i class="dot" style="background:#375623;"></i>子供向け</span>
-      <span><i class="dot" style="background:#1F3864;"></i>観光・文化</span>
-      <span><i class="dot" style="background:#B8860B;"></i>市場・買物</span>
+    <div class="callout">
+      <strong>旅のテーマ：</strong>子供2人（6歳・5歳）が楽しめる聖水ポケモン＆ティニピン体験を最大化。期間中ちょうど <strong>Pokémon Mega Festa 2026（30周年）</strong> が開催中で、聖水エリアに無料スポットが集中。<strong>Day2を「ポケモンづくし＋聖水カフェ」の主役日</strong>に設計。早朝全員でメタモンQR整理券を確保し、1日聖水を堪能。
     </div>
-    <div id="map-overview" class="map"></div>
+
+    <div class="section-banner">  日程サマリー</div>
+    <table>
+      <thead><tr><th style="width:90px;">日付</th><th>エリア</th><th>テーマ</th><th>ハイライト</th></tr></thead>
+      <tr><td><strong>Day1</strong><br>6/5(金)</td><td>成田→仁川</td><td>移動・深夜チェックイン</td><td>20:10 NRT発 → 22:50 ICN着、空港鉄道で雲西へ</td></tr>
+      <tr><td><strong>Day2</strong><br>6/6(土)</td><td>聖水（ソウル）→ 明洞</td><td>🎮 ポケモン＋聖水カフェ満喫デイ</td><td>🚄 全員5:30出発 → ソウル駅 → LOTTE CITY荷物預け → 聖水7:30着 → 10:00 メタモンQR整理券GET → Secret Forest、バター餅、夜は明洞サムギョプサル</td></tr>
+      <tr><td><strong>Day3</strong><br>6/7(日)</td><td>島山→明洞→仁川</td><td>🛍 明洞買物＋フェイシャルデイ</td><td>ロンドンベーグル<strong>島山店</strong>、明洞 Wappen House・フェイシャル・NEW ERAカスタム・nyunyu・バター・アートボックス</td></tr>
+      <tr><td><strong>Day4</strong><br>6/8(月)</td><td>仁川→成田</td><td>早朝チェックアウト・帰国</td><td>08:10 ICN発 → 10:40 NRT着</td></tr>
+    </table>
+
+    <div class="section-banner">  予約状況サマリー</div>
+    <table>
+      <thead><tr><th>項目</th><th>内容</th><th>状態</th></tr></thead>
+      <tr><td>✈️ 往復航空券</td><td>Air Seoul RS704/RS705、6名分・座席指定済み</td><td>✅ 確定</td></tr>
+      <tr><td>🏨 6/5仁川</td><td>HOUND HOTEL Incheon Airport ¥12,963</td><td>✅ 確定</td></tr>
+      <tr><td>🏨 6/6明洞</td><td>LOTTE CITY HOTEL Myeongdong ¥35,911</td><td>✅ 確定</td></tr>
+      <tr><td>🏨 6/7仁川</td><td>Incheon Airport Global Hotel &amp; Suites ¥15,451</td><td>✅ 確定</td></tr>
+      <tr><td>🎮 メタモンQR整理券 <span class="new-badge">必須</span></td><td>6/6 10:00開場・現地QRスキャン（オンライン予約不可）→ 全員で7:30聖水着・先頭待機</td><td>🔥 当日朝</td></tr>
+      <tr><td>🥩 サムギョプサル</td><td>明洞（黄金牧場 or HONG BAR、6/6 17:30〜、個室）</td><td>🔥 要予約</td></tr>
+      <tr><td>🧖 フェイシャル</td><td>明洞、6/7 13:30〜、女性2名（5候補から選択）</td><td>🔥 要予約</td></tr>
+      <tr><td>🥯 ロンドンベーグル</td><td><strong>島山店</strong>、6/7 朝（穴場・並び短め）</td><td>📲 当日</td></tr>
+      <tr><td>🎩 NEW ERA カスタム</td><td>明洞、6/7 別行動枠（パパ隊コース①）</td><td>📲 当日</td></tr>
+      <tr><td>🚄 AREX 特急電車</td><td>行き帰り分（往復・大人6名 or 子供分も検討）</td><td>📲 出発前</td></tr>
+    </table>
+
+    <div class="section-banner">  費用サマリー（確定分）</div>
+    <div class="kpi-grid">
+      <div class="kpi-card"><div class="kpi-label">航空券（6名）</div><div class="kpi-value">¥107,339</div></div>
+      <div class="kpi-card"><div class="kpi-label">ホテル3泊</div><div class="kpi-value">¥64,325</div></div>
+      <div class="kpi-card"><div class="kpi-label">成田往復交通</div><div class="kpi-value">約¥15,600</div></div>
+      <div class="kpi-card"><div class="kpi-label">フェイシャル(2名)</div><div class="kpi-value">¥10-20k</div></div>
+      <div class="kpi-card"><div class="kpi-label">確定費用合計</div><div class="kpi-value">¥197k〜</div></div>
+    </div>
+    <div class="footnote">食費・現地交通費・ショッピング・お土産（ポケモン/ティニピン枠含む）・LCC手荷物預け料金は別途。</div>
   </div>
 
-  <div id="catA" class="tab-content"><div class="callout"><strong>カテゴリA：</strong>6/5-6/8期間中のみ体験できる限定イベント。</div><div id="cards-A"></div></div>
-  <div id="catB" class="tab-content"><div class="callout"><strong>カテゴリB：</strong>王道10品目＋トレンド5品目＝計15品目。</div><div class="section-banner classic">  👑 王道グルメ</div><div id="cards-B-classic"></div><div class="section-banner trend">  🔥 トレンドグルメ</div><div id="cards-B-trend"></div></div>
-  <div id="catC" class="tab-content"><div class="callout"><strong>カテゴリC：</strong>エリア＝「街」単位。王道5＋トレンド5＝計10エリア。</div><div class="section-banner classic">  👑 王道エリア</div><div id="cards-C-classic"></div><div class="section-banner trend">  🔥 トレンドエリア</div><div id="cards-C-trend"></div></div>
-  <div id="catD" class="tab-content"><div class="callout"><strong>カテゴリD：</strong>子供向け定番。Lotte World Aquariumが半日で組込可能な最有力。</div><div id="cards-D"></div></div>
-  <div id="catE" class="tab-content"><div class="callout"><strong>カテゴリE：</strong>王道観光スポット。今回旅行では北村が組込済み。</div><div id="cards-E"></div></div>
-  <div id="catF" class="tab-content"><div class="callout"><strong>カテゴリF：</strong>市場・ショッピングの王道。広蔵市場が王道No.1。</div><div id="cards-F"></div></div>
+  <!-- ============ DAY 1 ============ -->
+  <div id="day1" class="tab-content">
+    <div class="callout">
+      <strong>🛫 Day1のミッション：</strong>「とにかく無事に深夜のHOUND HOTELまでたどり着く」。深夜0時前後着なので、空港鉄道一般列車（雲西駅まで約8分）で移動。子供2人をどう寝かせるかが勝負。
+    </div>
 
-  <div id="rank" class="tab-content">
-    <div class="callout">📊 全48スポット ランキング一覧（王道+トレンド合算）</div>
-    <div id="rank-table"></div>
+    <div class="section-banner">  タイムテーブル</div>
+    <table>
+      <thead><tr><th style="width:120px;">時刻</th><th>内容</th><th style="width:200px;">場所</th></tr></thead>
+      <tr><td class="time">16:30-17:00</td><td><span class="pin">🏠</span>自宅出発（成田着 18:25目安・出発1h45m前）</td><td>自宅→成田</td></tr>
+      <tr><td class="time">18:30-20:00</td><td><span class="pin">✈️</span>成田T1チェックイン・手荷物預け・子供夕食</td><td>NRT 第1ターミナル</td></tr>
+      <tr><td class="time">20:10</td><td><span class="pin">🛫</span>NRT発（Air Seoul RS704・エコノミー・直行）</td><td>機内</td></tr>
+      <tr><td class="time">22:50</td><td><span class="pin">🛬</span>ICN着・入国審査・荷物受取</td><td>ICN 第1ターミナル</td></tr>
+      <tr><td class="time">23:30頃</td><td><span class="pin">🚇</span>空港鉄道一般列車でICN→雲西（約8分・終電24時前後注意）<br><small>※ 終電後の場合はタクシー2台でホテル直行</small></td><td>ICN→雲西</td></tr>
+      <tr><td class="time">24:00頃</td><td><span class="pin">🏨</span>HOUND HOTEL Incheon Airport チェックイン・就寝</td><td>HOUND HOTEL</td></tr>
+    </table>
+
+    <div class="warning">⚠️ 空港鉄道の終電は深夜0時前後。22:50着＋入国審査30-45分で実質23:30以降の移動になる。最終列車の運行時刻を出発前にコネスト等で再確認すること。</div>
+
+    <h3>持ち物・準備メモ</h3>
+    <ul style="padding-left: 20px;">
+      <li>子供用の機内おやつ、タブレット（DLしたアニメ動画）、薄手ブランケット</li>
+      <li>T-money（交通カード）— 仁川空港コンビニ・自販機で全員分購入</li>
+      <li>HOUND HOTEL深夜チェックイン連絡：予約時に「深夜23:00〜0:00着」リクエスト済み</li>
+    </ul>
   </div>
 
-  <div class="footnote" style="margin-top: 28px;">
-    出典：Pokémon Mega Festa 2026 公式（Inside Seoul / NOL World）、Toy Story 5 POP-UP（NOL World / Seoul Economic Daily）、バター餅（bibinews / The Korea Times）、Ikseondong cafe guide（Trip.com）、Lotte World Aquarium（Korea Travel Point）、広蔵市場（The Soul of Seoul / Visit Seoul）、昌徳宮（Tripadvisor）、土俗村参鶏湯（KONEST）、Hello Kitty Apple Cafe（The Soul of Seoul）。地図 © OpenStreetMap contributors。最終更新：2026年5月。
+  <!-- ============ DAY 2 ============ -->
+  <div id="day2" class="tab-content">
+    <div class="callout">
+      <strong>🏭 Day2のミッション：聖水ポケモン満喫デイ</strong>。メタモンPGは<strong>10:00開場・QRデジタル整理券</strong>のため、<strong>全員で早朝出発</strong>して聖水に7:30着を目指す：<br>
+      🚄 <strong>5:30 HOUND HOTEL出発</strong>→ AREX急行でソウル駅→タクシーでLOTTE CITY荷物預け→タクシーで聖水、<strong>7:30着</strong><br>
+      🎮 10:00開場と同時にQRスキャン → デジタル待ち順GET → 聖水カフェで朝食（通知待ち）→ Secret Forest → ランチ → <strong>メタモン入場（12〜13時頃想定）</strong><br>
+      🍖 夕方は明洞移動 → <strong>18:30 黄金牧場（予約済）</strong> → 21時帰宿。
+    </div>
+
+    <div class="section-banner">  タイムテーブル</div>
+    <table>
+      <thead><tr><th style="width:120px;">時刻</th><th>内容</th><th style="width:220px;">場所・参照</th></tr></thead>
+      <tr><td class="time">5:30 <span class="new-badge">全員出発</span></td><td><span class="pin">⏰</span><strong>HOUND HOTEL チェックアウト・全員出発</strong><br><small>仁川空港 T1 AREX乗り場へ移動（ホテルシャトル or 徒歩数分）</small></td><td>HOUND HOTEL<br>仁川空港 T1</td></tr>
+      <tr><td class="time">5:50-6:35</td><td><span class="pin">🚄</span><strong>AREX 急行（空港鉄道）乗車 → ソウル駅着</strong>（約43分）<br><small>子供は膝の上 or 空いてれば座席。荷物は網棚へ</small></td><td>仁川空港 → ソウル駅<br>AREX 急行</td></tr>
+      <tr><td class="time">6:35-6:50</td><td><span class="pin">🚕</span><strong>ソウル駅 → LOTTE CITY タクシー移動</strong>（約10分）<br><small>KAKAO T アプリで大型タクシー（ジャンボ）指定 → 6名＋荷物OK</small></td><td>ソウル駅 → 明洞</td></tr>
+      <tr><td class="time">6:50-7:10</td><td><span class="pin">🏨</span><strong>LOTTE CITY HOTEL 荷物預け</strong>（アーリーバッグドロップ）<br><small>チェックイン前でも預かり可。フロントで「짐 맡아주세요 (チム マジャジュセヨ)」</small></td><td>明洞 LOTTE CITY<br><a href="https://www.lottehotel.com/myeongdong-city/ja.html" target="_blank" class="ref-link official">公式</a><a href="https://maps.google.com/?q=LOTTE+CITY+HOTEL+Myeongdong" target="_blank" class="ref-link gmap">Maps</a></td></tr>
+      <tr><td class="time">7:10-7:30</td><td><span class="pin">🚕</span><strong>LOTTE CITY → 聖水 タクシー移動</strong>（約20〜25分）<br><small>または地下鉄2号線 明洞→聖水（약25分・子連れはタクシー推奨）</small></td><td>明洞 → 聖水</td></tr>
+      <tr><td class="time">7:30 <span class="new-badge">到着</span></td><td><span class="pin">📍</span><strong>聖水 Metamon Playground 前に到着・待機</strong><br><small>開場 10:00 まで約2.5時間待ち。近くのコンビニで朝ごはんの差し入れ、子供たちは近くで遊ばせつつスタンバイ</small></td><td>Metamon Playground<br><a href="https://maps.google.com/?q=Metamon+Playground+Seongsu" target="_blank" class="ref-link gmap">Maps</a></td></tr>
+      <tr><td class="time">10:00 <span class="new-badge">最重要</span></td><td><span class="pin">🎫</span><strong>🎮 Metamon Playground 開場！QRスキャン → デジタル待ち順GET</strong><br><small>10:00開場と同時にQRコードをスキャンしてデジタル待ち順番登録。<strong>土日は整理券が数分で満員</strong>のため先頭付近確保が目的<br>⚠️ 連絡先登録が必要な場合は<strong>韓国SIM(010〜)推奨</strong>。外国人の場合は現地スタッフに「외국인(ウェグイン=外国人)」と伝えて対応依頼</small></td><td>Metamon Playground<br><a href="https://insideseoul.app/seongsu/popups/metamon-playground-pokmon-mega-festa-2026" target="_blank" class="ref-link official">Inside Seoul</a></td></tr>
+      <tr><td class="time">10:00-11:30</td><td><span class="pin">🥯</span><strong>QR登録後 → 聖水カフェ街で朝食タイム</strong>（하츠ベーカリーでバター餅・요아정でヨーグルトアイス等）<br><small>SMS/アプリで順番通知が来るまで近隣を自由散策。ベビーカーでの移動も◎</small></td><td>聖水カフェ街<br><a href="https://maps.google.com/?q=하츠베이커리+성수" target="_blank" class="ref-link gmap">はつMaps</a></td></tr>
+      <tr><td class="time">11:30-12:00</td><td><span class="pin">🚶</span>ソウルの森へ徒歩 or 地下鉄1駅で移動（QR通知待ちがてら）</td><td>ソウルの森<br><a href="https://maps.google.com/?q=Seoul+Forest" target="_blank" class="ref-link gmap">Maps</a></td></tr>
+      <tr><td class="time">11:30-12:00</td><td><span class="pin">🎮</span><strong>Pokémon Secret Forest @ ソウルの森</strong>（無料・限定グッズ販売・予約不要）<br><small>※ メタモン入場通知が先に来た場合はこちらを後回しにして優先入場</small></td><td>ソウルの森<br><a href="https://insideseoul.app/guides/pokemon-mega-festa-2026-seongsu-seoul-forest-guide" target="_blank" class="ref-link official">Inside Seoul</a></td></tr>
+      <tr><td class="time">13:30-14:30</td><td><span class="pin">🍽</span>聖水でランチ（Metamon体験後 or 入場待ち中にランチ）</td><td>聖水</td></tr>
+      <tr><td class="time">12:00-13:30 <span class="new-badge">入場</span></td><td><span class="pin">🟪</span><strong>🎮 Metamon Playground 入場・体験</strong>（QR登録から約2〜3時間待ち想定・10時登録なら12〜13時頃に通知）<br><small>巨大メタモン彫像と撮影・体験コーナー。SMS/アプリで順番通知が来たらすぐ戻れるよう近隣で待機、柔軟対応</small></td><td>聖水（성수이로7가길9）<br><a href="https://maps.google.com/?q=Metamon+Playground+Seongsu" target="_blank" class="ref-link gmap">Maps</a></td></tr>
+      <tr><td class="time">14:30-14:45</td><td><span class="pin">🎀</span>The Teenieping Seongsu <strong>軽く立ち寄り（15分）</strong></td><td>聖水<br><a href="https://maps.google.com/?q=The+Teenieping+Seongsu" target="_blank" class="ref-link gmap">Maps</a></td></tr>
+      <tr><td class="time">14:45-15:30</td><td><span class="pin">🛍</span>Olive Young N 聖水（ポケモン商品＋ティニピン菓子＋パリパリ菓子）</td><td>聖水<br><a href="https://maps.google.com/?q=Olive+Young+N+Seongsu" target="_blank" class="ref-link gmap">Maps</a></td></tr>
+      <tr><td class="time">15:30-16:30 <span class="new-badge">NEW</span></td><td><span class="pin">👶</span><strong>29cm kids「イグキッズ聖水」</strong>でショッピング＋プレイゾーン<br><small>2階建・約300点・37ブランド・10:00-21:00。DETAMY PROJECT等の韓国先端子供服。プレイゾーン併設で子供休憩にも◎</small></td><td>聖水（峨嵯山路78）<br><a href="https://maps.google.com/?q=29cm+kids+이구키즈+성수" target="_blank" class="ref-link gmap">Maps</a></td></tr>
+      <tr><td class="time">16:30-17:30</td><td><span class="pin">🚇</span>聖水→明洞 LOTTE CITY （チェックイン＋荷物受け取り・一息つく）</td><td>明洞</td></tr>
+      <tr><td class="time">18:30-20:30 <span class="new-badge">予約済</span></td><td><span class="pin">🥩</span><strong>サムギョプサル夕食 黄金牧場 明洞本店</strong>（6名・5歳2名込み）<br><small>✅ 予約済み 6/6 18:30</small></td><td>明洞 黄金牧場<br><a href="https://www.konest.com/contents/gourmet_mise_detail.html?id=22013" target="_blank" class="ref-link konest">KONEST</a><a href="https://maps.google.com/?q=황금목장+명동본점" target="_blank" class="ref-link gmap">Maps</a></td></tr>
+      <tr><td class="time">20:30-21:00</td><td><span class="pin">🚶</span>ホテルへ徒歩（明洞屋台でホットック食べ歩きも任意）</td><td>明洞→LOTTE CITY</td></tr>
+      <tr><td class="time">21:00 <span class="new-badge">理想</span></td><td><span class="pin">🏨</span><strong>LOTTE CITY 着・就寝準備</strong></td><td>LOTTE CITY HOTEL</td></tr>
+    </table>
+
+    <div class="section-banner">  🥯 聖水 朝食候補（10:00合流後）</div>
+    <table>
+      <thead><tr><th style="width:200px;">店</th><th>特徴・推し</th><th style="width:200px;">参照</th></tr></thead>
+      <tr><td><strong>하츠ベーカリー 聖水店</strong></td><td>2026年トレンドNo.1「バター餅」・行列必至・1個3,000-6,000W</td><td><a href="https://maps.google.com/?q=하츠베이커리+성수" target="_blank" class="ref-link gmap">Maps</a></td></tr>
+      <tr><td><strong>요아정 Yoajung 聖水</strong></td><td>組立式ヨーグルトアイス・子供大喜び・トッピング数十種</td><td><a href="https://maps.google.com/?q=요아정+성수" target="_blank" class="ref-link gmap">Maps</a></td></tr>
+      <tr><td><strong>Cafe Onion 聖水</strong></td><td>聖水カフェの草分け・パンとペストリー・空間映え</td><td><a href="https://maps.google.com/?q=Cafe+Onion+Seongsu" target="_blank" class="ref-link gmap">Maps</a></td></tr>
+      <tr><td><strong>그라운드시소 聖水</strong></td><td>ベーカリー＋ブランチ・座って食事できる・子連れ◎</td><td><a href="https://maps.google.com/?q=Ground+Seesaw+Seongsu" target="_blank" class="ref-link gmap">Maps</a></td></tr>
+    </table>
+    <div class="footnote">推奨：<strong>하츠（バター餅）+ 요아정（ヨーグルトアイス）</strong>のハシゴで2026年トレンド回収。座って食事するなら<strong>그라운드시소</strong>。</div>
+
+    <div class="warning">
+      ⚠️ <strong>メタモンPGはオンライン予約不可・現地QRデジタル整理券のみ（10:00開場）</strong>！土日は開場数分でQR枠が満員になる。<strong>7:30着で10:00開場を先頭付近で待つ</strong>のが今回の作戦。<br>
+      ⚠️ QR登録時に連絡先が必要な場合は<strong>韓国SIM(010〜)推奨</strong>。外国人の場合は現地スタッフに「외국인(ウェグイン=外国人)」と伝えて対応依頼。<br>
+      ⏰ 待ち時間は土日で<strong>2〜3時間</strong>が目安。10:00にQR登録 → <strong>12〜13時頃に入場通知</strong>が来る想定でスケジュール設計。<br>
+      ✅ サムギョプサル予約完了：6/6 18:30、6名（5歳2名込）@ <strong>黄金牧場 明洞本店</strong>
+    </div>
   </div>
+
+  <!-- ============ DAY 3 ============ -->
+  <div id="day3" class="tab-content">
+    <div class="callout">
+      <strong>🛍 Day3のミッション：明洞買物＋フェイシャルデイ</strong>。朝イチで <strong>ロンドンベーグル 島山店（穴場・並び短め）</strong>→ 明洞戻り → 名前デコ → 別行動（フェイシャル / パパ隊カスタムキャップ等）→ <strong>NEW ERA・nyunyu・バター・アートボックスお買い物</strong>→ 夕方仁川移動 → bibigo夕食。
+    </div>
+
+    <div class="section-banner">  タイムテーブル</div>
+    <table>
+      <thead><tr><th style="width:120px;">時刻</th><th>内容</th><th style="width:220px;">場所・参照</th></tr></thead>
+      <tr><td class="time">7:00 <span class="new-badge">先発</span></td><td><span class="pin">🚇</span>大人1名 LOTTE CITY出発、地下鉄で島山公園駅へ（約25分）</td><td>明洞→新沙(島山)</td></tr>
+      <tr><td class="time">7:30-8:00</td><td><span class="pin">📲</span>ロンドンベーグル<strong>島山店</strong>並び（島山店は安国店より穴場・並び短め）</td><td>島山公園<br><a href="https://apps.apple.com/jp/app/catch-table/id1483546403" target="_blank" class="ref-link booking">CATCH TABLE</a></td></tr>
+      <tr><td class="time">7:30 <span class="new-badge">合流</span></td><td><span class="pin">🚇</span>残り全員 LOTTE CITY出発（荷物はベルボーイに預け）、島山へ</td><td>明洞→新沙(島山)</td></tr>
+      <tr><td class="time">8:30-9:30 <span class="new-badge">変更</span></td><td><span class="pin">🥯</span><strong>ロンドンベーグルミュージアム 島山店</strong>で朝食<br><small>人気No.1：ポテトチーズベーグル・島山公園エリアで雰囲気◎</small></td><td>島山ロンドンベーグル<br><a href="https://www.instagram.com/london.bagel.museum/" target="_blank" class="ref-link official">IG</a><a href="https://maps.google.com/?q=London+Bagel+Museum+Dosan" target="_blank" class="ref-link gmap">Maps</a></td></tr>
+      <tr><td class="time">9:30-10:00</td><td><span class="pin">🚇</span>明洞戻り（地下鉄3号線→4号線、約20分）<small>※ 公園散策はカット</small></td><td>明洞</td></tr>
+      <tr><td class="time">10:00-11:30</td><td><span class="pin">✏️</span><strong>Wappen House 明洞</strong>でキーホルダー名前デコ（10分/人 × 6名）</td><td>Wappen House<br><a href="https://www.konest.com/contents/shop_mise_detail.html?id=23527" target="_blank" class="ref-link konest">KONEST</a><a href="https://maps.google.com/?q=Wappen+House+Myeongdong" target="_blank" class="ref-link gmap">Maps</a></td></tr>
+      <tr><td class="time">11:30-12:30</td><td><span class="pin">🏨</span>LOTTE CITY 戻り・荷物整理・チェックアウト（ベルボーイ預け）</td><td>LOTTE CITY</td></tr>
+      <tr><td class="time">12:30-13:30</td><td><span class="pin">🍜</span>ランチ：明洞餃子（カルグクスの名店）or 王道韓食</td><td>明洞餃子<br><a href="https://www.konest.com/contents/gourmet_mise_detail.html?id=2030" target="_blank" class="ref-link konest">KONEST</a><a href="https://maps.google.com/?q=Myeongdong+Kyoja" target="_blank" class="ref-link gmap">Maps</a></td></tr>
+      <tr><td class="time">13:30-15:30 <span class="new-badge">別行動</span></td><td><span class="pin">🌟</span><strong>別行動タイム</strong><br>👩 女性2名 → 🧖 フェイシャル90分（要予約・下記5候補から選択）<br>👨‍👧 パパ隊 → ① NEW ERA明洞（キャップカスタム60分）→ ② Nike Seoul明洞（ワッペン装飾60分）</td><td>明洞エリア</td></tr>
+      <tr><td class="time">15:30-17:00 <span class="new-badge">買物</span></td><td><span class="pin">🛍</span><strong>明洞お買い物タイム</strong><br><small>nyunyu雑貨 / バター（パリパリお菓子）/ アートボックス（シール）/ Olive Young 追加買い / ヨアジュンおやつ</small></td><td>明洞<br><a href="https://maps.google.com/?q=Myeongdong+shopping" target="_blank" class="ref-link gmap">Maps</a></td></tr>
+      <tr><td class="time">17:00-18:30</td><td><span class="pin">🚇</span>LOTTE CITY荷物ピックアップ → 仁川空港駅へ</td><td>明洞→仁川</td></tr>
+      <tr><td class="time">18:30</td><td><span class="pin">🏨</span>Incheon Airport Global Hotel &amp; Suites チェックイン</td><td>仁川空港<br><a href="https://www.incheonairporthotel.kr/" target="_blank" class="ref-link official">公式</a><a href="https://maps.google.com/?q=Incheon+Airport+Global+Hotel+Suites" target="_blank" class="ref-link gmap">Maps</a></td></tr>
+      <tr><td class="time">19:00-20:30</td><td><span class="pin">🍴</span><strong>夕食</strong>（下記3候補から選択）</td><td>仁川空港 or 雲西</td></tr>
+      <tr><td class="time">21:00以降</td><td><span class="pin">🌃</span>ホテルでワイワイ夜更かしもアリ（翌朝早いけど）</td><td>仁川ホテル</td></tr>
+    </table>
+
+    <div class="section-banner">  🧖 フェイシャル5候補（女性2名・13:30〜90分）</div>
+    <table>
+      <thead><tr><th style="width:150px;">店</th><th>特徴・推し</th><th style="width:160px;">価格目安</th><th style="width:200px;">参照</th></tr></thead>
+      <tr><td><strong>Happy Skin（ハッピースキン）</strong></td><td>セラピスト全員資格保有・コルギ+フェイシャル・小顔マッサージ+パック2回</td><td>約60,000-100,000W</td><td>明洞駅徒歩3分・日本語OK<br><a href="https://www.veltra.com/jp/asia/korea/seoul/a/18269" target="_blank" class="ref-link booking">VELTRA予約</a><a href="https://maps.google.com/?q=Happy+Skin+Myeongdong" target="_blank" class="ref-link gmap">Maps</a></td></tr>
+      <tr><td><strong>李惠卿(イヘギョン)エステ</strong></td><td>30年の老舗・独自の3Dコルギマッサージ・フェイスライン・毛穴ケア</td><td>約80,000-130,000W</td><td>明洞駅4分・日本語OK<br><a href="https://www.veltra.com/jp/asia/korea/seoul/a/17691" target="_blank" class="ref-link booking">VELTRA予約</a><a href="https://maps.google.com/?q=이혜경에스테틱+명동" target="_blank" class="ref-link gmap">Maps</a></td></tr>
+      <tr><td><strong>HERA（ヘラ）エステ</strong></td><td>よもぎ蒸し・コルギ・フェイシャル+ボディから組合せ可・コスパ◎</td><td>約50,000-90,000W</td><td>明洞駅徒歩3分・日本語OK<br><a href="https://www.klook.com/ja/blog/spa-esthetic-massage-seoul-south-korea/" target="_blank" class="ref-link konest">Klook</a><a href="https://maps.google.com/?q=HERA+Esthetic+Myeongdong" target="_blank" class="ref-link gmap">Maps</a></td></tr>
+      <tr><td><strong>Shangpree 明洞</strong></td><td>高級・施術品質◎・SK-II級の鎮静ケア</td><td>約150,000-250,000W</td><td>明洞・予算余裕がある場合<br><a href="https://www.konest.com/contents/esthe_mise_detail.html?id=17834" target="_blank" class="ref-link konest">KONEST</a><a href="https://maps.google.com/?q=Shangpree+Myeongdong" target="_blank" class="ref-link gmap">Maps</a></td></tr>
+      <tr><td><strong>LK SPA 明洞</strong></td><td>日本語OK・気軽な価格帯・初韓国エステに向く</td><td>約50,000-80,000W</td><td>明洞・気軽<br><a href="https://www.konest.com/contents/esthe_mise_detail.html?id=21048" target="_blank" class="ref-link konest">KONEST</a><a href="https://maps.google.com/?q=LK+SPA+Myeongdong" target="_blank" class="ref-link gmap">Maps</a></td></tr>
+    </table>
+    <div class="footnote">推奨：王道なら<strong>李惠卿エステ</strong>、コスパなら<strong>HERA</strong>、高級志向なら<strong>Shangpree</strong>。</div>
+
+    <div class="section-banner">  👨‍👧 パパ隊コース5候補（男性2名+子供2名・13:30〜2時間）</div>
+    <table>
+      <thead><tr><th style="width:180px;">コース</th><th>内容</th><th style="width:160px;">アクセス</th><th style="width:180px;">参照</th></tr></thead>
+      <tr><td><strong>① NEW ERA キャップカスタム <span class="new-badge">NEW</span></strong></td><td>NEW ERA 明洞店でキャップ＋ワッペン刺繍カスタム。キッズキャップもあり、子供と<strong>お揃いカスタム</strong>可。所要30-60分</td><td>明洞徒歩圏</td><td><a href="https://www.instagram.com/reel/DYRebsJvwf4/" target="_blank" class="ref-link official">参考リール</a><a href="https://maps.google.com/?q=New+Era+Myeongdong" target="_blank" class="ref-link gmap">Maps</a></td></tr>
+      <tr><td><strong>② ナイキカスタム <span class="new-badge">NEW</span></strong></td><td>ナイキ江南/明洞でスニーカー or ウェアのカスタム体験。所要60分</td><td>地下鉄移動 or 明洞</td><td><a href="https://ameblo.jp/brille-brille/entry-12893989902.html" target="_blank" class="ref-link konest">参考ブログ</a></td></tr>
+      <tr><td><strong>③ LINE FRIENDS + 屋台</strong></td><td>LINE FRIENDS 明洞フラッグシップ（無料）→ 屋台食べ歩き</td><td>明洞徒歩圏</td><td><a href="https://maps.google.com/?q=LINE+Friends+Store+Myeongdong" target="_blank" class="ref-link gmap">Maps</a></td></tr>
+      <tr><td><strong>④ Alive Museum（4Dトリック）</strong></td><td>仁寺洞4Dトリックアート美術館・子供が写真撮りまくる定番・所要60-90分</td><td>地下鉄1駅 or 徒歩15分</td><td><a href="https://www.alivemuseum.com/" target="_blank" class="ref-link official">公式</a><a href="https://maps.google.com/?q=Alive+Museum+Insadong" target="_blank" class="ref-link gmap">Maps</a></td></tr>
+      <tr><td><strong>⑤ Color Pool Museum</strong></td><td>仁寺洞・ボールプール・SNS映え・体力発散・所要60-90分</td><td>地下鉄1駅 or 徒歩15分</td><td><a href="https://maps.google.com/?q=Color+Pool+Museum+Insadong" target="_blank" class="ref-link gmap">Maps</a></td></tr>
+    </table>
+    <div class="footnote">推奨：旅の特別感重視なら<strong>① NEW ERA キャップカスタム</strong>（家族お揃いができる）。子供が走りたいなら<strong>⑤ Color Pool</strong>。</div>
+
+    <div class="section-banner">  🛍 明洞お買い物候補（15:30-17:00 仁川移動前のラスト買物）</div>
+    <table>
+      <thead><tr><th style="width:160px;">店</th><th>内容</th><th style="width:180px;">参照</th></tr></thead>
+      <tr><td><strong>nyunyu雑貨</strong></td><td>韓国らしい可愛い雑貨・SNS映え・お土産にも◎</td><td><a href="https://maps.google.com/?q=nyunyu+Myeongdong" target="_blank" class="ref-link gmap">Maps</a></td></tr>
+      <tr><td><strong>バター（BUTTER）</strong></td><td>パリパリの軽いお菓子・お土産用</td><td><a href="https://maps.google.com/?q=Butter+Myeongdong" target="_blank" class="ref-link gmap">Maps</a></td></tr>
+      <tr><td><strong>アートボックス（ART BOX）</strong></td><td>韓国版ロフト・シール・文具・キャラグッズ豊富・子供大喜び</td><td><a href="https://maps.google.com/?q=Art+Box+Myeongdong" target="_blank" class="ref-link gmap">Maps</a></td></tr>
+      <tr><td><strong>Olive Young 追加買い</strong></td><td>朝逃したアイテム・配り土産・コスメ最終ピックアップ</td><td><a href="https://maps.google.com/?q=Olive+Young+Myeongdong+Town" target="_blank" class="ref-link gmap">Maps</a></td></tr>
+      <tr><td><strong>요아정 Yoajung（おやつ）</strong></td><td>組立式ヨーグルトアイス・子供休憩枠に</td><td><a href="https://maps.google.com/?q=요아정+명동" target="_blank" class="ref-link gmap">Maps</a></td></tr>
+    </table>
+    <div class="footnote">明洞中の店なので徒歩で回れる。LOTTE CITY荷物ピックアップ後、GS25でティニピングミ最終チェックも忘れずに。</div>
+
+    <div class="section-banner">  🍴 Day3 夕食候補（仁川エリア）</div>
+    <table>
+      <thead><tr><th style="width:200px;">店</th><th>特徴</th><th style="width:170px;">アクセス</th><th style="width:160px;">参照</th></tr></thead>
+      <tr><td><strong>① bibigo 仁川空港店</strong><br>（オススメ）</td><td>韓国料理ビュッフェ「季節パプサン」とのコラボ。ビビンバ/参鶏湯/チゲ/焼き物が揃う・<strong>24時間営業</strong>・子連れ◎</td><td>仁川空港 T1 1F<br>ホテルから空港シャトル数分</td><td><a href="https://www.airport.kr/ap_ja/1918/subview.do" target="_blank" class="ref-link official">空港公式</a><a href="https://maps.google.com/?q=bibigo+Incheon+Airport+T1" target="_blank" class="ref-link gmap">Maps</a></td></tr>
+      <tr><td><strong>② ポンチュッ&amp;ポンビビンパッ</strong></td><td>お粥&amp;ビビンバ専門・<strong>24時間営業</strong>・12種類のお粥は2人で分けあえる・子供が消化に良い夕食を取りたい時に◎</td><td>仁川空港 T1 B1</td><td><a href="https://www.airport.kr/ap_ja/1918/subview.do" target="_blank" class="ref-link official">空港公式</a></td></tr>
+      <tr><td><strong>③ 雲西駅周辺 参鶏湯店</strong></td><td>地元の参鶏湯専門店（雲西駅徒歩7分）・本格韓国料理の最後の味わい・落ち着いた雰囲気</td><td>雲西駅徒歩7分<br>地下鉄1駅</td><td><a href="https://maps.google.com/?q=Unseo+Station+Samgyetang" target="_blank" class="ref-link gmap">Maps</a></td></tr>
+    </table>
+    <div class="footnote">推奨：荷物が多いので<strong>① bibigo 仁川空港</strong>がベスト（ホテル直近・24時間・韓国料理網羅）。子供が疲れていれば<strong>② ポンチュッ</strong>でお粥もアリ。</div>
+
+    <div class="warning">⚠️ フェイシャル 5月末までに予約必須。NEW ERA は当日カスタム可だが時間帯確認推奨。Day3夜ホテルで「ワイワイ夜更かし」も可だが翌朝5:30出発のため軽めに。</div>
+  </div>
+
+  <!-- ============ DAY 4 ============ -->
+  <div id="day4" class="tab-content">
+    <div class="callout">
+      <strong>🛬 Day4のミッション：</strong>RS705（ICN 08:10発）に乗るには <strong>5:30〜6:00ホテル出発</strong> が必要。前夜に荷物まとめ＆フロントにアーリーチェックアウト依頼を済ませる。
+    </div>
+
+    <div class="section-banner">  タイムテーブル</div>
+    <table>
+      <thead><tr><th style="width:120px;">時刻</th><th>内容</th><th style="width:200px;">場所</th></tr></thead>
+      <tr><td class="time">5:30-6:00</td><td><span class="pin">⏰</span>早朝ホテル出発（無料シャトル運行・空港まで数分）</td><td>仁川空港ホテル</td></tr>
+      <tr><td class="time">6:00-6:30</td><td><span class="pin">🛂</span>ICN空港着・チェックイン・荷物預け</td><td>ICN T1</td></tr>
+      <tr><td class="time">6:30-7:30</td><td><span class="pin">🍞</span>朝食（空港内）、保安検査</td><td>ICN</td></tr>
+      <tr><td class="time">7:30-8:00</td><td><span class="pin">🛍</span>免税店＋GS25でティニピンお菓子最終チェック</td><td>ICN</td></tr>
+      <tr><td class="time">8:10</td><td><span class="pin">🛫</span>ICN発（Air Seoul RS705・直行）</td><td>機内</td></tr>
+      <tr><td class="time">10:40</td><td><span class="pin">🛬</span>NRT着・入国・荷物受取</td><td>NRT</td></tr>
+      <tr><td class="time">12-13時台</td><td><span class="pin">🏠</span>帰宅</td><td>自宅</td></tr>
+    </table>
+
+    <div class="warning">⚠️ チェックイン締切はLCC基準で出発60分前。6:30までに空港着・チェックインカウンター到着が安全圏。</div>
+  </div>
+
+  <!-- ============ MUST TODO ============ -->
+  <div class="must-todo">
+    <h2>🚨 これだけは死守 Must Do</h2>
+    <p style="font-size: 12.5px; color: var(--text-light); margin-bottom: 14px;">事故ったら旅が壊れる系のクリティカルだけ。それ以外は現地で柔軟対応OK。</p>
+
+    <div class="must-item warn">
+      <div class="mt-title">🎫 メタモンPG QRデジタル整理券GET（6/6 10:00開場）</div>
+      <div class="mt-desc"><strong>全員で 5:30 HOUND HOTEL出発</strong>。AREX急行でソウル駅 → タクシーでLOTTE CITY荷物預け → タクシーで聖水、<strong>7:30着を目標</strong>。<br>10:00開場と同時にQRスキャン → デジタル待ち順GET。土日は数分で枠が埋まるため、先頭付近での待機が必須。</div>
+    </div>
+
+    <div class="must-item warn">
+      <div class="mt-title">📲 韓国SIM/eSIM 1人分手配</div>
+      <div class="mt-desc">メタモンPGのQR整理券登録で連絡先（韓国番号）が必要になる場合あり。なければ現地スタッフに「외국인(ウェグイン=外国人)」と伝えて対応依頼。SIMカードJP・JoyTel等で1人分eSIM（約500円〜）を事前契約しておくと確実。</div>
+    </div>
+
+    <div class="must-item">
+      <div class="mt-title">🧖 フェイシャル予約（5月末まで）</div>
+      <div class="mt-desc">6/7 13:30〜・女性2名・90分。5候補（Happy Skin / 李惠卿 / HERA / Shangpree / LK SPA）から選んで予約。</div>
+    </div>
+
+    <div class="must-item done">
+      <div class="mt-title">🥩 サムギョプサル予約 ✅ 完了</div>
+      <div class="mt-desc">黄金牧場 明洞本店 6/6 18:30 6名（5歳2名込）予約済み。</div>
+    </div>
+
+    <div class="must-item">
+      <div class="mt-title">🏨 HOUND HOTEL 深夜チェックイン再確認</div>
+      <div class="mt-desc">6/5 23:30〜0:00着の連絡を再確認。フロント深夜対応の有無を念のため。</div>
+    </div>
+
+    <div class="must-item">
+      <div class="mt-title">🚄 AREX チケット手配（子供分含む）</div>
+      <div class="mt-desc">膝上45分は子供にはきつい。6歳は座席必須・5歳は微妙。前日 or 当日朝に窓口で全員分手配。</div>
+    </div>
+  </div>
+
+  <div class="footnote" style="margin-top: 18px;">
+    細かいTODO（T-money・翻訳アプリDL等）は別途LINEで管理。<br>
+    出典：Pokémon Mega Festa 2026（Inside Seoul / NOL World）／London Bagel Museum / Hotteok / Wappen House（KONEST）／黄金牧場（KONEST）。
+  </div>
+
 </div>
 
 <script>
-// ===== Helper: build refs object =====
-function mapsUrl(name) { return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(name); }
-function imgSearch(q) { return 'https://www.google.com/search?tbm=isch&q=' + encodeURIComponent(q); }
-function konestSearch(q) { return 'https://www.konest.com/searches/search.html?keyword=' + encodeURIComponent(q); }
-
-// ===== Spot Database =====
-// 写真：Wikipedia REST API から自動取得した記事メイン画像。49/51件カバー。
-// 未取得2件（KidZania・The Hyundai Seoul）は絵文字フォールバック。
-
-const SPOTS = [
-  // ============ A. EVENT ============
-  {
-    cat: 'A', sub: 'A', label: 'A1', rank: 'A', type: ['trend','hot','must'],
-    name: '🎮 Pokémon Mega Festa 2026（30周年）',
-    photo: 'https://upload.wikimedia.org/wikipedia/en/a/a6/Pok%C3%A9mon_Pikachu_art.png',
-    photoEmoji: '🎮',
-    meta: '期間：〜2026年6月21日／場所：聖水＋ソウルの森／料金：無料',
-    desc: 'ポケモン30周年記念のソウル全域開催イベント。聖水で4スポット集中：Pokémon Secret Forest（ソウルの森）、Metamon Playground、Olive Young N 聖水。',
-    why: '期間限定×無料×子供刺さりMAX。これ目当てに6月に来る価値あり。',
-    refs: [
-      { label: '🟡 Inside Seoul', url: 'https://insideseoul.app/guides/pokemon-mega-festa-2026-seongsu-seoul-forest-guide', cls: 'official' },
-      { label: '🟡 NOL World', url: 'https://world.nol.com/en/content/festas/019d655a-436e-7260-b122-b95aee988e0a', cls: 'official' },
-      { label: '🟢 Google Maps', url: mapsUrl('Seoul Forest Pokemon Secret Forest'), cls: 'gmap' },
-      { label: '📷 画像', url: imgSearch('Pokemon Secret Forest Seoul'), cls: '' }
-    ],
-    ll: [37.5444, 127.0376], pinCat: 'event'
-  },
-  {
-    cat: 'A', sub: 'A', label: 'A2', rank: 'A', type: ['trend','new'],
-    name: '🧸 Toy Story 5 POP-UP',
-    photo: 'https://upload.wikimedia.org/wikipedia/en/0/08/Toy_Story_5_poster.jpg',
-    photoEmoji: '🧸',
-    meta: '期間：2026年4月30日〜7月12日／場所：The Hyundai Seoul（汝矣島）他',
-    desc: '映画『トイ・ストーリー5』公開（夏予定）に合わせたピクサー公式POP-UP。キーリング・ぬいぐるみ・ブラインドボックス、ピクサー世界観の巨大フォトスポット。Singapore Disney CruiseチケットSNSキャンペーン。',
-    why: '映画前体験の希少性、ピクサー世代の親も刺さる。',
-    refs: [
-      { label: '🟡 NOL World', url: 'https://world.nol.com/en/content/festas/019df18a-5ab9-7611-9d57-36f2a90d8ce9', cls: 'official' },
-      { label: '🟡 The Hyundai Seoul', url: 'https://www.thehyundai.com/', cls: 'official' },
-      { label: '🟢 Google Maps', url: mapsUrl('The Hyundai Seoul'), cls: 'gmap' },
-      { label: '📷 画像', url: imgSearch('Toy Story 5 popup Hyundai Seoul'), cls: '' }
-    ],
-    ll: [37.5258, 126.9282], pinCat: 'event'
-  },
-  {
-    cat: 'A', sub: 'A', label: 'A3', rank: 'B', type: ['trend'],
-    name: '📚 Seoul Outdoor Library',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/%EC%84%9C%EC%9A%B8%EA%B4%91%EC%9E%A5_%EC%A0%84%EA%B2%BD.JPG/500px-%EC%84%9C%EC%9A%B8%EA%B4%91%EC%9E%A5_%EC%A0%84%EA%B2%BD.JPG',
-    photoEmoji: '📚',
-    meta: '期間：6月毎週金〜日／場所：ソウル広場（明洞徒歩圏）他',
-    desc: '屋外に芝生席・ビーンバッグ・無料書籍。ピクニック気分で読書OK。',
-    why: 'Day2明洞滞在中の合間の休憩枠に。',
-    refs: [
-      { label: '🟡 Visit Seoul', url: 'https://english.visitseoul.net/', cls: 'official' },
-      { label: '🟢 Google Maps', url: mapsUrl('Seoul Outdoor Library Seoul Plaza'), cls: 'gmap' }
-    ],
-    ll: [37.5663, 126.9779], pinCat: 'event'
-  },
-  {
-    cat: 'A', sub: 'A', label: 'A4', rank: 'C', type: ['trend'],
-    name: '🚲 Car-Free Jamsugyo Festival',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/2011%EB%85%84_11%EC%9B%94_%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD_%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C_%EB%AA%85%EC%86%8C_%28Seoul_best_attractions%29_%EB%8B%AC%EB%B9%9B%EB%AC%B4%EC%A7%80%EA%B0%9C%EB%B6%84%EC%88%981.jpg/500px-2011%EB%85%84_11%EC%9B%94_%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD_%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C_%EB%AA%85%EC%86%8C_%28Seoul_best_attractions%29_%EB%8B%AC%EB%B9%9B%EB%AC%B4%EC%A7%80%EA%B0%9C%EB%B6%84%EC%88%981.jpg',
-    photoEmoji: '🚲',
-    meta: '期間：6月最初の2日曜／場所：蚕水橋・盤浦漢江公園',
-    desc: '蚕水橋全面歩行者天国、フードトラック・クラフト・自撮りスポット。',
-    why: '6/7（日）がHITするが聖水ポケモンと両立厳しい。',
-    refs: [
-      { label: '🟡 South Korea Hallyu', url: 'https://southkoreahallyu.com/seoul-june-events-festivals/', cls: 'official' },
-      { label: '🟢 Google Maps', url: mapsUrl('Jamsugyo Bridge Banpo Hangang Park'), cls: 'gmap' }
-    ],
-    ll: [37.5097, 126.9959], pinCat: 'event'
-  },
-
-  // ============ B. FOOD CLASSIC ============
-  {
-    cat: 'B', sub: 'classic', label: 'B-王1', rank: 'A', type: ['classic','must','plan'],
-    name: '🥩 サムギョプサル / 韓牛焼肉',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Samgyeopsal-gui.jpg/500px-Samgyeopsal-gui.jpg',
-    photoEmoji: '🥩',
-    meta: '代表店：黄金牧場 明洞本店／HONG BAR 明豚家／オントリセンコギ',
-    desc: '韓国旅行No.1王道。生の三枚肉を鉄板で焼いて、サンチュ・ゴマの葉・キムチ・ニンニクで包んで食べる。Day2夕食に確定。',
-    why: '明洞で個室予約必須。土曜夜は満席必至。',
-    refs: [
-      { label: '🩷 KONEST 黄金牧場', url: 'https://www.konest.com/contents/gourmet_mise_detail.html?id=22013', cls: 'konest' },
-      { label: '🩷 minfor 明洞サムギョプサル7選', url: 'https://minfor.jp/tourism/6109/', cls: 'konest' },
-      { label: '🟢 Google Maps', url: mapsUrl('황금목장 명동본점'), cls: 'gmap' },
-      { label: '📷 画像', url: imgSearch('황금목장 명동 samgyeopsal'), cls: '' }
-    ],
-    ll: [37.5604, 126.9852], pinCat: 'food-classic'
-  },
-  {
-    cat: 'B', sub: 'classic', label: 'B-王2', rank: 'B', type: ['classic'],
-    name: '🍲 参鶏湯（サムゲタン）',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Samgye-tang_2.jpg/500px-Samgye-tang_2.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail',
-    photoEmoji: '🍲',
-    meta: '代表店：土俗村（トソクチョン）@景福宮近く／高麗参鶏湯',
-    desc: '若鶏のお腹に高麗人参・もち米・栗・ナツメを詰めて煮込んだ滋養強壮スープ。1人前約16,000-22,000W。子供にも食べやすい。',
-    why: '景福宮観光と組み合わせ可能。夏でも"以熱治熱"で食べる王道。',
-    refs: [
-      { label: '🩷 KONEST 土俗村', url: 'https://www.konest.com/contents/hot_report_detail.html?id=17185', cls: 'konest' },
-      { label: '🟢 Google Maps', url: mapsUrl('토속촌 삼계탕'), cls: 'gmap' },
-      { label: '📷 画像', url: imgSearch('토속촌 삼계탕'), cls: '' }
-    ],
-    ll: [37.5810, 126.9707], pinCat: 'food-classic'
-  },
-  {
-    cat: 'B', sub: 'classic', label: 'B-王3', rank: 'B', type: ['classic'],
-    name: '🥘 ビビンバ（石焼/全州式）',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Dolsot-bibimbap.jpg/500px-Dolsot-bibimbap.jpg',
-    photoEmoji: '🥘',
-    meta: '代表店：全州中央会館（全州式の老舗）／相場：12,000-18,000W',
-    desc: 'ナムル・牛肉・卵・コチュジャンを石器で混ぜる料理。「全州式」が伝統スタイル。蟹味噌ビビンバはミシュランも。',
-    why: '辛さ調整できるので子供にも◎。Day2 or 3のランチ候補。',
-    refs: [
-      { label: '🩷 KONEST ビビンバ', url: 'https://www.konest.com/contents/hot_report_detail.html?id=18143', cls: 'konest' },
-      { label: '📷 画像', url: imgSearch('jeonju bibimbap'), cls: '' }
-    ],
-    ll: [37.5614, 126.9845], pinCat: 'food-classic'
-  },
-  {
-    cat: 'B', sub: 'classic', label: 'B-王4', rank: 'B', type: ['classic'],
-    name: '🦀 カンジャンケジャン（蟹の醤油漬け）',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Korean_seafood-Ganjang_gejang-01.jpg/500px-Korean_seafood-Ganjang_gejang-01.jpg',
-    photoEmoji: '🦀',
-    meta: '代表店：プロカンジャンケジャン（江南）／クンザコンガンジャンゲジャン（鍾路）／相場：1人前約40,000W',
-    desc: '生のワタリガニを醤油ベースのタレに漬けた高級韓国料理。「ご飯泥棒」の異名。',
-    why: '大人だけのランチ向き。子供6歳には早いかも。',
-    refs: [
-      { label: '🩷 KONEST カンジャンケジャン20選', url: 'https://www.konest.com/contents/hot_report_detail.html?id=9291', cls: 'konest' },
-      { label: '📷 画像', url: imgSearch('간장게장 ganjang gejang'), cls: '' }
-    ],
-    ll: [37.5172, 127.0473], pinCat: 'food-classic'
-  },
-  {
-    cat: 'B', sub: 'classic', label: 'B-王5', rank: 'A', type: ['classic','kid'],
-    name: '🍗 韓国式フライドチキン（KFC）',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Iksan_City_48_Korean_Style_Fried_chicken.jpg/500px-Iksan_City_48_Korean_Style_Fried_chicken.jpg',
-    photoEmoji: '🍗',
-    meta: '代表店：BBQ チキン／Kyochon／NeNe Chicken／Chir Chir',
-    desc: '韓国の「夜の鉄板」。ヤンニョム（甘辛）・パダク（醤油ニンニク）・原味の三大味。「치맥（チメッ）」＝チキン＋ビール。',
-    why: '子供確実喜ぶ。Day1深夜着のホテル夜食 or Day2夜にデリバリーもアリ。',
-    refs: [
-      { label: '🟡 Kyochon 公式', url: 'https://www.kyochon.com/', cls: 'official' },
-      { label: '🟡 BBQ Chicken', url: 'https://www.bbq.co.kr/', cls: 'official' },
-      { label: '📷 画像', url: imgSearch('korean fried chicken yangnyeom'), cls: '' }
-    ],
-    ll: [37.5634, 126.9846], pinCat: 'food-classic'
-  },
-  {
-    cat: 'B', sub: 'classic', label: 'B-王6', rank: 'B', type: ['classic'],
-    name: '🥶 冷麺（ネンミョン）',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Naengmyeon_%28cold_noodles%29.jpg/500px-Naengmyeon_%28cold_noodles%29.jpg',
-    photoEmoji: '🥶',
-    meta: '代表店：乙密台（平壌冷麺の名店）／又来屋／相場：12,000-15,000W',
-    desc: 'そば粉ベースの冷たい麺、平壌冷麺（あっさり）と咸興冷麺（甘辛）の2系統。サムギョプサルの締めにも。',
-    why: '6月の暑さ対策に最適。子供は咸興冷麺（甘い）が好きかも。',
-    refs: [
-      { label: '🩷 KONEST 冷麺', url: konestSearch('冷麺'), cls: 'konest' },
-      { label: '📷 画像', url: imgSearch('평양냉면 naengmyeon'), cls: '' }
-    ],
-    ll: [37.5648, 126.9665], pinCat: 'food-classic'
-  },
-  {
-    cat: 'B', sub: 'classic', label: 'B-王7', rank: 'A', type: ['classic','kid'],
-    name: '🍧 빙수 ビンス（韓国かき氷）',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Patbingsu.jpg/500px-Patbingsu.jpg',
-    photoEmoji: '🍧',
-    meta: '代表店：雪氷（Sulbing、チェーン展開）／ホミルパッピンス／相場：8,000-15,000W',
-    desc: 'マンゴー・きな粉・小豆など。練乳をかけたふわふわ氷の上にトッピング。6月の暑さに必食。',
-    why: '子供大喜び確定。Day2 or 3の昼下がりおやつ枠に。',
-    refs: [
-      { label: '🟡 Sulbing 公式', url: 'https://sulbing.com/', cls: 'official' },
-      { label: '📷 画像', url: imgSearch('설빙 빙수 mango'), cls: '' }
-    ],
-    ll: [37.5634, 126.9846], pinCat: 'food-classic'
-  },
-  {
-    cat: 'B', sub: 'classic', label: 'B-王8', rank: 'A', type: ['classic'],
-    name: '🌶 トッポッキ + 屋台食',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Tteokbokki.JPG/500px-Tteokbokki.JPG',
-    photoEmoji: '🌶',
-    meta: '場所：明洞屋台 / 広蔵市場 / 弘大 ／相場：3,000-5,000W',
-    desc: '餅をコチュジャンで甘辛く煮込んだ屋台フード。ホットック、キンパ、スンデと並んで屋台BIG3。',
-    why: 'Day2明洞夜の屋台散策で確実体験。子供も食いつく。',
-    refs: [
-      { label: '🩷 KONEST 屋台', url: konestSearch('明洞屋台'), cls: 'konest' },
-      { label: '📷 画像', url: imgSearch('떡볶이 myeongdong street food'), cls: '' }
-    ],
-    ll: [37.5631, 126.9849], pinCat: 'food-classic'
-  },
-  {
-    cat: 'B', sub: 'classic', label: 'B-王9', rank: 'A', type: ['classic','must'],
-    name: '🍢 広蔵市場の食べ歩き',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Gwangjang_Market%2C_Seoul_01.jpg/500px-Gwangjang_Market%2C_Seoul_01.jpg',
-    photoEmoji: '🍢',
-    meta: '場所：鍾路5街駅／1905年創業（韓国最古）／代表：빈대떡 ピンデトッ、ユッケ、スンデ',
-    desc: '韓国最古の常設市場、Netflix『Street Food: Asia』特集で世界的知名度。ピンデトッ・ユッケ・スンデで有名。',
-    why: '仁寺洞・東大門から徒歩。Day3朝の動線に組込可能。屋台体験のNo.1王道。',
-    refs: [
-      { label: '🟡 Visit Seoul', url: 'https://english.visitseoul.net/shopping/Gwangjang-Market/ENP000286', cls: 'official' },
-      { label: '🩷 The Soul of Seoul', url: 'https://thesoulofseoul.net/gwangjang-market-seoul-korea/', cls: 'konest' },
-      { label: '🟢 Google Maps', url: mapsUrl('Gwangjang Market'), cls: 'gmap' },
-      { label: '📷 画像', url: imgSearch('광장시장 food'), cls: '' }
-    ],
-    ll: [37.5705, 126.9920], pinCat: 'food-classic'
-  },
-  {
-    cat: 'B', sub: 'classic', label: 'B-王10', rank: 'B', type: ['classic','kid'],
-    name: '🥟 ホットック（屋台焼きパン）',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Hotteok.jpg/500px-Hotteok.jpg',
-    photoEmoji: '🥟',
-    meta: '場所：屋台全般／相場：1,500-3,000W',
-    desc: 'パン生地に黒糖・シナモン・くるみを入れて鉄板で焼く屋台スイーツ。冬の風物詩だが6月も食べられる。',
-    why: '子供確実喜ぶ。明洞・益善洞・聖水の屋台で見かける。',
-    refs: [
-      { label: '📷 画像', url: imgSearch('호떡 hotteok korean'), cls: '' }
-    ],
-    ll: [37.5631, 126.9849], pinCat: 'food-classic'
-  },
-
-  // ============ B. FOOD TREND ============
-  {
-    cat: 'B', sub: 'trend', label: 'B-T1', rank: 'A', type: ['trend','hot'],
-    name: '🧈 버터떡 Butter Rice Cake（バター餅）',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Tteok.jpg/500px-Tteok.jpg',
-    photoEmoji: '🧈',
-    meta: '価格：3,000-6,000W／代表店：이웃집통통이（元祖）／하츠베이커리 聖水店／COOKIE N CLAY 仁寺洞',
-    desc: '2026年に入ってからSNS爆発。「バターラン」（朝から行列）が流行語。外カリッ中もちの新感覚スイーツ。元ネタは上海の黄油年糕。',
-    why: '2026年訪韓で外せないトレンド食。家族で並ぶ価値あり。',
-    refs: [
-      { label: '🟡 bibinews バター餅特集', url: 'https://bibinews.jp/butter-mochi/', cls: 'official' },
-      { label: '🟡 Korea Times', url: 'https://en.sedaily.com/society/2026/03/11/food-fads-fade-faster-as-tanghulu-shops-vanish-butter-rice', cls: 'official' },
-      { label: '🟢 하츠베이커리 Maps', url: mapsUrl('하츠베이커리 성수'), cls: 'gmap' },
-      { label: '📷 画像', url: imgSearch('버터떡 butter rice cake'), cls: '' }
-    ],
-    ll: [37.5454, 127.0570], pinCat: 'food-trend'
-  },
-  {
-    cat: 'B', sub: 'trend', label: 'B-T2', rank: 'B', type: ['trend'],
-    name: '🍪 두쪼지 Dujjonku（ドバイチューイクッキー）',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Dubai_chocolate_on_a_plate_02.jpg/500px-Dubai_chocolate_on_a_plate_02.jpg',
-    photoEmoji: '🍪',
-    meta: '価格：4,000-7,000W／チョコ＋マシュマロ＋カダイフのクッキー',
-    desc: 'グローバルなドバイチョコブームの韓国版。2026年初頭から継続的に人気、各カフェで遭遇しやすい。',
-    why: 'バター餅と並ぶ2026トレンドツートップ。お土産にも◎。',
-    refs: [
-      { label: '🟡 Korea Travel Post', url: 'https://koreatravelpost.com/south-korea-viral-food-trends/', cls: 'official' },
-      { label: '📷 画像', url: imgSearch('두쪼지 dubai chewy cookie'), cls: '' }
-    ],
-    ll: [37.5447, 127.0560], pinCat: 'food-trend'
-  },
-  {
-    cat: 'B', sub: 'trend', label: 'B-T3', rank: 'B', type: ['trend','kid'],
-    name: '🍦 요아정 Yoajung（組立式ヨーグルトアイス）',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/French_fry_frozen_yoghurt.jpg/500px-French_fry_frozen_yoghurt.jpg',
-    photoEmoji: '🍦',
-    meta: '価格：6,000-10,000W／全国チェーン展開',
-    desc: 'ヨーグルトアイスのベースに数十種類のトッピングを自分で組み合わせる「遊び」型カフェ。明洞・聖水あり。',
-    why: '子供が一番喜ぶ系。組立体験そのものが楽しい。',
-    refs: [
-      { label: '🟡 HaniSeoul', url: 'https://www.haniseoul.com/travels/korea/korean-trend-food-guide', cls: 'official' },
-      { label: '📷 画像', url: imgSearch('요아정 yoajung yogurt'), cls: '' }
-    ],
-    ll: [37.5634, 126.9846], pinCat: 'food-trend'
-  },
-  {
-    cat: 'B', sub: 'trend', label: 'B-T4', rank: 'B', type: ['trend'],
-    name: '🥢 개성주악 Gaeseong Juak（伝統スイーツ復活）',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Tteok.jpg/500px-Tteok.jpg',
-    photoEmoji: '🥢',
-    meta: '価格：1,500-3,000W／場所：仁寺洞・安国エリア',
-    desc: '開城地方のマッコリ揚げ菓子が再流行。SNS映え◎。',
-    why: '伝統×トレンドのハイブリッド、お土産価値高い。',
-    refs: [
-      { label: '📷 画像', url: imgSearch('개성주악 traditional'), cls: '' }
-    ],
-    ll: [37.5727, 126.9897], pinCat: 'food-trend'
-  },
-  {
-    cat: 'B', sub: 'trend', label: 'B-T5', rank: 'B', type: ['classic'],
-    name: '🍯 Honey Butter Chip',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/%ED%97%88%EB%8B%88%EB%B2%84%ED%84%B0%EC%B9%A9_%EB%A1%9C%EA%B3%A0.jpg/500px-%ED%97%88%EB%8B%88%EB%B2%84%ED%84%B0%EC%B9%A9_%EB%A1%9C%EA%B3%A0.jpg',
-    photoEmoji: '🍯',
-    meta: '価格：1,500-3,000W／コンビニ全店',
-    desc: '2014年大ブームから今やスタンダード。空港GS25でまとめ買い。',
-    why: '配り土産の定番。',
-    refs: [
-      { label: '📷 画像', url: imgSearch('honey butter chip korea'), cls: '' }
-    ],
-    ll: [37.4602, 126.4407], pinCat: 'food-trend'
-  },
-
-  // ============ C. AREA CLASSIC ============
-  {
-    cat: 'C', sub: 'classic', label: 'C-王1', rank: 'A', type: ['classic','plan'],
-    name: '🛍 明洞 Myeongdong',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/%EB%AA%85%EB%8F%998%EA%B8%B8_%EA%B1%B0%EB%A6%AC_%282020.03%29.jpg/500px-%EB%AA%85%EB%8F%998%EA%B8%B8_%EA%B1%B0%EB%A6%AC_%282020.03%29.jpg',
-    photoEmoji: '🛍',
-    meta: '地下鉄4号線明洞駅',
-    desc: '観光番王道。コスメ・ファッション・ストリートフード・夜市が密集。Olive Youngフラッグシップ、Wappen House、Hello Kitty Apple Cafe。子連れ「安心エリア」。',
-    why: 'Day2の主戦場、宿泊もここなので動線最強。',
-    refs: [
-      { label: '🟡 Visit Seoul 明洞', url: 'https://english.visitseoul.net/attractions/Myeongdong_/107546', cls: 'official' },
-      { label: '🩷 KONEST 明洞モデルコース', url: 'https://www.konest.com/contents/hot_report_detail.html?id=1877', cls: 'konest' },
-      { label: '🟢 Google Maps', url: mapsUrl('Myeongdong Seoul'), cls: 'gmap' }
-    ],
-    ll: [37.5604, 126.9852], pinCat: 'area-classic'
-  },
-  {
-    cat: 'C', sub: 'classic', label: 'C-王2', rank: 'B', type: ['classic','new'],
-    name: '🏬 東大門 Dongdaemun / DDP',
-    photo: 'https://upload.wikimedia.org/wikipedia/en/thumb/8/8f/Dongdaemun_Design_Plaza_at_night%2C_Seoul%2C_Korea.jpg/500px-Dongdaemun_Design_Plaza_at_night%2C_Seoul%2C_Korea.jpg',
-    photoEmoji: '🏬',
-    meta: '地下鉄1/4号線東大門駅・2/4/5号線東大門歴史文化公園駅',
-    desc: '24時間営業のファッション卸売市場、隣接の東大門デザインプラザ（DDP）はザハ・ハディド設計の近未来建築。夜のライトアップは絶景。',
-    why: '明洞から地下鉄10分。Day2夜の選択肢として強い。',
-    refs: [
-      { label: '🟡 DDP 公式', url: 'https://www.ddp.or.kr/', cls: 'official' },
-      { label: '🩷 KONEST 東大門', url: konestSearch('東大門'), cls: 'konest' },
-      { label: '🟢 Google Maps', url: mapsUrl('Dongdaemun Design Plaza'), cls: 'gmap' }
-    ],
-    ll: [37.5663, 127.0095], pinCat: 'area-classic'
-  },
-  {
-    cat: 'C', sub: 'classic', label: 'C-王3', rank: 'C', type: ['classic'],
-    name: '🎤 弘大 Hongdae',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Street_hongdae_Seoul.jpg/500px-Street_hongdae_Seoul.jpg',
-    photoEmoji: '🎤',
-    meta: '地下鉄2号線弘大入口駅',
-    desc: '弘益大学周辺の若者の街。ストリートパフォーマンス、サンリオラバーズクラブ、K-popショップ、おしゃれカフェ。',
-    why: '半日コミット必要なので今回は厳しい。',
-    refs: [
-      { label: '🩷 KONEST 弘大', url: konestSearch('弘大'), cls: 'konest' },
-      { label: '🟢 Google Maps', url: mapsUrl('Hongdae Seoul'), cls: 'gmap' }
-    ],
-    ll: [37.5566, 126.9234], pinCat: 'area-classic'
-  },
-  {
-    cat: 'C', sub: 'classic', label: 'C-王4', rank: 'C', type: ['classic'],
-    name: '💎 江南 Gangnam',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Teheran-ro_Yeongdong-daero_crossing_7.jpg/500px-Teheran-ro_Yeongdong-daero_crossing_7.jpg',
-    photoEmoji: '💎',
-    meta: '地下鉄2号線江南駅／3号線狎鴎亭駅',
-    desc: '高級ブティック・整形外科の聖地。ギャラリア百貨店、COEX（Pyolmadang Library、水族館）。',
-    why: 'COEXのPyolmadang Library（高さ13m本棚）は子連れ撮影スポット◎。',
-    refs: [
-      { label: '🩷 KONEST 江南', url: konestSearch('江南'), cls: 'konest' },
-      { label: '🟢 Google Maps', url: mapsUrl('Gangnam Station Seoul'), cls: 'gmap' }
-    ],
-    ll: [37.4979, 127.0276], pinCat: 'area-classic'
-  },
-  {
-    cat: 'C', sub: 'classic', label: 'C-王5', rank: 'C', type: ['classic'],
-    name: '🌍 梨泰院 Itaewon',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Itaewon_2.jpg/500px-Itaewon_2.jpg',
-    photoEmoji: '🌍',
-    meta: '地下鉄6号線梨泰院駅',
-    desc: '外国人街、多国籍料理、ナイトライフ。家族旅行には合いにくい。',
-    why: '今回見送り。次回大人旅で。',
-    refs: [
-      { label: '🟢 Google Maps', url: mapsUrl('Itaewon Seoul'), cls: 'gmap' }
-    ],
-    ll: [37.5340, 126.9947], pinCat: 'area-classic'
-  },
-
-  // ============ C. AREA TREND ============
-  {
-    cat: 'C', sub: 'trend', label: 'C-T1', rank: 'A', type: ['trend','hot','plan'],
-    name: '🏭 聖水 Seongsu — "ブルックリン of Seoul"',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Evening_street_in_Seongsu-dong.jpg/500px-Evening_street_in_Seongsu-dong.jpg',
-    photoEmoji: '🏭',
-    meta: '地下鉄2号線聖水駅／徒歩エリア',
-    desc: '旧工場リノベのカフェ・ギャラリー・ブティック集中。Pokémon Mega Festa 3スポット＋ティニピン＋HAUS NOWHERE＋thisisneverthat＋하츠ベーカリー（バター餅）。',
-    why: 'Day3集中投下で正解。',
-    refs: [
-      { label: '🟡 kbuzzlab 聖水ガイド', url: 'https://kbuzzlab.com/seoul-kanko-2026/', cls: 'official' },
-      { label: '🟡 Inside Seoul', url: 'https://insideseoul.app/seongsu/popups', cls: 'official' },
-      { label: '🟢 Google Maps', url: mapsUrl('Seongsu Seoul'), cls: 'gmap' }
-    ],
-    ll: [37.5446, 127.0557], pinCat: 'area-trend'
-  },
-  {
-    cat: 'C', sub: 'trend', label: 'C-T2', rank: 'B', type: ['trend','new'],
-    name: '🏮 益善洞 Ikseondong — 韓屋カフェ村',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/%EA%B2%BD%EB%B3%B5%EA%B6%81_%EC%A0%84%EA%B2%BD.jpg/500px-%EA%B2%BD%EB%B3%B5%EA%B6%81_%EC%A0%84%EA%B2%BD.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail',
-    photoEmoji: '🏮',
-    meta: '地下鉄1/3/5号線鍾路3街駅／安国徒歩圏',
-    desc: '100年以上の韓屋を再開発。北村より商業化が進み子連れで歩きやすい。Cafe Onhwa、Monblanc Somme、Seoul Coffee 益善店、Cafe Highwaist。',
-    why: 'Day3朝の動線に挟むと半日を完璧化できる。',
-    refs: [
-      { label: '🟡 Trip.com 益善洞ガイド', url: 'https://kr.trip.com/moments/poi-ikseon-dong-hanok-village-57153194/', cls: 'official' },
-      { label: '🩷 KONEST 益善洞', url: konestSearch('益善洞'), cls: 'konest' },
-      { label: '🟢 Google Maps', url: mapsUrl('Ikseon-dong Hanok Village'), cls: 'gmap' }
-    ],
-    ll: [37.5727, 126.9897], pinCat: 'area-trend'
-  },
-  {
-    cat: 'C', sub: 'trend', label: 'C-T3', rank: 'C', type: ['trend'],
-    name: '🍷 漢南洞 Hannam',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Hannamdong-yongsangu.png/500px-Hannamdong-yongsangu.png',
-    photoEmoji: '🍷',
-    meta: '地下鉄6号線漢江鎮駅',
-    desc: '高級住宅街、リウム美術館、Maison Margiela漢南のBONANZA COFFEE。',
-    why: '大人向け。子連れにはカット推奨。',
-    refs: [
-      { label: '🟡 madameFIGARO 漢南洞', url: 'https://madamefigaro.jp/lifestyle/travel/260217-hannamdong.html', cls: 'official' },
-      { label: '🟢 Google Maps', url: mapsUrl('Hannam-dong Seoul'), cls: 'gmap' }
-    ],
-    ll: [37.5347, 127.0044], pinCat: 'area-trend'
-  },
-  {
-    cat: 'C', sub: 'trend', label: 'C-T4', rank: 'B', type: ['trend','new'],
-    name: '🏞 汝矣島 Yeouido',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Yeouido2025.jpg/500px-Yeouido2025.jpg',
-    photoEmoji: '🏞',
-    meta: '地下鉄5/9号線汝矣島駅',
-    desc: 'The Hyundai Seoul（Toy Story 5 POP-UP会場）、漢江公園、IFC Mall、63ビル（水族館）。',
-    why: 'Toy Story 5 POP-UP行くなら半日ここで完結。',
-    refs: [
-      { label: '🟡 The Hyundai Seoul', url: 'https://www.thehyundai.com/', cls: 'official' },
-      { label: '🟢 Google Maps', url: mapsUrl('Yeouido Seoul'), cls: 'gmap' }
-    ],
-    ll: [37.5258, 126.9282], pinCat: 'area-trend'
-  },
-  {
-    cat: 'C', sub: 'trend', label: 'C-T5', rank: 'B', type: ['classic','trend'],
-    name: '🎨 仁寺洞 Insadong',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Insa-dong_%EC%9D%B8%EC%82%AC%EB%8F%99_October_1_2020_20.jpg/500px-Insa-dong_%EC%9D%B8%EC%82%AC%EB%8F%99_October_1_2020_20.jpg',
-    photoEmoji: '🎨',
-    meta: '地下鉄3号線安国駅',
-    desc: '伝統工芸・茶道・ギャラリー街。Alive Museum（4Dトリックアート）、Color Pool Museum、개성주악、COOKIE N CLAY（バター餅）。',
-    why: 'Day3朝の北村・益善洞と合わせ技で半日完結。',
-    refs: [
-      { label: '🟡 Visit Seoul 仁寺洞', url: 'https://english.visitseoul.net/attractions/Insa-dong_/107547', cls: 'official' },
-      { label: '🩷 KONEST 仁寺洞', url: konestSearch('仁寺洞'), cls: 'konest' },
-      { label: '🟢 Google Maps', url: mapsUrl('Insadong Seoul'), cls: 'gmap' }
-    ],
-    ll: [37.5717, 126.9858], pinCat: 'area-trend'
-  },
-
-  // ============ D. KIDS ============
-  {
-    cat: 'D', sub: 'D', label: 'D1', rank: 'B', type: ['classic','kid'],
-    name: '🐠 Lotte World Aquarium',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Lotte_World_day_view_2.jpg/500px-Lotte_World_day_view_2.jpg',
-    photoEmoji: '🐠',
-    meta: '蚕室（Jamsil）／大人35,000W・子供29,000W／所要2-4h',
-    desc: '650種・55,000匹、85m海底トンネル、ベルーガ「Bella」、サメ給餌・ヒトデタッチ。ベビーカーOK。',
-    why: '半日コミットだが子供満足度最強クラス。明洞→蚕室は地下鉄30分。',
-    refs: [
-      { label: '🟡 Lotte World Aquarium 公式', url: 'https://www.lotteworld.com/aquarium/', cls: 'official' },
-      { label: '🩷 Korea Travel Point', url: 'https://koreatravelpoint.com/en/lotte-world-aquarium-seoul-guide/', cls: 'konest' },
-      { label: '🟢 Google Maps', url: mapsUrl('Lotte World Aquarium'), cls: 'gmap' }
-    ],
-    ll: [37.5113, 127.0982], pinCat: 'kid'
-  },
-  {
-    cat: 'D', sub: 'D', label: 'D2', rank: 'C', type: ['classic','kid'],
-    name: '🎢 Lotte World Adventure（遊園地）',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Lotte_World_day_view_2.jpg/500px-Lotte_World_day_view_2.jpg',
-    photoEmoji: '🎢',
-    meta: '蚕室／所要1日',
-    desc: '屋内＋屋外の大型テーマパーク。アクアリウムと隣接。',
-    why: '今回は1日確保が難しいので見送り推奨。',
-    refs: [
-      { label: '🟡 公式', url: 'https://adventure.lotteworld.com/', cls: 'official' },
-      { label: '🟢 Google Maps', url: mapsUrl('Lotte World Adventure'), cls: 'gmap' }
-    ],
-    ll: [37.5113, 127.0992], pinCat: 'kid'
-  },
-  {
-    cat: 'D', sub: 'D', label: 'D3', rank: 'C', type: ['kid'],
-    name: '🎓 KidZania Seoul',
-    photo: null,
-    photoEmoji: '🎓',
-    meta: '蚕室／対象4-15歳／所要1日',
-    desc: '医師・消防士・パイロット等の職業体験。',
-    why: '1日コミット必要、今回見送り。',
-    refs: [
-      { label: '🟡 KidZania 公式', url: 'https://www.kidzania.co.kr/', cls: 'official' },
-      { label: '🟢 Google Maps', url: mapsUrl('KidZania Seoul'), cls: 'gmap' }
-    ],
-    ll: [37.5113, 127.0992], pinCat: 'kid'
-  },
-  {
-    cat: 'D', sub: 'D', label: 'D4', rank: 'C', type: ['kid'],
-    name: '🌊 63 SEAWORLD',
-    photo: 'https://upload.wikimedia.org/wikipedia/en/thumb/3/31/63_Building_2019.jpg/500px-63_Building_2019.jpg',
-    photoEmoji: '🌊',
-    meta: '汝矣島63ビル地下／所要2-3h',
-    desc: '400種2万匹、IMAX併設。Lotte Aquariumより小規模だが汝矣島Toy Story 5と合わせ技OK。',
-    why: 'Lotte Aquariumと比較してどちらか1つでOK。',
-    refs: [
-      { label: '🟡 63 SeaWorld 公式', url: 'http://www.63art.co.kr/aquarium', cls: 'official' },
-      { label: '🟢 Google Maps', url: mapsUrl('63 SeaWorld'), cls: 'gmap' }
-    ],
-    ll: [37.5198, 126.9404], pinCat: 'kid'
-  },
-  {
-    cat: 'D', sub: 'D', label: 'D5', rank: 'B', type: ['kid'],
-    name: '🐰 Hello Kitty Apple Cafe 明洞',
-    photo: 'https://upload.wikimedia.org/wikipedia/en/0/05/Hello_kitty_character_portrait.png',
-    photoEmoji: '🐰',
-    meta: '明洞／所要1h',
-    desc: '3階建てキティカフェ、リンゴモチーフのデコ＆メニュー。',
-    why: 'Day2明洞滞在中の小休憩枠。女の子向け。',
-    refs: [
-      { label: '🩷 The Soul of Seoul', url: 'https://thesoulofseoul.net/sanrio-seoul-popup/', cls: 'konest' },
-      { label: '🟢 Google Maps', url: mapsUrl('Hello Kitty Apple Cafe Myeongdong'), cls: 'gmap' }
-    ],
-    ll: [37.5635, 126.9843], pinCat: 'kid'
-  },
-  {
-    cat: 'D', sub: 'D', label: 'D6', rank: 'A', type: ['trend','plan'],
-    name: '🎀 The Teenieping Seongsu',
-    photo: 'https://upload.wikimedia.org/wikipedia/en/0/07/Catch%21_Teenieping_poster.jpg',
-    photoEmoji: '🎀',
-    meta: '聖水／所要30-60分',
-    desc: '韓国版プリキュア公式旗艦、My Pingカスタム体験。',
-    why: 'すでにDay3組込済み。',
-    refs: [
-      { label: '🟡 SAMG 公式', url: 'https://samg.net/en/samg_news/samg-entertainments-the-teenieping-seongsu-draws-700-daily-visitors-underscoring-content-to-retail-momentum/', cls: 'official' },
-      { label: '🩷 Penny in Korea', url: 'https://pennyinkorea.com/the-teenieping-seongsu-a-complete-parent-guide-2026/', cls: 'konest' },
-      { label: '🟢 Google Maps', url: mapsUrl('The Teenieping Seongsu'), cls: 'gmap' }
-    ],
-    ll: [37.5418, 127.0570], pinCat: 'kid'
-  },
-  {
-    cat: 'D', sub: 'D', label: 'D7', rank: 'C', type: ['kid'],
-    name: '🎡 ソウル子ども大公園',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Amusement_park_in_Children%E2%80%99s_Grand_park.jpg/500px-Amusement_park_in_Children%E2%80%99s_Grand_park.jpg',
-    photoEmoji: '🎡',
-    meta: '城東区／所要3h〜',
-    desc: '53.6万㎡の公園、ミニ遊園地、子供用遊具、水遊び場。',
-    why: '広大すぎる、時間配分が難しい。',
-    refs: [
-      { label: '🟢 Google Maps', url: mapsUrl('Seoul Children\'s Grand Park'), cls: 'gmap' }
-    ],
-    ll: [37.5481, 127.0808], pinCat: 'kid'
-  },
-  {
-    cat: 'D', sub: 'D', label: 'D8', rank: 'B', type: ['classic','new'],
-    name: '📚 ピョルマダン図書館 @ COEX',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/%EB%B3%84%EB%A7%88%EB%8B%B9.jpg/500px-%EB%B3%84%EB%A7%88%EB%8B%B9.jpg',
-    photoEmoji: '📚',
-    meta: '江南COEX Mall／無料／所要30-60分',
-    desc: '高さ13mの本棚が圧巻、ベビーカーOK、無料、ショッピングモール内。撮影スポット◎。',
-    why: '江南滞在の合間に。子供と撮る写真が映える。',
-    refs: [
-      { label: '🟡 Starfield COEX', url: 'https://www.starfield.co.kr/coexmall/main.do', cls: 'official' },
-      { label: '🟢 Google Maps', url: mapsUrl('Starfield Library COEX'), cls: 'gmap' }
-    ],
-    ll: [37.5113, 127.0596], pinCat: 'kid'
-  },
-
-  // ============ E. CULTURE ============
-  {
-    cat: 'E', sub: 'E', label: 'E1', rank: 'A', type: ['classic','must'],
-    name: '👑 景福宮 Gyeongbokgung + 韓服レンタル',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/%EA%B4%91%ED%99%94%EB%AC%B8_%EC%9B%94%EB%8C%80.jpg/500px-%EA%B4%91%ED%99%94%EB%AC%B8_%EC%9B%94%EB%8C%80.jpg',
-    photoEmoji: '👑',
-    meta: '景福宮駅／入場3,000W（韓服着用で無料）／所要2-3h',
-    desc: '朝鮮王朝の正宮、5大宮殿で最大規模（東京ドーム10個分）。1395年建設。守門将交代式（10:00・14:00）。韓服レンタル店多数。',
-    why: '子供6歳・5歳に韓服を着せる最高のファミリー写真。土俗村（参鶏湯）も近い。',
-    refs: [
-      { label: '🟡 公式', url: 'http://www.royalpalace.go.kr/', cls: 'official' },
-      { label: '🩷 KKday 景福宮完全解説', url: 'https://www.kkday.com/ja/blog/71539/asia-korea-seoul-gyeongbokgungpalace', cls: 'konest' },
-      { label: '🟢 Google Maps', url: mapsUrl('Gyeongbokgung Palace'), cls: 'gmap' },
-      { label: '📷 画像', url: imgSearch('경복궁 gyeongbokgung'), cls: '' }
-    ],
-    ll: [37.5796, 126.9770], pinCat: 'culture'
-  },
-  {
-    cat: 'E', sub: 'E', label: 'E2', rank: 'B', type: ['classic','new'],
-    name: '🌳 昌徳宮 Changdeokgung + 秘苑',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/%EC%B0%BD%EB%8D%95%EA%B6%81_%EC%A0%84%EA%B2%BD_%282012%29.jpg/500px-%EC%B0%BD%EB%8D%95%EA%B6%81_%EC%A0%84%EA%B2%BD_%282012%29.jpg',
-    photoEmoji: '🌳',
-    meta: '安国駅徒歩／入場3,000W／秘苑ガイドツアー5,000W／所要1.5h',
-    desc: 'UNESCO世界文化遺産。景福宮よりコンパクトで歩きやすい。秘苑（Huwon）は300年の樹齢の木々と蓮池、ガイドツアー必須。',
-    why: '景福宮より子連れ歩きやすい。安国徒歩圏なのでDay3朝動線に挟める。',
-    refs: [
-      { label: '🟡 公式', url: 'http://www.cdg.go.kr/', cls: 'official' },
-      { label: '🩷 Tripadvisor', url: 'https://www.tripadvisor.com/Attraction_Review-g294197-d324892-Reviews-Changdeokgung-Seoul.html', cls: 'konest' },
-      { label: '🟢 Google Maps', url: mapsUrl('Changdeokgung Palace'), cls: 'gmap' }
-    ],
-    ll: [37.5794, 126.9910], pinCat: 'culture'
-  },
-  {
-    cat: 'E', sub: 'E', label: 'E3', rank: 'A', type: ['classic','plan'],
-    name: '🏘 北村韓屋村',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Bukchon_Hanok_Village_01.jpg/500px-Bukchon_Hanok_Village_01.jpg',
-    photoEmoji: '🏘',
-    meta: '安国駅徒歩／無料／所要1-2h',
-    desc: '伝統韓屋が並ぶ世界的有名フォトジェニックエリア。Day3朝に組込済み。',
-    why: '既プラン。',
-    refs: [
-      { label: '🟡 Visit Seoul', url: 'https://english.visitseoul.net/attractions/Bukchon-Hanok-Village_/107521', cls: 'official' },
-      { label: '🟢 Google Maps', url: mapsUrl('Bukchon Hanok Village'), cls: 'gmap' }
-    ],
-    ll: [37.5826, 126.9836], pinCat: 'culture'
-  },
-  {
-    cat: 'E', sub: 'E', label: 'E4', rank: 'B', type: ['classic'],
-    name: '🏛 徳寿宮 Deoksugung',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/%EB%8D%95%EC%88%98%EA%B6%81_%EC%A0%84%EA%B2%BD_%282013%29.jpg/500px-%EB%8D%95%EC%88%98%EA%B6%81_%EC%A0%84%EA%B2%BD_%282013%29.jpg',
-    photoEmoji: '🏛',
-    meta: '市庁駅徒歩／入場1,000W／所要1h',
-    desc: '5大宮殿の一つ、近代洋館「石造殿」が共存する珍しい宮殿。守門将交代式（11:00・14:00・15:30）。',
-    why: '市庁駅は明洞徒歩圏、ついで寄りしやすい。',
-    refs: [
-      { label: '🟡 公式', url: 'http://www.deoksugung.go.kr/', cls: 'official' },
-      { label: '🟢 Google Maps', url: mapsUrl('Deoksugung Palace'), cls: 'gmap' }
-    ],
-    ll: [37.5658, 126.9750], pinCat: 'culture'
-  },
-  {
-    cat: 'E', sub: 'E', label: 'E5', rank: 'C', type: ['classic'],
-    name: '🗼 Nソウルタワー',
-    photo: 'https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/NamsanTower_%28Cropped%29.jpeg/500px-NamsanTower_%28Cropped%29.jpeg',
-    photoEmoji: '🗼',
-    meta: '明洞からシャトルバス／展望台21,000W／所要2-3h',
-    desc: '夜景の定番、ロープウェイで上れる。明洞から近い。',
-    why: '夜枠捻出が今回は難しい。',
-    refs: [
-      { label: '🟡 公式', url: 'https://www.nseoultower.co.kr/', cls: 'official' },
-      { label: '🟢 Google Maps', url: mapsUrl('N Seoul Tower'), cls: 'gmap' }
-    ],
-    ll: [37.5512, 126.9882], pinCat: 'culture'
-  },
-  {
-    cat: 'E', sub: 'E', label: 'E6', rank: 'B', type: ['classic','new'],
-    name: '🌊 清渓川 Cheonggyecheon',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Cheonggyecheon_stream_at_sunrise_with_trees_in_Seoul.jpg/500px-Cheonggyecheon_stream_at_sunrise_with_trees_in_Seoul.jpg',
-    photoEmoji: '🌊',
-    meta: '市庁・鍾閣・鍾路3街駅／無料',
-    desc: '10.92kmの都市再生人工水路。涼やかなお散歩スポット。明洞からすぐ。',
-    why: '明洞滞在中の合間お散歩、または広蔵市場との合わせ技で訪問。',
-    refs: [
-      { label: '🟡 Visit Seoul', url: 'https://english.visitseoul.net/attractions/Cheonggyecheon_/107534', cls: 'official' },
-      { label: '🟢 Google Maps', url: mapsUrl('Cheonggyecheon Stream'), cls: 'gmap' }
-    ],
-    ll: [37.5694, 126.9784], pinCat: 'culture'
-  },
-  {
-    cat: 'E', sub: 'E', label: 'E7', rank: 'C', type: ['classic','new'],
-    name: '🏛 国立中央博物館',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/National_Museum_of_Korea%2C_Seoul_%282%29_%2840236586235%29.jpg/500px-National_Museum_of_Korea%2C_Seoul_%282%29_%2840236586235%29.jpg',
-    photoEmoji: '🏛',
-    meta: '二村駅／無料／所要2-3h',
-    desc: '韓国最大規模の博物館、半島史を網羅。子供向け展示室「Children\'s Museum」あり。完全無料。',
-    why: '無料＋子供向けゾーンあり。雨の日の保険として。',
-    refs: [
-      { label: '🟡 公式', url: 'https://www.museum.go.kr/site/eng/home', cls: 'official' },
-      { label: '🟢 Google Maps', url: mapsUrl('National Museum of Korea'), cls: 'gmap' }
-    ],
-    ll: [37.5239, 126.9802], pinCat: 'culture'
-  },
-  {
-    cat: 'E', sub: 'E', label: 'E8', rank: 'C', type: ['classic','new'],
-    name: '⚔ 戦争記念館',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/The_War_Memorial_Of_Korea_240615_02.jpg/500px-The_War_Memorial_Of_Korea_240615_02.jpg',
-    photoEmoji: '⚔',
-    meta: '三角地駅／無料／所要2h',
-    desc: '朝鮮戦争を中心にした韓国戦史博物館。屋外に戦車・戦闘機展示で子供は喜ぶ。',
-    why: '無料、屋外展示が子供向け、雨の日の保険。',
-    refs: [
-      { label: '🟡 公式', url: 'https://www.warmemo.or.kr/eng/index.do', cls: 'official' },
-      { label: '🟢 Google Maps', url: mapsUrl('War Memorial of Korea'), cls: 'gmap' }
-    ],
-    ll: [37.5360, 126.9774], pinCat: 'culture'
-  },
-
-  // ============ F. MARKETS ============
-  {
-    cat: 'F', sub: 'F', label: 'F1', rank: 'A', type: ['classic','must','new'],
-    name: '🍢 広蔵市場 Gwangjang Market',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Gwangjang_Market%2C_Seoul_01.jpg/500px-Gwangjang_Market%2C_Seoul_01.jpg',
-    photoEmoji: '🍢',
-    meta: '鍾路5街駅／1905年創業（韓国最古）／所要1-2h',
-    desc: '韓国最古の常設市場、Netflix『Street Food: Asia』特集で世界的知名度。代表メニュー：빈대떡（緑豆チヂミ）、肉膾（ユッケ）、스니네 빈대떡、모녀김밥。',
-    why: '屋台食べ歩きの王道。Day3朝の仁寺洞・益善洞・北村と組み合わせ可能。',
-    refs: [
-      { label: '🟡 Visit Seoul', url: 'https://english.visitseoul.net/shopping/Gwangjang-Market/ENP000286', cls: 'official' },
-      { label: '🩷 The Soul of Seoul', url: 'https://thesoulofseoul.net/gwangjang-market-seoul-korea/', cls: 'konest' },
-      { label: '🟢 Google Maps', url: mapsUrl('Gwangjang Market'), cls: 'gmap' },
-      { label: '📷 画像', url: imgSearch('광장시장 광장시장 food'), cls: '' }
-    ],
-    ll: [37.5705, 126.9920], pinCat: 'market'
-  },
-  {
-    cat: 'F', sub: 'F', label: 'F2', rank: 'B', type: ['classic','new'],
-    name: '🏬 東大門市場 / DDP',
-    photo: 'https://upload.wikimedia.org/wikipedia/en/thumb/8/8f/Dongdaemun_Design_Plaza_at_night%2C_Seoul%2C_Korea.jpg/500px-Dongdaemun_Design_Plaza_at_night%2C_Seoul%2C_Korea.jpg',
-    photoEmoji: '🏬',
-    meta: '東大門歴史文化公園駅／24時間営業',
-    desc: 'ファッション卸売市場、夜が本番。隣接の東大門デザインプラザ（DDP）はザハ・ハディド設計の近未来建築。',
-    why: 'Day2夜の選択肢に。',
-    refs: [
-      { label: '🟡 DDP 公式', url: 'https://www.ddp.or.kr/', cls: 'official' },
-      { label: '🟢 Google Maps', url: mapsUrl('Dongdaemun Design Plaza'), cls: 'gmap' }
-    ],
-    ll: [37.5663, 127.0095], pinCat: 'market'
-  },
-  {
-    cat: 'F', sub: 'F', label: 'F3', rank: 'B', type: ['classic'],
-    name: '🛍 南大門市場 Namdaemun Market',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/%EB%82%A8%EB%8C%80%EB%AC%B8_%EC%A4%91%EC%95%99%EB%A1%9C%EC%9D%98_%EC%9D%B4%EB%8F%99%EC%8B%9D_%EB%85%B8%EC%A0%90.jpg/500px-%EB%82%A8%EB%8C%80%EB%AC%B8_%EC%A4%91%EC%95%99%EB%A1%9C%EC%9D%98_%EC%9D%B4%EB%8F%99%EC%8B%9D_%EB%85%B8%EC%A0%90.jpg',
-    photoEmoji: '🛍',
-    meta: '会賢駅・市庁駅／毎日営業',
-    desc: '600年以上の歴史を持つソウル最大規模の伝統市場。海苔・高麗人参・お土産の総合デパート。子供服も豊富。',
-    why: '明洞徒歩圏。お土産まとめ買いの王道。',
-    refs: [
-      { label: '🟡 Visit Seoul', url: 'https://english.visitseoul.net/shopping/Namdaemun-Market/ENP000288', cls: 'official' },
-      { label: '🟢 Google Maps', url: mapsUrl('Namdaemun Market'), cls: 'gmap' }
-    ],
-    ll: [37.5587, 126.9774], pinCat: 'market'
-  },
-  {
-    cat: 'F', sub: 'F', label: 'F4', rank: 'A', type: ['classic','plan'],
-    name: '💄 Olive Young 明洞フラッグシップ',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/2020-04-17_22.17.43_%EC%98%AC%EB%A6%AC%EB%B8%8C%EC%98%81_%EC%9B%90%EC%A3%BC%EB%8B%A8%EA%B5%AC%EC%A0%90.jpg/500px-2020-04-17_22.17.43_%EC%98%AC%EB%A6%AC%EB%B8%8C%EC%98%81_%EC%9B%90%EC%A3%BC%EB%8B%A8%EA%B5%AC%EC%A0%90.jpg',
-    photoEmoji: '💄',
-    meta: '明洞／毎日10:00-22:30',
-    desc: 'Kビューティーの聖地、ポケモン×230SKUコラボ商品も。配り土産にも◎。',
-    why: '既プラン。',
-    refs: [
-      { label: '🟡 Olive Young 公式', url: 'https://global.oliveyoung.com/', cls: 'official' },
-      { label: '🟢 Google Maps', url: mapsUrl('Olive Young Myeongdong Town'), cls: 'gmap' }
-    ],
-    ll: [37.5634, 126.9846], pinCat: 'market'
-  },
-  {
-    cat: 'F', sub: 'F', label: 'F5', rank: 'B', type: ['classic','trend','new'],
-    name: '🏬 The Hyundai Seoul（汝矣島）',
-    photo: null,
-    photoEmoji: '🏬',
-    meta: '汝矣島駅／2021年オープン',
-    desc: '韓国最大級の最新百貨店。Toy Story 5 POP-UP会場、フードコート充実、子連れに優しい設計。',
-    why: 'A2のToy Story 5を見るならここがハブ。',
-    refs: [
-      { label: '🟡 公式', url: 'https://www.thehyundai.com/', cls: 'official' },
-      { label: '🟢 Google Maps', url: mapsUrl('The Hyundai Seoul'), cls: 'gmap' }
-    ],
-    ll: [37.5258, 126.9282], pinCat: 'market'
-  },
-  {
-    cat: 'F', sub: 'F', label: 'F6', rank: 'B', type: ['classic'],
-    name: '🏬 COEX Mall（江南）',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/%EB%B3%84%EB%A7%88%EB%8B%B9.jpg/500px-%EB%B3%84%EB%A7%88%EB%8B%B9.jpg',
-    photoEmoji: '🏬',
-    meta: '三成駅／巨大ショッピングモール',
-    desc: 'Starfield Library（ピョルマダン図書館・無料）、Coexアクアリウム、SMTOWN施設、フードコート。',
-    why: '江南観光の核。子供と1日過ごせる規模。',
-    refs: [
-      { label: '🟡 Starfield COEX', url: 'https://www.starfield.co.kr/coexmall/main.do', cls: 'official' },
-      { label: '🟢 Google Maps', url: mapsUrl('Starfield COEX Mall'), cls: 'gmap' }
-    ],
-    ll: [37.5113, 127.0596], pinCat: 'market'
-  }
-];
-
-// ===== Render Cards =====
-function badgesHtml(types) {
-  const map = {
-    classic: '<span class="badge classic">王道</span>',
-    trend: '<span class="badge trend">トレンド</span>',
-    hot: '<span class="badge hot">HOT</span>',
-    new: '<span class="badge new">NEW</span>',
-    must: '<span class="badge must">必訪</span>',
-    kid: '<span class="badge kid">子供向け</span>',
-    plan: '<span class="badge plan">既プラン</span>'
-  };
-  return (types||[]).map(t => map[t]||'').join('');
-}
-
-function renderCard(spot) {
-  const isClassic = spot.type && spot.type.includes('classic');
-  const isTrend = spot.type && spot.type.includes('trend');
-  const cardClass = isClassic ? 'classic-card' : (isTrend ? 'trend-card' : '');
-  const photoBgClass = isClassic ? 'classic-bg' : (isTrend ? 'trend-bg' : '');
-  const refsHtml = (spot.refs||[]).map(r =>
-    `<a href="${r.url}" target="_blank" rel="noopener" class="${r.cls||''}">${r.label}</a>`
-  ).join('');
-  const imgHtml = spot.photo
-    ? `<img src="${spot.photo}" alt="${spot.name}" onerror="this.style.display='none'" loading="lazy">`
-    : '';
-  return `
-    <div class="card ${cardClass}">
-      <div class="photo ${photoBgClass}">
-        <span class="photo-emoji">${spot.photoEmoji||'📍'}</span>
-        ${imgHtml}
-      </div>
-      <div class="body">
-        <div class="title">${spot.label}. ${spot.name} ${badgesHtml(spot.type)}</div>
-        <div class="meta">${spot.meta}</div>
-        <div class="desc">${spot.desc}</div>
-        ${spot.why ? `<div class="why">${spot.why}</div>` : ''}
-        <div class="refs">${refsHtml}</div>
-      </div>
-    </div>
-  `;
-}
-
-function renderInto(containerId, filterFn) {
-  const el = document.getElementById(containerId);
-  if (!el) return;
-  el.innerHTML = SPOTS.filter(filterFn).map(renderCard).join('');
-}
-
-// Category renders
-renderInto('cards-A',         s => s.cat === 'A');
-renderInto('cards-B-classic', s => s.cat === 'B' && s.sub === 'classic');
-renderInto('cards-B-trend',   s => s.cat === 'B' && s.sub === 'trend');
-renderInto('cards-C-classic', s => s.cat === 'C' && s.sub === 'classic');
-renderInto('cards-C-trend',   s => s.cat === 'C' && s.sub === 'trend');
-renderInto('cards-D',         s => s.cat === 'D');
-renderInto('cards-E',         s => s.cat === 'E');
-renderInto('cards-F',         s => s.cat === 'F');
-
-// ===== Ranking Table =====
-function rankBadge(rank) { return `<span class="grade ${rank}">${rank}</span>`; }
-function rankTable() {
-  const groups = { A: [], B: [], C: [] };
-  SPOTS.forEach(s => groups[s.rank] && groups[s.rank].push(s));
-  let html = '';
-  ['A','B','C'].forEach(rank => {
-    const title = rank === 'A' ? '🔴 Aランク（強推奨・組込必須）' : rank === 'B' ? '🟡 Bランク（オプション）' : '⚫ Cランク（今回見送り）';
-    html += `<h3>${title}</h3><table><tr><th style="width:50px;">ランク</th><th style="width:220px;">スポット</th><th style="width:90px;">タイプ</th><th>状態</th></tr>`;
-    groups[rank].forEach(s => {
-      const cls = `rank-${rank}`;
-      const t = s.type.includes('classic') ? '<span class="badge classic">王道</span>' : s.type.includes('trend') ? '<span class="badge trend">トレンド</span>' : '';
-      const plan = s.type.includes('plan') ? '✅ 既プラン' : (s.type.includes('must') ? '❓ 要追加' : '❓');
-      html += `<tr class="${cls}"><td>${rankBadge(rank)}</td><td>${s.name}</td><td>${t}</td><td>${plan}</td></tr>`;
-    });
-    html += '</table>';
-  });
-  document.getElementById('rank-table').innerHTML = html;
-}
-rankTable();
-
-// ===== Overview Map =====
-const map = L.map('map-overview', { scrollWheelZoom: false }).setView([37.55, 127.00], 12);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  maxZoom: 18,
-  attribution: '© OpenStreetMap contributors'
-}).addTo(map);
-
-function numIcon(num, cls) {
-  return L.divIcon({
-    className: '',
-    html: `<div class="pin-label ${cls||''}">${num}</div>`,
-    iconSize: [22, 22],
-    iconAnchor: [11, 11]
-  });
-}
-
-const bounds = [];
-SPOTS.forEach(s => {
-  if (!s.ll) return;
-  const marker = L.marker(s.ll, { icon: numIcon(s.label.replace(/^.+-/, ''), s.pinCat) }).addTo(map);
-  const typeLabel = s.type.includes('classic') ? '王道' : s.type.includes('trend') ? 'トレンド' : '—';
-  marker.bindPopup(
-    `<strong>${s.name}</strong><br>` +
-    `<span style="font-size:11px; background:${s.rank==='A'?'#FFE5E5':s.rank==='B'?'#FFF8E7':'#F2F2F2'}; padding:1px 6px; border-radius:8px; font-weight:700;">ランク ${s.rank}</span> ` +
-    `<span style="font-size:11px; background:${typeLabel==='トレンド'?'#FFE5E5':'#E0E8F0'}; padding:1px 6px; border-radius:8px;">${typeLabel}</span><br>` +
-    `<span style="font-size:12px; color:#666;">${s.meta}</span>`
-  );
-  bounds.push(s.ll);
-});
-map.fitBounds(bounds, { padding: [40, 40] });
-
 // ===== Tab Switching =====
 document.querySelectorAll('.tab').forEach(tab => {
   tab.addEventListener('click', () => {
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
     tab.classList.add('active');
-    document.getElementById(tab.dataset.target).classList.add('active');
-    setTimeout(() => map.invalidateSize(), 50);
+    const target = document.getElementById(tab.dataset.target);
+    if (target) {
+      target.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   });
 });
 </script>
