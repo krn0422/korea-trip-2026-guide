@@ -4,393 +4,407 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>🇰🇷 ソウル旅行 2026 — 3泊4日 完全版スケジュール</title>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
-  /* ===== ✨ POP DESIGN — Seoul Trip 2026 ===== */
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  /* ===== 🌸 Soft Pop Design — Mobile First ===== */
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
   :root {
-    --pink: #FF6B9D;
-    --orange: #FFA06B;
-    --yellow: #FFD93D;
-    --blue: #6BB6FF;
-    --purple: #B388FF;
-    --mint: #6BE5C7;
-    --coral: #FF8E8E;
-    --text: #2D2A4A;
-    --text-light: #6B6790;
-    --bg-soft: #FFF6FB;
+    --primary: #E89B9B;        /* くすみ ローズ */
+    --primary-deep: #C77272;
+    --secondary: #A6C8E0;      /* 優しいスカイ */
+    --accent: #E8C875;         /* くすみイエロー */
+    --mint: #A8D5BA;
+    --lavender: #BFA8DD;
+    --peach: #F0BFA0;
+
+    --text: #4A4258;
+    --text-light: #8B8395;
+    --border: #F0E5E1;
+    --bg: #FFF9F5;
+    --card-bg: #FFFFFF;
+    --soft-bg: #FAF3EF;
   }
+
   body {
-    font-family: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", "Hiragino Sans", "Yu Gothic", sans-serif;
-    font-size: 14px;
+    font-family: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", "Hiragino Sans", system-ui, sans-serif;
+    font-size: 15px;
     color: var(--text);
     background:
-      radial-gradient(circle at 0% 0%, #FFE5F1 0%, transparent 50%),
-      radial-gradient(circle at 100% 0%, #E5F4FF 0%, transparent 50%),
-      radial-gradient(circle at 100% 100%, #FFF9D6 0%, transparent 50%),
-      radial-gradient(circle at 0% 100%, #E5FFF0 0%, transparent 50%),
-      #FFF8FB;
+      radial-gradient(circle at 0% 0%, #FFE8E0 0%, transparent 40%),
+      radial-gradient(circle at 100% 100%, #E5EFFA 0%, transparent 40%),
+      var(--bg);
     background-attachment: fixed;
-    line-height: 1.75;
-    padding: 24px 12px;
+    line-height: 1.7;
+    padding: 16px 12px 80px;
     min-height: 100vh;
   }
+
   .container {
-    max-width: 1100px;
+    max-width: 720px;
     margin: 0 auto;
-    background: #FFF;
-    padding: 32px 36px 40px;
-    border-radius: 28px;
-    box-shadow: 0 16px 48px rgba(255, 107, 158, 0.18), 0 4px 12px rgba(0,0,0,0.04);
-    position: relative;
-    overflow: hidden;
   }
-  .container::before {
-    content: "";
-    position: absolute; top: -40px; right: -40px;
-    width: 200px; height: 200px;
-    background: radial-gradient(circle, var(--yellow) 0%, transparent 70%);
-    opacity: 0.4;
-    pointer-events: none;
-  }
-  .container::after {
-    content: "";
-    position: absolute; bottom: -60px; left: -60px;
-    width: 240px; height: 240px;
-    background: radial-gradient(circle, var(--pink) 0%, transparent 70%);
-    opacity: 0.25;
-    pointer-events: none;
-  }
-  .container > * { position: relative; z-index: 1; }
 
   /* ===== Header ===== */
   .header {
-    background: linear-gradient(135deg, #FF6B9D 0%, #FFA06B 50%, #FFD93D 100%);
-    padding: 28px 32px;
-    border-radius: 24px;
-    margin-bottom: 28px;
-    color: white;
-    box-shadow: 0 8px 28px rgba(255, 107, 158, 0.35);
+    background: linear-gradient(135deg, #F8C5C5 0%, #F5D5B5 50%, #F0DFB0 100%);
+    padding: 22px 22px 24px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+    color: #5D4A4A;
+    box-shadow: 0 6px 20px rgba(232, 155, 155, 0.25);
     position: relative;
     overflow: hidden;
   }
-  .header::after {
-    content: "✨🎀🐉";
-    position: absolute;
-    top: -10px; right: 20px;
-    font-size: 100px;
-    opacity: 0.15;
-    transform: rotate(-15deg);
-  }
   .header h1 {
     font-family: "Fredoka", "Zen Maru Gothic", sans-serif;
-    font-size: 28px;
-    font-weight: 700;
-    color: white;
-    margin-bottom: 8px;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    font-size: 22px;
+    font-weight: 600;
+    color: #4A3838;
+    margin-bottom: 6px;
+    line-height: 1.35;
+    letter-spacing: -0.3px;
   }
-  .header .subtitle { font-size: 14px; color: rgba(255,255,255,0.95); font-weight: 500; }
-  .header .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; font-size: 13px; }
+  .header .subtitle {
+    font-size: 13px;
+    color: rgba(74, 56, 56, 0.78);
+    font-weight: 500;
+  }
+  .header .meta {
+    display: flex; flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 12px;
+    font-size: 12px;
+  }
   .header .meta span {
-    background: rgba(255,255,255,0.92);
-    color: var(--text);
-    padding: 6px 14px;
+    background: rgba(255,255,255,0.85);
+    color: #5D4A4A;
+    padding: 4px 12px;
     border-radius: 999px;
     font-weight: 600;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
   }
 
   /* ===== Tab Nav ===== */
   .tab-nav {
     display: flex;
-    gap: 8px;
-    margin-bottom: 28px;
-    flex-wrap: wrap;
-    padding: 8px;
-    background: #FFF1F8;
+    gap: 6px;
+    margin-bottom: 20px;
+    padding: 6px;
+    background: var(--card-bg);
     border-radius: 999px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
   }
+  .tab-nav::-webkit-scrollbar { display: none; }
   .tab {
-    padding: 10px 22px;
+    padding: 9px 18px;
     background: transparent;
     border: none;
     cursor: pointer;
     font-family: inherit;
     font-size: 13px;
-    color: var(--pink);
+    color: var(--primary-deep);
     font-weight: 700;
     border-radius: 999px;
+    white-space: nowrap;
+    flex-shrink: 0;
     transition: all 0.2s ease;
   }
-  .tab:hover { background: rgba(255,107,157,0.1); transform: translateY(-1px); }
+  .tab:active { transform: scale(0.96); }
   .tab.active {
-    background: linear-gradient(135deg, #FF6B9D, #FFA06B);
+    background: linear-gradient(135deg, var(--primary), var(--peach));
     color: white;
-    box-shadow: 0 4px 14px rgba(255, 107, 158, 0.45);
-    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(232, 155, 155, 0.4);
   }
-  .tab-content { display: none; animation: fadeIn 0.3s ease; }
+  .tab-content { display: none; animation: fadeIn 0.25s ease; }
   .tab-content.active { display: block; }
   @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(8px); }
+    from { opacity: 0; transform: translateY(4px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
   /* ===== Section Banner ===== */
   .section-banner {
-    background: linear-gradient(90deg, #FF6B9D 0%, #B388FF 100%);
+    background: linear-gradient(90deg, var(--primary) 0%, var(--lavender) 100%);
     color: white;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 700;
-    padding: 12px 22px;
-    margin: 32px 0 14px;
-    border-radius: 14px;
-    box-shadow: 0 4px 12px rgba(179, 136, 255, 0.25);
-    letter-spacing: 0.5px;
+    padding: 10px 18px;
+    margin: 24px 0 12px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(191, 168, 221, 0.2);
+    letter-spacing: 0.2px;
   }
 
   /* ===== Callout ===== */
   .callout {
-    background: linear-gradient(135deg, #FFF9E5 0%, #FFE5F1 100%);
-    border: 2px dashed var(--orange);
-    padding: 18px 22px;
-    margin: 18px 0;
+    background: linear-gradient(135deg, #FFF9E8 0%, #FFEDE0 100%);
+    border: 1.5px dashed var(--peach);
+    padding: 14px 16px;
+    margin: 14px 0;
     font-size: 14px;
-    line-height: 1.8;
-    border-radius: 18px;
-    position: relative;
+    line-height: 1.75;
+    border-radius: 16px;
+    color: var(--text);
   }
-  .callout::before {
-    content: "💖";
-    position: absolute;
-    top: -14px; left: 20px;
-    background: white;
-    width: 28px; height: 28px;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 26px;
-    font-size: 16px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  }
-  .callout strong { color: var(--pink); font-weight: 700; }
+  .callout strong { color: var(--primary-deep); font-weight: 700; }
 
-  /* ===== Map ===== */
-  .map {
-    height: 420px;
-    width: 100%;
-    border: 3px solid #FFE5F1;
-    border-radius: 20px;
-    margin: 16px 0 20px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-    overflow: hidden;
-  }
-  .map-legend {
-    display: flex; flex-wrap: wrap;
-    gap: 14px;
-    font-size: 12px;
-    color: var(--text-light);
-    margin-bottom: 14px;
-    padding: 10px 16px;
-    background: #FFF6FB;
-    border-radius: 999px;
-    font-weight: 600;
-  }
-  .map-legend .dot {
-    display: inline-block;
-    width: 12px; height: 12px;
-    border-radius: 50%;
-    margin-right: 5px;
-    vertical-align: middle;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-  }
-
-  /* ===== Table ===== */
+  /* ===== Schedule Tables — Mobile First (Card layout) ===== */
   table {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
     font-size: 14px;
-    margin: 16px 0;
+    margin: 14px 0;
+    background: transparent;
+  }
+  thead { display: none; }
+  tbody { display: block; }
+  tr {
+    display: block;
+    margin-bottom: 12px;
+    background: var(--card-bg);
     border-radius: 18px;
-    overflow: hidden;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-    background: white;
+    padding: 14px 16px;
+    box-shadow: 0 2px 10px rgba(74, 66, 88, 0.06);
+    border: 1px solid var(--border);
   }
-  th {
-    background: linear-gradient(90deg, #6BB6FF 0%, #B388FF 100%);
-    color: white;
-    font-weight: 700;
-    padding: 12px 14px;
-    text-align: left;
-    border: none;
-    font-size: 13px;
-    letter-spacing: 0.3px;
-  }
+  tr:nth-child(even) { background: var(--card-bg); }
   td {
-    padding: 12px 14px;
+    display: block;
     border: none;
-    border-bottom: 1px solid #FFF1F8;
+    padding: 0;
     color: var(--text);
-    vertical-align: top;
     line-height: 1.7;
   }
-  tr:nth-child(even) td { background: #FDF7FF; }
-  tr:hover td { background: #FFF6FB; }
-  tr:last-child td { border-bottom: none; }
-
+  td:not(:first-child):not(:empty) { margin-top: 6px; }
   td.time {
     font-family: "Fredoka", sans-serif;
     font-weight: 600;
-    color: var(--pink);
-    white-space: nowrap;
+    color: var(--primary-deep);
+    font-size: 17px;
     font-variant-numeric: tabular-nums;
-    font-size: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed var(--border);
+    margin-bottom: 8px;
   }
   td .pin {
     display: inline-block;
-    background: linear-gradient(135deg, #FFD93D, #FFA06B);
-    color: #5D2D00;
-    padding: 2px 10px;
-    border-radius: 999px;
-    font-size: 11px;
-    font-weight: 700;
-    margin-right: 6px;
-    box-shadow: 0 2px 4px rgba(255, 160, 107, 0.3);
-  }
-
-  /* ===== Ref links ===== */
-  td .ref-link, .ref-link {
-    display: inline-block;
-    padding: 3px 12px;
+    background: linear-gradient(135deg, var(--accent), var(--peach));
+    color: #6D3F00;
+    padding: 2px 9px;
     border-radius: 999px;
     font-size: 11px;
     font-weight: 700;
     margin-right: 5px;
-    margin-top: 5px;
+  }
+  td small {
+    display: block;
+    margin-top: 6px;
+    color: var(--text-light);
+    font-size: 12px;
+    line-height: 1.65;
+  }
+
+  /* Desktop: switch back to table layout */
+  @media (min-width: 721px) {
+    thead { display: table-header-group; }
+    tbody { display: table-row-group; }
+    table {
+      background: var(--card-bg);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(74, 66, 88, 0.06);
+    }
+    th {
+      display: table-cell;
+      background: linear-gradient(90deg, var(--secondary) 0%, var(--lavender) 100%);
+      color: white;
+      font-weight: 700;
+      padding: 11px 14px;
+      text-align: left;
+      font-size: 13px;
+    }
+    tr {
+      display: table-row;
+      margin-bottom: 0;
+      background: transparent !important;
+      border-radius: 0;
+      padding: 0;
+      box-shadow: none;
+      border: none;
+    }
+    tr:nth-child(even) { background: var(--soft-bg) !important; }
+    td {
+      display: table-cell;
+      padding: 12px 14px;
+      vertical-align: top;
+      border-bottom: 1px solid var(--border);
+    }
+    td:not(:first-child):not(:empty) { margin-top: 0; }
+    td.time { border-bottom: 1px solid var(--border); margin-bottom: 0; padding-bottom: 12px; }
+  }
+
+  /* ===== Ref Links (chips) ===== */
+  .ref-link {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-right: 6px;
+    margin-top: 6px;
     text-decoration: none;
     white-space: nowrap;
-    transition: all 0.2s ease;
+    transition: all 0.15s ease;
     box-shadow: 0 1px 3px rgba(0,0,0,0.08);
   }
-  .ref-link:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
-  .ref-link.gmap { background: linear-gradient(135deg, #6BE5C7, #6BB6FF); color: white; }
-  .ref-link.official { background: linear-gradient(135deg, #FFD93D, #FFA06B); color: #5D2D00; }
-  .ref-link.konest { background: linear-gradient(135deg, #FF6B9D, #FFA0BC); color: white; }
-  .ref-link.booking { background: linear-gradient(135deg, #B388FF, #6BB6FF); color: white; }
+  .ref-link:active { transform: scale(0.95); }
+  .ref-link.gmap { background: linear-gradient(135deg, var(--mint), #88C5A8); color: white; }
+  .ref-link.official { background: linear-gradient(135deg, var(--accent), var(--peach)); color: #5D3F00; }
+  .ref-link.konest { background: linear-gradient(135deg, var(--primary), #E0A8B5); color: white; }
+  .ref-link.booking { background: linear-gradient(135deg, var(--lavender), var(--secondary)); color: white; }
 
   /* ===== Badges ===== */
   .new-badge {
     display: inline-block;
-    background: linear-gradient(135deg, #FFD93D, #FF6B9D);
+    background: linear-gradient(135deg, var(--accent), var(--primary));
     color: white;
-    padding: 2px 10px;
+    padding: 2px 9px;
     border-radius: 999px;
     font-size: 10px;
     font-weight: 700;
     margin-left: 5px;
     vertical-align: middle;
-    box-shadow: 0 2px 6px rgba(255, 107, 158, 0.4);
-    letter-spacing: 0.3px;
+    box-shadow: 0 1px 3px rgba(232, 155, 155, 0.35);
+    letter-spacing: 0.2px;
   }
 
   /* ===== KPI Cards ===== */
-  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; margin: 18px 0; }
-  .kpi-card {
-    background: linear-gradient(135deg, #FFF9E5 0%, #FFE5F1 100%);
-    padding: 16px 18px;
-    border-radius: 18px;
-    border: 2px solid #FFE5F1;
-    transition: transform 0.2s ease;
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin: 14px 0;
   }
-  .kpi-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(255, 107, 158, 0.2); }
-  .kpi-label { font-size: 12px; color: var(--text-light); font-weight: 600; }
+  @media (min-width: 480px) {
+    .kpi-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
+  }
+  .kpi-card {
+    background: linear-gradient(135deg, #FFF6EE 0%, #FFEFE7 100%);
+    padding: 14px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+  }
+  .kpi-label { font-size: 11px; color: var(--text-light); font-weight: 600; }
   .kpi-value {
     font-family: "Fredoka", sans-serif;
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--pink);
-    margin: 6px 0 0;
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--primary-deep);
+    margin: 4px 0 0;
   }
 
   /* ===== Footnote / Warning ===== */
   .footnote {
     font-size: 12px;
     color: var(--text-light);
-    background: #F8F4FF;
-    padding: 10px 14px;
-    border-radius: 14px;
-    margin: 12px 0;
-    border-left: 4px solid var(--purple);
+    background: var(--soft-bg);
+    padding: 9px 13px;
+    border-radius: 12px;
+    margin: 10px 0;
+    border-left: 3px solid var(--lavender);
+    line-height: 1.65;
   }
   .warning {
     font-size: 13px;
-    color: #B71C1C;
-    background: linear-gradient(135deg, #FFE5E5 0%, #FFF0F0 100%);
-    padding: 12px 18px;
-    border-radius: 16px;
-    border: 2px solid #FF8E8E;
+    color: #8C3D3D;
+    background: linear-gradient(135deg, #FFEAEA 0%, #FFF0E8 100%);
+    padding: 12px 16px;
+    border-radius: 14px;
+    border-left: 4px solid var(--primary);
     margin: 14px 0;
-    font-weight: 600;
+    line-height: 1.7;
   }
-
-  /* ===== Map pins ===== */
-  .pin-label {
-    background: linear-gradient(135deg, var(--pink), var(--orange));
-    color: white;
-    font-weight: 700;
-    font-size: 12px;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    line-height: 28px;
-    text-align: center;
-    border: 3px solid white;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.25);
-  }
-  .pin-label.hotel { background: linear-gradient(135deg, var(--orange), var(--yellow)); }
-  .pin-label.food { background: linear-gradient(135deg, var(--coral), var(--pink)); }
-  .pin-label.poke { background: linear-gradient(135deg, var(--mint), #4FC1A4); }
-  .pin-label.airport { background: linear-gradient(135deg, var(--purple), #6BB6FF); }
 
   /* ===== Headings ===== */
   h2 {
     font-family: "Fredoka", "Zen Maru Gothic", sans-serif;
-    font-size: 19px;
+    font-size: 17px;
     font-weight: 600;
-    color: var(--pink);
-    margin: 22px 0 12px;
+    color: var(--primary-deep);
+    margin: 20px 0 10px;
   }
   h3 {
     font-family: "Fredoka", "Zen Maru Gothic", sans-serif;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 600;
-    color: var(--purple);
-    margin: 18px 0 10px;
+    color: var(--lavender);
+    margin: 14px 0 8px;
   }
 
   /* ===== Lists ===== */
-  ul li { margin: 6px 0; }
-  ol li { margin: 6px 0; }
+  ul, ol { padding-left: 22px; }
+  ul li, ol li { margin: 5px 0; }
 
-  /* ===== Two col ===== */
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin: 18px 0; }
-  @media (max-width: 720px) {
-    .two-col { grid-template-columns: 1fr; }
-    .container { padding: 24px 18px; border-radius: 20px; }
-    .header { padding: 24px 20px; }
-    .header h1 { font-size: 22px; }
-    .tab-nav { padding: 6px; }
-    .tab { padding: 8px 14px; font-size: 12px; }
+  /* ===== Hide Maps (情報設計刷新で削除) ===== */
+  .map, .map-legend, #map-overview, #map-day1, #map-day2, #map-day3, #map-day4,
+  div[id^="map-"] {
+    display: none !important;
   }
 
-  /* ===== Strong links inside text ===== */
+  /* ===== Must TODO List (special priority cards) ===== */
+  .must-todo {
+    margin: 20px 0;
+    padding: 18px;
+    background: linear-gradient(135deg, #FFF0E5 0%, #FFE5E0 100%);
+    border-radius: 20px;
+    border: 2px solid var(--primary);
+  }
+  .must-todo h2 {
+    margin-top: 0;
+    color: var(--primary-deep);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .must-item {
+    background: white;
+    padding: 14px 16px;
+    border-radius: 14px;
+    margin: 10px 0;
+    border-left: 4px solid var(--primary);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .must-item.done { border-left-color: var(--mint); opacity: 0.75; }
+  .must-item.warn { border-left-color: var(--accent); }
+  .must-item .mt-title { font-weight: 700; color: var(--text); margin-bottom: 4px; font-size: 14px; }
+  .must-item .mt-desc { font-size: 12.5px; color: var(--text-light); line-height: 1.65; }
+
+  /* ===== Two col ===== */
+  .two-col { display: grid; grid-template-columns: 1fr; gap: 14px; margin: 14px 0; }
+  @media (min-width: 721px) {
+    .two-col { grid-template-columns: 1fr 1fr; gap: 20px; }
+  }
+
   strong { font-weight: 700; }
   small { font-size: 12px; color: var(--text-light); }
+
+  /* Responsive small tweaks */
+  @media (max-width: 480px) {
+    body { padding: 12px 8px 60px; }
+    .header { padding: 18px 18px 20px; border-radius: 18px; }
+    .header h1 { font-size: 19px; }
+    .header .subtitle { font-size: 12px; }
+    .section-banner { font-size: 13px; padding: 9px 14px; }
+    .tab { padding: 8px 14px; font-size: 12px; }
+    td.time { font-size: 16px; }
+  }
 </style>
 </head>
 <body>
@@ -423,17 +437,7 @@
       <strong>旅のテーマ：</strong>子供2人（6歳・5歳）が楽しめる聖水ポケモン＆ティニピン体験を最大化。期間中ちょうど <strong>Pokémon Mega Festa 2026（30周年）</strong> が開催中で、聖水エリアに無料スポットが集中。Day3を「ポケモンづくし＋ティニピン」の主役日に設計。
     </div>
 
-    <div class="section-banner">  01  全行程マップ</div>
-    <div class="map-legend">
-      <span><i class="dot" style="background:#1A1A1A;"></i>空港</span>
-      <span><i class="dot" style="background:#C47D0A;"></i>ホテル</span>
-      <span><i class="dot" style="background:#1B3F7A;"></i>観光・体験</span>
-      <span><i class="dot" style="background:#C00000;"></i>食事</span>
-      <span><i class="dot" style="background:#375623;"></i>ポケモン関連</span>
-    </div>
-    <div id="map-overview" class="map"></div>
-
-    <div class="section-banner">  02  日程サマリー</div>
+    <div class="section-banner">  日程サマリー</div>
     <table>
       <tr><th style="width:90px;">日付</th><th>エリア</th><th>テーマ</th><th>ハイライト</th></tr>
       <tr><td><strong>Day1</strong><br>6/5(金)</td><td>成田→仁川</td><td>移動・深夜チェックイン</td><td>20:10 NRT発 → 22:50 ICN着、空港鉄道で雲西へ</td></tr>
@@ -442,7 +446,7 @@
       <tr><td><strong>Day4</strong><br>6/8(月)</td><td>仁川→成田</td><td>早朝チェックアウト・帰国</td><td>08:10 ICN発 → 10:40 NRT着</td></tr>
     </table>
 
-    <div class="section-banner">  03  予約状況サマリー</div>
+    <div class="section-banner">  予約状況サマリー</div>
     <table>
       <tr><th>項目</th><th>内容</th><th>状態</th></tr>
       <tr><td>✈️ 往復航空券</td><td>Air Seoul RS704/RS705、6名分・座席指定済み</td><td>✅ 確定</td></tr>
@@ -457,7 +461,7 @@
       <tr><td>🚄 AREX 特急電車</td><td>行き帰り分（往復・大人6名 or 子供分も検討）</td><td>📲 出発前</td></tr>
     </table>
 
-    <div class="section-banner">  04  費用サマリー（確定分）</div>
+    <div class="section-banner">  費用サマリー（確定分）</div>
     <div class="kpi-grid">
       <div class="kpi-card"><div class="kpi-label">航空券（6名）</div><div class="kpi-value">¥107,339</div></div>
       <div class="kpi-card"><div class="kpi-label">ホテル3泊</div><div class="kpi-value">¥64,325</div></div>
@@ -473,13 +477,6 @@
     <div class="callout">
       <strong>🛫 Day1のミッション：</strong>「とにかく無事に深夜のHOUND HOTELまでたどり着く」。深夜0時前後着なので、空港鉄道一般列車（雲西駅まで約8分）で移動。子供2人をどう寝かせるかが勝負。
     </div>
-
-    <div class="section-banner">  動線マップ</div>
-    <div class="map-legend">
-      <span><i class="dot" style="background:#1A1A1A;"></i>空港</span>
-      <span><i class="dot" style="background:#C47D0A;"></i>ホテル</span>
-    </div>
-    <div id="map-day1" class="map"></div>
 
     <div class="section-banner">  タイムテーブル</div>
     <table>
@@ -510,15 +507,6 @@
       🅰 <strong>荷物隊（大人2＋子供2）</strong>= 7:30出発→明洞 LOTTE CITY 荷物預け→聖水へ<br>
       10時 聖水合流→朝食→Secret Forest→ランチ→整理券順でメタモンPG入場→29cm kids→明洞→<strong>18:30 黄金牧場（予約済）</strong>→21時帰宿。
     </div>
-
-    <div class="section-banner">  動線マップ（仁川→ソウル駅で分岐→聖水合流→明洞夕食）</div>
-    <div class="map-legend">
-      <span><i class="dot" style="background:#C47D0A;"></i>ホテル</span>
-      <span><i class="dot" style="background:#375623;"></i>ポケモン</span>
-      <span><i class="dot" style="background:#1B3F7A;"></i>体験</span>
-      <span><i class="dot" style="background:#C00000;"></i>食事</span>
-    </div>
-    <div id="map-day2" class="map"></div>
 
     <div class="section-banner">  タイムテーブル</div>
     <table>
@@ -567,14 +555,6 @@
     <div class="callout">
       <strong>🛍 Day3のミッション：明洞買物＋フェイシャルデイ</strong>。朝イチで <strong>ロンドンベーグル 島山店（穴場・並び短め）</strong>→ 明洞戻り → 名前デコ → 別行動（フェイシャル / パパ隊カスタムキャップ等）→ <strong>NEW ERA・nyunyu・バター・アートボックスお買い物</strong>→ 夕方仁川移動 → bibigo夕食。
     </div>
-
-    <div class="section-banner">  動線マップ（明洞→島山→明洞→仁川）</div>
-    <div class="map-legend">
-      <span><i class="dot" style="background:#C47D0A;"></i>ホテル</span>
-      <span><i class="dot" style="background:#C00000;"></i>食事</span>
-      <span><i class="dot" style="background:#1B3F7A;"></i>体験・買物</span>
-    </div>
-    <div id="map-day3" class="map"></div>
 
     <div class="section-banner">  タイムテーブル</div>
     <table>
@@ -646,9 +626,6 @@
       <strong>🛬 Day4のミッション：</strong>RS705（ICN 08:10発）に乗るには <strong>5:30〜6:00ホテル出発</strong> が必要。前夜に荷物まとめ＆フロントにアーリーチェックアウト依頼を済ませる。
     </div>
 
-    <div class="section-banner">  動線マップ</div>
-    <div id="map-day4" class="map"></div>
-
     <div class="section-banner">  タイムテーブル</div>
     <table>
       <tr><th style="width:120px;">時刻</th><th>内容</th><th style="width:200px;">場所</th></tr>
@@ -664,28 +641,45 @@
     <div class="warning">⚠️ チェックイン締切はLCC基準で出発60分前。6:30までに空港着・チェックインカウンター到着が安全圏。</div>
   </div>
 
-  <!-- ============ TODO ============ -->
-  <div class="section-banner">  🔥 直近TODO（全Day共通）</div>
-  <table>
-    <tr><th style="width:40px;">#</th><th>TODO</th><th style="width:120px;">期限</th><th style="width:100px;">優先度</th></tr>
-    <tr><td>1 ✅</td><td>サムギョプサル予約（<strong>黄金牧場 明洞本店 6/6 18:30 6名</strong>）<small>✅ 完了</small></td><td>—</td><td>✅ 済</td></tr>
-    <tr><td>2 🔥</td><td><strong>メタモンPG 現地整理券GET</strong>（6/6 朝8時配布開始）<br><small>⚠️ <strong>B隊は6時HOUND HOTEL出発・7:45聖水着で並ぶ必須</strong>・オンライン予約なし・<strong>韓国SIM(010〜)が必要</strong>、なければスタッフに「외국인」伝えて手書き対応依頼</small><a href="https://insideseoul.app/seongsu/popups/metamon-playground-pokmon-mega-festa-2026" target="_blank" class="ref-link official">参考</a></td><td>6/6 朝</td><td>🔥 当日朝</td></tr>
-    <tr><td>2-b <span class="new-badge">SIM</span></td><td><strong>韓国SIM/eSIM手配</strong>（誰か1人が韓国番号取得しておくと整理券GET安全。例: SIMカードJP、JoyTel等）</td><td>〜出発前</td><td>🔥 高</td></tr>
-    <tr><td>3</td><td>フェイシャル予約（明洞、<strong>6/7</strong> 13:30〜、女性2名・90分／<strong>5候補から選択</strong>）</td><td>〜5月末</td><td>🔥 高</td></tr>
-    <tr><td>4</td><td>ロンドンベーグル<strong>島山店</strong>営業時間・並び具合確認（CATCH TABLE）</td><td>〜6月初旬</td><td>中</td></tr>
-    <tr><td>5 <span class="new-badge">NEW</span></td><td>NEW ERA 明洞店・Nike Seoul 明洞店 営業時間確認（6/7 13:30-15:30対応可か）</td><td>〜6月初旬</td><td>中</td></tr>
-    <tr><td>6 <span class="new-badge">NEW</span></td><td>29cm kids「イグキッズ聖水」営業確認（6/6 16:30-17:30 立ち寄り）</td><td>〜6月初旬</td><td>低</td></tr>
-    <tr><td>7</td><td>HOUND HOTEL深夜チェックイン再確認</td><td>6月初旬</td><td>中</td></tr>
-    <tr><td>8 <span class="new-badge">NEW</span></td><td>AREX 特急電車 行き帰り 子供分含めチケット手配（去年は当日OK実績あり）</td><td>出発前</td><td>中</td></tr>
-    <tr><td>9</td><td>Pokémon Secret Forest 公式サイトで6/6運営状況再チェック</td><td>6月初旬</td><td>中</td></tr>
-    <tr><td>10</td><td>Day3 仁川夕食の店決定（bibigo 仁川空港 推奨）</td><td>出発前</td><td>中</td></tr>
-    <tr><td>11</td><td>子供のお土産予算枠決定（ポケモン・ティニピン・29cm kids）</td><td>出発前</td><td>中</td></tr>
-    <tr><td>12</td><td>T-moneyカード手配計画（仁川空港で全員分）</td><td>出発前</td><td>低</td></tr>
-    <tr><td>13</td><td>カカオタクシー・ネイバーマップ・Papago翻訳アプリDL（全員）</td><td>出発前</td><td>低</td></tr>
-  </table>
+  <!-- ============ MUST TODO ============ -->
+  <div class="must-todo">
+    <h2>🚨 これだけは死守 Must Do</h2>
+    <p style="font-size: 12.5px; color: var(--text-light); margin-bottom: 14px;">事故ったら旅が壊れる系のクリティカルだけ。それ以外は現地で柔軟対応OK。</p>
 
-  <div class="footnote" style="margin-top: 24px;">
-    出典：Pokémon Mega Festa 2026 公式情報（Inside Seoul / NOL World）、The Teenieping Seongsu（Penny in Korea / SAMG Entertainment）、明洞サムギョプサル各種口コミ（minfor / KONEST / tabelog）、CATCH TABLE / London Bagel Museum 各種レビュー。地図 © OpenStreetMap contributors。
+    <div class="must-item warn">
+      <div class="mt-title">🎫 メタモンPG 現地整理券GET（6/6 朝8時配布）</div>
+      <div class="mt-desc">B隊（大人2名）は <strong>6:00 HOUND HOTEL出発 / 7:30-7:45 聖水着</strong> で並ぶ。タクシー直行 or 空港鉄道+地下鉄。<br>会場タブレットに電話番号入力で整理券GET → SMS/KakaoTalkで順番通知。</div>
+    </div>
+
+    <div class="must-item warn">
+      <div class="mt-title">📲 韓国SIM/eSIM 1人分手配</div>
+      <div class="mt-desc">整理券登録は<strong>韓国電話番号(010〜)必須</strong>。なければ現地スタッフに「외국인(ウェグイン)」と伝えて手書き対応依頼。SIMカードJP・JoyTel等で1人分eSIMを契約しておくと安全。</div>
+    </div>
+
+    <div class="must-item">
+      <div class="mt-title">🧖 フェイシャル予約（5月末まで）</div>
+      <div class="mt-desc">6/7 13:30〜・女性2名・90分。5候補（Happy Skin / 李惠卿 / HERA / Shangpree / LK SPA）から選んで予約。</div>
+    </div>
+
+    <div class="must-item done">
+      <div class="mt-title">🥩 サムギョプサル予約 ✅ 完了</div>
+      <div class="mt-desc">黄金牧場 明洞本店 6/6 18:30 6名（5歳2名込）予約済み。</div>
+    </div>
+
+    <div class="must-item">
+      <div class="mt-title">🏨 HOUND HOTEL 深夜チェックイン再確認</div>
+      <div class="mt-desc">6/5 23:30〜0:00着の連絡を再確認。フロント深夜対応の有無を念のため。</div>
+    </div>
+
+    <div class="must-item">
+      <div class="mt-title">🚄 AREX チケット手配（子供分含む）</div>
+      <div class="mt-desc">膝上45分は子供にはきつい。6歳は座席必須・5歳は微妙。前日 or 当日朝に窓口で全員分手配。</div>
+    </div>
+  </div>
+
+  <div class="footnote" style="margin-top: 18px;">
+    細かいTODO（T-money・翻訳アプリDL等）は別途LINEで管理。<br>
+    出典：Pokémon Mega Festa 2026（Inside Seoul / NOL World）／London Bagel Museum / Hotteok / Wappen House（KONEST）／黄金牧場（KONEST）。
   </div>
 
 </div>
@@ -698,145 +692,12 @@ document.querySelectorAll('.tab').forEach(tab => {
     document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
     tab.classList.add('active');
     const target = document.getElementById(tab.dataset.target);
-    target.classList.add('active');
-    // Leafletマップは表示後にinvalidateSizeが必要
-    setTimeout(() => {
-      target.querySelectorAll('.map').forEach(m => {
-        if (m._leaflet_map) m._leaflet_map.invalidateSize();
-      });
-    }, 50);
+    if (target) {
+      target.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   });
 });
-
-// ===== Helper: Numbered Icon =====
-function numIcon(num, cls) {
-  return L.divIcon({
-    className: '',
-    html: `<div class="pin-label ${cls||''}">${num}</div>`,
-    iconSize: [26, 26],
-    iconAnchor: [13, 13]
-  });
-}
-
-// ===== Locations =====
-const LOC = {
-  NRT:       { ll: [35.7720, 140.3929], name: '成田空港 (NRT)' },
-  ICN:       { ll: [37.4602, 126.4407], name: '仁川国際空港 (ICN)' },
-  HOUND:     { ll: [37.4880, 126.4815], name: 'HOUND HOTEL Incheon Airport' },
-  UNSEO:     { ll: [37.4900, 126.4870], name: '雲西駅 (Unseo Station)' },
-  LOTTE:     { ll: [37.5635, 126.9817], name: 'LOTTE CITY HOTEL Myeongdong' },
-  MYEONG:    { ll: [37.5604, 126.9852], name: '明洞駅' },
-  OLIVE_M:   { ll: [37.5634, 126.9846], name: 'Olive Young 明洞タウン店' },
-  WAPPEN:    { ll: [37.5635, 126.9844], name: 'Wappen House 明洞' },
-  MDDUMPLING:{ ll: [37.5630, 126.9837], name: '明洞餃子（カルグクス）' },
-  HWANGGEUM: { ll: [37.5631, 126.9858], name: '黄金牧場 明洞本店（サムギョプサル候補）' },
-  ANGUK:     { ll: [37.5762, 126.9854], name: '安国駅' },
-  LONDON_BG: { ll: [37.5773, 126.9839], name: 'London Bagel Museum 安国店' },
-  BUKCHON:   { ll: [37.5826, 126.9836], name: '北村韓屋村' },
-  SEOULFRST: { ll: [37.5444, 127.0376], name: 'ソウルの森 / Pokémon Secret Forest' },
-  TTUKSEOM:  { ll: [37.5471, 127.0473], name: '뚝섬駅 (Ttukseom)' },
-  SEONGSU:   { ll: [37.5446, 127.0557], name: '聖水駅' },
-  METAMON:   { ll: [37.5453, 127.0533], name: 'Metamon Playground' },
-  TEENIE:    { ll: [37.5418, 127.0570], name: 'The Teenieping Seongsu' },
-  OLIVE_N:   { ll: [37.5447, 127.0552], name: 'Olive Young N 聖水' },
-  GLOBAL_HT: { ll: [37.4475, 126.4520], name: 'Incheon Airport Global Hotel & Suites' },
-  IKSEONDONG:{ ll: [37.5727, 126.9897], name: '益善洞 韓屋カフェ街' },
-  LINE_FR:   { ll: [37.5634, 126.9840], name: 'LINE FRIENDS 明洞フラッグシップ' },
-  ALIVE_MUS: { ll: [37.5720, 126.9855], name: 'Alive Museum 仁寺洞' },
-  COLORPOOL: { ll: [37.5736, 126.9858], name: 'Color Pool Museum 仁寺洞' },
-  HAPPY_SKIN:{ ll: [37.5639, 126.9842], name: 'Happy Skin（明洞フェイシャル）' },
-  IHYEKYUNG: { ll: [37.5648, 126.9866], name: '李惠卿エステ（明洞）' },
-  BIBIGO_T1: { ll: [37.4625, 126.4407], name: 'bibigo 仁川空港 T1' },
-  LONDON_DOSAN: { ll: [37.5232, 127.0376], name: 'London Bagel Museum 島山店' },
-  KIDS29CM: { ll: [37.5466, 127.0463], name: '29cm kids イグキッズ聖水' },
-  NIKE_MD:   { ll: [37.5648, 126.9856], name: 'Nike Seoul 明洞店' },
-  NEWERA_MD: { ll: [37.5640, 126.9852], name: 'NEW ERA 明洞店' }
-};
-
-// ===== Map Builder =====
-function buildMap(divId, steps, opts) {
-  const div = document.getElementById(divId);
-  if (!div) return;
-  const map = L.map(divId, { scrollWheelZoom: false });
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 18,
-    attribution: '© OpenStreetMap contributors'
-  }).addTo(map);
-
-  const bounds = [];
-  const latlngs = [];
-  steps.forEach((step, i) => {
-    const loc = LOC[step.key];
-    if (!loc) return;
-    const marker = L.marker(loc.ll, { icon: numIcon(step.num || (i+1), step.cls) }).addTo(map);
-    marker.bindPopup(`<strong>${step.num || (i+1)}. ${loc.name}</strong><br><span style="font-size:12px;color:#666;">${step.label||''}</span>`);
-    bounds.push(loc.ll);
-    latlngs.push(loc.ll);
-  });
-
-  if (latlngs.length > 1) {
-    L.polyline(latlngs, { color: '#1B3F7A', weight: 3, opacity: 0.6, dashArray: '6,6' }).addTo(map);
-  }
-
-  if (bounds.length > 0) {
-    map.fitBounds(bounds, { padding: [40, 40] });
-  }
-
-  div._leaflet_map = map;
-  return map;
-}
-
-// ===== Overview Map (Seoul-focused) =====
-buildMap('map-overview', [
-  { key: 'LOTTE', num: '🏨', cls: 'hotel', label: 'Day2/3 宿泊' },
-  { key: 'SEOULFRST', num: '🎮', cls: 'poke', label: 'Day2 Secret Forest' },
-  { key: 'METAMON', num: '🟪', cls: 'poke', label: 'Day2 Metamon' },
-  { key: 'TEENIE', num: '🎀', label: 'Day2 ティニピン' },
-  { key: 'KIDS29CM', num: '👶', label: 'Day2 29cm kids' },
-  { key: 'HWANGGEUM', num: '🥩', cls: 'food', label: 'Day2 黄金牧場' },
-  { key: 'LONDON_DOSAN', num: '🥯', cls: 'food', label: 'Day3 朝食(島山)' },
-  { key: 'WAPPEN', num: '✏', label: 'Day3 名前デコ' },
-  { key: 'NEWERA_MD', num: '🎩', label: 'Day3 NEW ERA' },
-  { key: 'NIKE_MD', num: '👟', label: 'Day3 Nike Seoul' }
-]);
-
-// ===== Day1 Map (Incheon focus - 移動日なので空港含む) =====
-buildMap('map-day1', [
-  { key: 'NRT', num: 1, cls: 'airport', label: '20:10 出発' },
-  { key: 'ICN', num: 2, cls: 'airport', label: '22:50 到着' },
-  { key: 'UNSEO', num: 3, label: '23:30 雲西駅' },
-  { key: 'HOUND', num: 4, cls: 'hotel', label: '24:00 チェックイン' }
-]);
-
-// ===== Day2 Map (Seoul focus、聖水中心) =====
-buildMap('map-day2', [
-  { key: 'LOTTE', num: 1, cls: 'hotel', label: '9:00 🅰荷物預け' },
-  { key: 'SEONGSU', num: 2, label: '10:00 🅱聖水到着・合流' },
-  { key: 'SEOULFRST', num: 3, cls: 'poke', label: '12:00 Secret Forest' },
-  { key: 'METAMON', num: 4, cls: 'poke', label: '14:30 Metamon' },
-  { key: 'TEENIE', num: 5, label: '15:30 ティニピン' },
-  { key: 'OLIVE_N', num: 6, cls: 'poke', label: '15:45 Olive Young N' },
-  { key: 'KIDS29CM', num: 7, label: '16:30 29cm kids' },
-  { key: 'HWANGGEUM', num: 8, cls: 'food', label: '18:30 黄金牧場(予約済)' }
-]);
-
-// ===== Day3 Map (Seoul focus、明洞中心) =====
-buildMap('map-day3', [
-  { key: 'LOTTE', num: 1, cls: 'hotel', label: '7:30 出発' },
-  { key: 'LONDON_DOSAN', num: 2, cls: 'food', label: '8:00 ロンドンベーグル島山' },
-  { key: 'WAPPEN', num: 3, label: '9:30 名前デコ' },
-  { key: 'MDDUMPLING', num: 4, cls: 'food', label: '12:30 ランチ' },
-  { key: 'HAPPY_SKIN', num: 5, label: '13:30 フェイシャル' },
-  { key: 'NEWERA_MD', num: 6, label: '13:30 NEW ERA(パパ隊)' },
-  { key: 'NIKE_MD', num: 7, label: '14:30 Nike Seoul(パパ隊)' }
-]);
-
-// ===== Day4 Map (Incheon focus - 帰国移動) =====
-buildMap('map-day4', [
-  { key: 'GLOBAL_HT', num: 1, cls: 'hotel', label: '5:30 出発' },
-  { key: 'ICN', num: 2, cls: 'airport', label: '6:00 ICN' },
-  { key: 'NRT', num: 3, cls: 'airport', label: '10:40 NRT' }
-]);
 </script>
 </body>
 </html>
